@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark grey background */
+    color: #E0E0E0; /* Light grey text */
+}
+
+header {
+    background-color: #a293d9; /* Purple */
+    color: #FFFFFF; /* White text */
+    text-align: center;
+    padding: 1em 0;
+}
+
+header h1 {
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Map Container */
+#viewDiv {
+    display: flex;
+    flex-direction: row; /* Align LayerList and map side by side */
+    height: 100vh; /* Full height */
+    width: 100%; /* Full width */
+    position: relative;
+    background-color: #1E1E1E; /* Slightly lighter dark grey background */
+    border: 1px solid #333; /* Subtle border */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* LayerList (Desktop Default) */
+#layerListDiv {
+    width: 20%; /* LayerList takes 20% of the width */
+    height: 100%; /* Full height of the container */
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    border-right: 1px solid #ccc; /* Divider between LayerList and map */
+    overflow-y: auto; /* Enable scrolling */
+    z-index: 3; /* Ensure it's above the map */
+    padding: 10px; /* Padding for content inside */
+}
+
+/* Map View (Desktop Default) */
+#mapContainer {
+    flex: 1; /* Take remaining space */
+    height: 100%; /* Full height */
+}
+
+/* Buttons */
+button {
+    background-color: #2E7D32; /* Forest green */
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1B5E20; /* Darker green */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    #viewDiv {
+        flex-direction: column; /* Stack LayerList below the map */
+    }
+
+    #layerListDiv {
+        width: 100%; /* Full width */
+        height: 200px; /* Fixed height for LayerList */
+        border-right: none;
+        border-top: 1px solid #ccc; /* Divider between LayerList and map */
+        position: relative; /* Normal flow for stacking */
+    }
+
+    #mapContainer {
+        height: calc(100vh - 200px); /* Adjust map height dynamically */
+    }
+}
