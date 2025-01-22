@@ -11,59 +11,91 @@ require([
     const map = new Map({
       basemap: "streets" // Replace with the desired basemap name
     });
-    
+
       
   
     const view = new MapView({
-      container: "viewDiv", // Styled map container
+      container: "viewDiv", // Ensure this matches the HTML ID
       map: map,
       center: [-98.57, 39.82], // Center map on United States
       zoom: 4
-    });
-
-
-
-
-  // Create the LayerList widget
-  const layerList = new LayerList({
-    view: view
   });
+  
 
-  // Create a div for the LayerList at the bottom
+
+
+
+  // Create and attach the LayerList widget
   const layerListDiv = document.createElement("div");
   layerListDiv.id = "layerListDiv";
+  layerListDiv.classList.add("hidden"); // Start hidden
   document.getElementById("viewDiv").appendChild(layerListDiv); // Append it to the map container
-  layerList.container = layerListDiv;
+
+  const layerList = new LayerList({
+    view: view,
+    container: layerListDiv // Attach LayerList to the dynamically created div
+  });
+
+  
 
   // Add a Search widget
   const searchWidget = new Search({
     view: view
   });
-  view.ui.add(searchWidget, "top-right");
+  view.ui.add(searchWidget, "bottom-right");
 
   // Add Fullscreen widget
   const fullscreenWidget = new Fullscreen({
     view: view
   });
-  view.ui.add(fullscreenWidget, "top-left");
+  view.ui.add(fullscreenWidget, "bottom-left");
+
+
+
+
+// Add click event to toggle layer list visibility
+document.getElementById("toggleLayerListButton").addEventListener("click", () => {
+  const layerListDiv = document.getElementById("layerListDiv");
+  if (layerListDiv.classList.contains("visible")) {
+    layerListDiv.classList.remove("visible");
+    layerListDiv.classList.add("hidden");
+  } else {
+    layerListDiv.classList.add("visible");
+    layerListDiv.classList.remove("hidden");
+  }
+});
 
 // Accordion functionality
 document.querySelectorAll(".accordion-button").forEach((button) => {
   button.addEventListener("click", function () {
     // Toggle visibility of content
     const content = this.nextElementSibling;
-    content.style.display =
-      content.style.display === "block" ? "none" : "block";
 
-    // Optionally, collapse other accordions within the same level
-    const parent = this.parentElement.parentElement;
-    parent.querySelectorAll(".accordion-content").forEach((otherContent) => {
-      if (otherContent !== content) {
-        otherContent.style.display = "none";
-      }
-    });
+    // Use a class-based approach for cleaner toggling
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      // Collapse all other accordion contents at the same level
+      const parent = this.parentElement.parentElement;
+      parent.querySelectorAll(".accordion-content").forEach((otherContent) => {
+        if (otherContent !== content) {
+          otherContent.style.maxHeight = null;
+        }
+      });
+
+      // Expand the clicked accordion content
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
   });
 });
+
+
+
+
+
+
+
+
 
 
   
@@ -393,12 +425,10 @@ const travelRiskLayer = new FeatureLayer({
 
 
 
-  // // Button click event (example)
-  // document.getElementById("analyzeBtn")?.addEventListener("click", function () {
-  //   console.log("Analyze button clicked!");
-  //   document.getElementById("results").innerHTML = `
-  //     <h2>Results</h2>
-  //     <p>Analysis complete. Results are now displayed.</p>
-  //   `;
-  // });
+
+
+
+
+
+  
 });

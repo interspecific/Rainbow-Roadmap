@@ -63,20 +63,22 @@
 <main>
   <!-- Map and Layer List Container -->
   <div id="viewDiv">
-    <!-- Layer List Container -->
-    <div id="layerListDiv"></div>
     <!-- Map Container -->
-    <div id="mapContainer"></div>
+    <div id="mapContainer">
+      <!-- Layer List -->
+      <div id="layerListDiv"></div>
+      <div id="searchWidget" class="widget-bottom"></div>
+
+    </div>
+    <!-- Toggle Button -->
+    <button id="toggleLayerListButton" class="map-toggle-button">Toggle Layer List</button>
   </div>
 </main>
 
-<footer>
-  <p>&copy; Rainbow Roadmap</p>
-</footer>
+
 
 <!-- JavaScript -->
 <script src="main.js"></script>
 <script src="accordion.js"></script>
 </body>
 </html>
-
