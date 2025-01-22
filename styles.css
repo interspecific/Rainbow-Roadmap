@@ -1,84 +1,198 @@
 /* General Styles */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212; /* Dark grey background */
-    color: #E0E0E0; /* Light grey text */
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212; /* Dark grey background */
+  color: #E0E0E0; /* Light grey text */
 }
 
 header {
-    background-color: #a293d9; /* Purple */
-    color: #FFFFFF; /* White text */
-    text-align: center;
-    padding: 1em 0;
+  background-color: #a293d9; /* Purple */
+  color: #FFFFFF; /* White text */
+  text-align: center;
+  padding: 0.6em 0;
 }
 
 header h1 {
-    font-weight: 500;
-    margin: 0;
+  font-weight: 500;
+  margin: 0 0 5px; /* Add margin below the title */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 1); /* Faint dark halo effect */
+}
+
+/* Responsive Header Text for Smaller Screens */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem; /* Scale down font size on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1rem; /* Further scale down font size on smaller phones */
+  }
+}
+
+/* Accordion Container in Header */
+.accordion-container {
+  display: flex;
+  justify-content: center; /* Center the accordions */
+  flex-wrap: wrap; /* Wrap accordions to new lines if needed */
+  gap: 10px; /* Add space between accordions */
+  max-width: 50%; /* Limit the width of the accordion container */
+  margin: 0 auto; /* Center container within header */
+  padding: 0px 0; /* Add vertical spacing */
+}
+
+.accordion {
+  flex: 1 1 calc(20% - 10px); /* Flexible width for buttons */
+  max-width: 200px; /* Optional: Set max width for accordions */
+  min-width: 120px; /* Optional: Set min width for smaller screens */
+}
+
+.accordion-button {
+  width: 100%;
+  text-align: center;
+  background-color: #925bc4; /* Purple */
+  color: white;
+  padding: 7px 12px;
+  font-size: 1em; /* Slightly larger font for readability */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.accordion-button:hover {
+  background-color: #8253b0; /* Darker purple */
+  transform: scale(1.02); /* Subtle zoom effect */
+}
+
+.accordion-content {
+  display: none; /* Hidden by default */
+  background-color: #e0d8f3; /* Lighter purple background */
+  color: #121212; /* Dark text for contrast */
+  padding: 10px;
+  border-left: 4px solid #6c4aad; /* Dark purple border for nested content */
+  margin-top: 5px;
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
+  border-radius: 4px;
+}
+
+.accordion-content a {
+  display: block;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #a293d9; /* Purple */
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.accordion-content a:hover {
+  background-color: #925bc4; /* Darker purple */
+  transform: translateY(-2px); /* Lift effect on hover */
 }
 
 /* Map Container */
 #viewDiv {
-    display: flex;
-    flex-direction: row; /* Align LayerList and map side by side */
-    height: 100vh; /* Full height */
-    width: 100%; /* Full width */
-    position: relative;
-    background-color: #1E1E1E; /* Slightly lighter dark grey background */
-    border: 1px solid #333; /* Subtle border */
-    overflow: hidden; /* Prevent overflow */
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 120px); /* Adjust height to account for header and spacing */
+  width: 100%;
+  position: relative;
+  background-color: #1E1E1E;
 }
 
-/* LayerList (Desktop Default) */
+/* Layer List */
 #layerListDiv {
-    width: 20%; /* LayerList takes 20% of the width */
-    height: 100%; /* Full height of the container */
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-    border-right: 1px solid #ccc; /* Divider between LayerList and map */
-    overflow-y: auto; /* Enable scrolling */
-    z-index: 3; /* Ensure it's above the map */
-    padding: 10px; /* Padding for content inside */
+  width: 20%;
+  height: 100%;
+  background-color: #2A2A2A; /* Darker grey for LayerList */
+  color: #E0E0E0; /* Light grey text */
+  border-right: 1px solid #333;
+  overflow-y: auto;
+  z-index: 3;
+  padding: 10px;
 }
 
-/* Map View (Desktop Default) */
+/* Map View */
 #mapContainer {
-    flex: 1; /* Take remaining space */
-    height: 100%; /* Full height */
+  flex: 1;
+  height: 100%;
 }
 
-/* Buttons */
-button {
-    background-color: #2E7D32; /* Forest green */
-    color: #FFFFFF;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+/* Dark Mode for LayerList Widget */
+.esri-layer-list {
+  background-color: #1E1E1E; /* Widget background */
+  color: #E0E0E0; /* Light text */
 }
 
-button:hover {
-    background-color: #1B5E20; /* Darker green */
+.esri-layer-list__item {
+  background-color: #2A2A2A; /* Layer background */
+  color: #E0E0E0; /* Light text for layer names */
+  border: 1px solid #333;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.esri-layer-list__item-label {
+  color: #FFFFFF; /* Bright white for labels */
+}
+
+.esri-layer-list__child-toggle {
+  color: #a293d9; /* Purple toggle arrows */
+}
+
+.esri-layer-list__item:hover {
+  background-color: #3A3A3A; /* Slightly lighter grey */
+}
+
+/* Widget Buttons */
+.esri-widget button {
+  background-color: #a293d9; /* Purple button background */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.esri-widget button:hover {
+  background-color: #8253b0; /* Darker purple */
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    #viewDiv {
-        flex-direction: column; /* Stack LayerList below the map */
-    }
+  .accordion-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
 
-    #layerListDiv {
-        width: 100%; /* Full width */
-        height: 200px; /* Fixed height for LayerList */
-        border-right: none;
-        border-top: 1px solid #ccc; /* Divider between LayerList and map */
-        position: relative; /* Normal flow for stacking */
-    }
+  .accordion {
+    max-width: none; /* Remove max width for mobile */
+    width: 90%; /* Full width with padding */
+  }
 
-    #mapContainer {
-        height: calc(100vh - 200px); /* Adjust map height dynamically */
-    }
+  #viewDiv {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #mapContainer {
+    height: calc(100vh - 300px); /* Adjust map height dynamically */
+  }
+
+  #layerListDiv {
+    height: auto;
+    width: 100%;
+  }
 }
+

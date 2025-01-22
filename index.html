@@ -14,29 +14,69 @@
   <script src="https://js.arcgis.com/4.27/"></script>
 </head>
 <body>
-  <header>
-    <h1>Rainbow Roadmap: An Interactive Map of LGBTQ, Climate, Environment, Health, and Economic Data</h1>
-  </header>
-  <main>
-    <!-- Map and Layer List Container -->
-    <div id="viewDiv">
-      <!-- Layer List Container -->
-      <div id="layerListDiv"></div>
-      <!-- Map Container -->
-      <div id="mapContainer"></div>
+<header>
+  <h1>Rainbow Roadmap: An Interactive Map of LGBTQ, Climate, Environment, Health, and Economic Data</h1>
+  <!-- Main Accordion -->
+  <div class="accordion-container">
+    <div class="accordion">
+      <button class="accordion-button">More</button>
+      <div class="accordion-content">
+        <!-- Nested Accordions -->
+        <div class="accordion">
+          <button class="accordion-button">LGBTQ Bills</button>
+          <div class="accordion-content">
+            <a href="https://example.com/lgbtq-bills" target="_blank" class="accordion-link">Erin Reed's Substack</a>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-button">LGBTQ+ Resources</button>
+          <div class="accordion-content">
+            <a href="https://example.com/resource1" target="_blank" class="accordion-link">Resource 1</a>
+            <a href="https://example.com/resource2" target="_blank" class="accordion-link">Resource 2</a>
+            <a href="https://example.com/resource3" target="_blank" class="accordion-link">Resource 3</a>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-button">Climate Change Resources</button>
+          <div class="accordion-content">
+            <a href="https://example.com/climate1" target="_blank" class="accordion-link">Climate Resource 1</a>
+            <a href="https://example.com/climate2" target="_blank" class="accordion-link">Climate Resource 2</a>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-button">Contact</button>
+          <div class="accordion-content">
+            <p>Email: contact@example.com</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-button">Support This Project</button>
+          <div class="accordion-content">
+            <a href="https://www.patreon.com" target="_blank" class="accordion-link">Support on Patreon</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- Button Controls -->
-    <div class="control-bar">
-      <button id="lgbtqBillsBtn">LGBTQ Bills</button>
-      <button id="moreLgbtqResourcesBtn">More LGBTQ+ Resources</button>
-      <button id="climateChangeResourcesBtn">Climate Change Resources</button>
-      <button id="contactBtn">Contact</button>
-      <button id="patreonBtn">Patreon</button>
-    </div>
-  </main>
-  <footer>
-    <p>&copy; Rainbow Roadmap</p>
-  </footer>
-  <script src="main.js"></script>
+  </div>
+</header>
+
+<main>
+  <!-- Map and Layer List Container -->
+  <div id="viewDiv">
+    <!-- Layer List Container -->
+    <div id="layerListDiv"></div>
+    <!-- Map Container -->
+    <div id="mapContainer"></div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; Rainbow Roadmap</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="main.js"></script>
+<script src="accordion.js"></script>
 </body>
 </html>
+

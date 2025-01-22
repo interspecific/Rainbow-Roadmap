@@ -47,6 +47,23 @@ require([
   });
   view.ui.add(fullscreenWidget, "top-left");
 
+// Accordion functionality
+document.querySelectorAll(".accordion-button").forEach((button) => {
+  button.addEventListener("click", function () {
+    // Toggle visibility of content
+    const content = this.nextElementSibling;
+    content.style.display =
+      content.style.display === "block" ? "none" : "block";
+
+    // Optionally, collapse other accordions within the same level
+    const parent = this.parentElement.parentElement;
+    parent.querySelectorAll(".accordion-content").forEach((otherContent) => {
+      if (otherContent !== content) {
+        otherContent.style.display = "none";
+      }
+    });
+  });
+});
 
 
   
