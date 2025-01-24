@@ -1,3 +1,7 @@
+
+
+
+
 /* General Styles */
 html, body {
   margin: 0;
@@ -16,11 +20,17 @@ header {
   height: auto;
 }
 
+/* Apply rainbow gradient to header text */
 header h1 {
-  font-weight: 500;
-  margin: 0 0 5px; /* Add margin below the title */
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 1); /* Faint dark halo effect */
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent; /* Ensures gradient applies to text */
+  font-family: 'Roboto', sans-serif; /* Use the imported Roboto font */
+  font-weight: 500; /* Optional: Adjust font weight for emphasis */
+  text-align: center; /* Center the text (optional) */
+  padding: 10px; /* Add padding for spacing (optional) */
 }
+
 
 /* Responsive Header Text for Smaller Screens */
 @media (max-width: 768px) {
@@ -71,6 +81,9 @@ header h1 {
   transform: scale(1.02); /* Subtle zoom effect */
 }
 
+
+
+
 .accordion-content {
   display: none; /* Hidden by default */
   background-color: #e0d8f3; /* Lighter purple background */
@@ -119,35 +132,21 @@ header h1 {
   position: relative;
 }
 
-/* Layer List */
 #layerListDiv {
-  position: absolute;
-  top: 20px; /* Adjust for visibility */
-  left: 20px; /* Slightly further from edges */
-  width: 300px; /* Set a standard width */
-  max-height: 60vh; /* Limit height for smaller screens */
-  background-color: #2A2A2A; /* Dark background for contrast */
-  color: #E0E0E0; /* Light text for readability */
-  border: 1px solid #333; /* Subtle border for separation */
-  padding: 10px; /* Space inside the box */
-  border-radius: 4px; /* Rounded corners */
-  z-index: 10; /* Ensure it's above the map */
-  overflow-y: auto; /* Enable scrolling for long content */
-  display: none; /* Default hidden */
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth show/hide */
-  opacity: 0; /* Hidden by default */
-  visibility: hidden; /* Hidden by default */
+  opacity: 0; /* Fully hidden */
+  visibility: hidden; /* Inaccessible */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
 }
 
 #layerListDiv.visible {
-  display: block; /* Show when toggled */
   opacity: 1; /* Fully visible */
-  visibility: visible; /* Fully visible */
+  visibility: visible; /* Accessible */
 }
+
 
 /* Ensure .hidden class is consistently applied */
 .hidden {
-  display: block !important; /* Override visibility */
+  display: none !important; /* Override visibility */
 }
 
 
@@ -200,6 +199,9 @@ header h1 {
   left: 20px;
   z-index: 11; /* Ensure it's above other elements */
 }
+
+
+
 
 
 
@@ -277,3 +279,29 @@ header h1 {
   }
 }
 
+/* General widget adjustments for smaller screens */
+@media (max-width: 768px) {
+  .esri-ui-bottom-right, .esri-ui-bottom-left {
+    bottom: 20px !important; /* Raise the widgets */
+  }
+
+  .esri-ui {
+    padding-bottom: 20px; /* Ensure enough spacing from bottom */
+  }
+}
+
+/* Further adjustments for very small screens (phones) */
+@media (max-width: 480px) {
+  .esri-ui-bottom-right, .esri-ui-bottom-left {
+    bottom: 15px !important; /* Adjust further for very small screens */
+  }
+}
+
+
+/* Apply rainbow colors to search input text */
+.esri-search__input {
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent; /* Ensures gradient applies to text */
+  font-weight: bold; /* Optional: Make text bold for emphasis */
+}

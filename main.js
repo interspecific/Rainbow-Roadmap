@@ -1,42 +1,31 @@
 require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/layers/FeatureLayer",
-    "esri/widgets/LayerList",
-    "esri/widgets/Search",
-    "esri/widgets/Fullscreen"
-  ], function(Map, MapView, FeatureLayer, LayerList, Search, Fullscreen) {
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/layers/FeatureLayer",
+  "esri/widgets/LayerList",
+  "esri/widgets/Search",
+  "esri/widgets/Fullscreen"
+], function (Map, MapView, FeatureLayer, LayerList, Search, Fullscreen) {
   
-  
-    const map = new Map({
-      basemap: "streets" // Replace with the desired basemap name
-    });
-
-      
-  
-    const view = new MapView({
-      container: "viewDiv", // Ensure this matches the HTML ID
-      map: map,
-      center: [-98.57, 39.82], // Center map on United States
-      zoom: 4
+  // Initialize the map
+  const map = new Map({
+    basemap: "dark-gray" // Other options: "streets-night-vector", "dark-gray-vector"
   });
   
 
-
-
-
-  // Create and attach the LayerList widget
-  const layerListDiv = document.createElement("div");
-  layerListDiv.id = "layerListDiv";
-  layerListDiv.classList.add("hidden"); // Start hidden
-  document.getElementById("viewDiv").appendChild(layerListDiv); // Append it to the map container
-
-  const layerList = new LayerList({
-    view: view,
-    container: layerListDiv // Attach LayerList to the dynamically created div
+  // Initialize the map view
+  const view = new MapView({
+    container: "viewDiv", // Ensure this matches the HTML ID
+    map: map,
+    center: [-98.57, 39.82], // Center map on United States
+    zoom: 4
   });
 
-  
+
+
+  // =======================
+  // Add Widgets to the Map
+  // =======================
 
   // Add a Search widget
   const searchWidget = new Search({
@@ -50,50 +39,59 @@ require([
   });
   view.ui.add(fullscreenWidget, "bottom-left");
 
-
-
-
-// Add click event to toggle layer list visibility
-document.getElementById("toggleLayerListButton").addEventListener("click", () => {
-  const layerListDiv = document.getElementById("layerListDiv");
-  if (layerListDiv.classList.contains("visible")) {
-    layerListDiv.classList.remove("visible");
-    layerListDiv.classList.add("hidden");
-  } else {
-    layerListDiv.classList.add("visible");
-    layerListDiv.classList.remove("hidden");
-  }
-});
-
-// Accordion functionality
-document.querySelectorAll(".accordion-button").forEach((button) => {
-  button.addEventListener("click", function () {
-    // Toggle visibility of content
-    const content = this.nextElementSibling;
-
-    // Use a class-based approach for cleaner toggling
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      // Collapse all other accordion contents at the same level
-      const parent = this.parentElement.parentElement;
-      parent.querySelectorAll(".accordion-content").forEach((otherContent) => {
-        if (otherContent !== content) {
-          otherContent.style.maxHeight = null;
-        }
-      });
-
-      // Expand the clicked accordion content
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
+  // =======================
+  // Accordion Functionality
+  // =======================
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+      if (content) {
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      }
+    });
   });
-});
 
+  // =======================
+  // Layer List Widget Setup
+  // =======================
+  const layerList = new LayerList({
+    view: view,
+    container: document.createElement("div") // Create dynamic container
+  });
 
+  const layerListDiv = layerList.container;
+  layerListDiv.style.display = "none"; // Initially hidden
+  view.ui.add(layerListDiv, "top-right");
 
+  // Create a toggle button for the Layer List
+  const layerListToggleButton = createToggleButton("📋 Layers", layerListDiv);
+  view.ui.add(layerListToggleButton, "top-right");
 
+  
 
+  // =======================
+  // Helper Function to Create Toggle Buttons
+  // =======================
+  function createToggleButton(buttonText, targetDiv) {
+    const button = document.createElement("button");
+    button.innerHTML = buttonText;
+    button.style.padding = "10px";
+    button.style.backgroundColor = "#0079c1";
+    button.style.color = "white";
+    button.style.border = "none";
+    button.style.cursor = "pointer";
 
+    // Toggle visibility of the target div
+    button.addEventListener("click", function () {
+      if (targetDiv.style.display === "none") {
+        targetDiv.style.display = "block"; // Show the widget
+      } else {
+        targetDiv.style.display = "none"; // Hide the widget
+      }
+    });
+
+    return button;
+  }
 
 
 
@@ -288,7 +286,7 @@ const layers = [
     }
   ];
 
-  
+
   
    // Loop through the layers array and add each to the map
    layers.forEach(layer => {
@@ -301,129 +299,130 @@ const layers = [
   });
 
 
-    // Define the custom renderer for the Travel Risk Map layer
-    const riskRenderer = {
-        type: "unique-value", // Renderer type for unique values
-        field: "Adult", // Field to base the symbology on
-        legendOptions: {
-          title: "Travel Risk Levels (Adult)"
-        },
-        uniqueValueInfos: [
-          {
-            value: "Safest", // Field value
-            label: "Safest", // Legend label
-            symbol: {
-              type: "simple-fill",
-              color: "#1a9641", // Green for Safest
-              outline: {
-                width: 0.5,
-                color: "#000"
-              }
-            }
-          },
-          {
-            value: "Low",
-            label: "Low Risk",
-            symbol: {
-              type: "simple-fill",
-              color: "#92c5de", // Blue for Low Risk
-              outline: {
-                width: 0.5,
-                color: "#000"
-              }
-            }
-          },
-          {
-            value: "Moderate",
-            label: "Moderate Risk",
-            symbol: {
-              type: "simple-fill",
-              color: "#f7fcb9", // Yellow for Moderate Risk
-              outline: {
-                width: 0.5,
-                color: "#000"
-              }
-            }
-          },
-          {
-            value: "High",
-            label: "High Risk",
-            symbol: {
-              type: "simple-fill",
-              color: "#fdae61", // Orange for High Risk
-              outline: {
-                width: 0.5,
-                color: "#000"
-              }
-            }
-          },
-          {
-            value: "Worst",
-            label: "Worst Risk",
-            symbol: {
-              type: "simple-fill",
-              color: "#d7191c", // Red for Worst Risk
-              outline: {
-                width: 0.5,
-                color: "#000"
-              }
-            }
-          },
-          {
-            value: "Do Not Travel",
-            label: "Do Not Travel",
-            symbol: {
-              type: "simple-fill",
-              color: "#4d004b", // Dark Purple for Do Not Travel
-              outline: {
-                width: 0.5,
-                color: "#000"
-              }
-            }
-          }
-        ]
-      };
-      
+   
+
+ 
+// Define the custom renderer for the Travel Risk Map layer
+const riskRenderer = {
+  type: "unique-value", // Renderer type for unique values
+  field: "Adult", // Field to base the symbology on
+  legendOptions: {
+    title: "Travel Risk Levels (Adult)"
+  },
+  uniqueValueInfos: [
+    {
+      value: "Safest", // Field value
+      label: "Safest", // Legend label
+      symbol: {
+        type: "simple-fill",
+        color: "#ffafc9", // Light Pink for Safest
+        outline: {
+          width: 0.5,
+          color: "#000"
+        }
+      }
+    },
+    {
+      value: "Low",
+      label: "Low Risk",
+      symbol: {
+        type: "simple-fill",
+        color: "#55cdfc", // Light Blue for Low Risk
+        outline: {
+          width: 0.5,
+          color: "#000"
+        }
+      }
+    },
+    {
+      value: "Moderate",
+      label: "Moderate Risk",
+      symbol: {
+        type: "simple-fill",
+        color: "#ffffff", // White for Moderate Risk
+        outline: {
+          width: 0.5,
+          color: "#000"
+        }
+      }
+    },
+    {
+      value: "High",
+      label: "High Risk",
+      symbol: {
+        type: "simple-fill",
+        color: "#ff6347", // Light Orange for High Risk (repeat for balance)
+        outline: {
+          width: 0.5,
+          color: "#000"
+        }
+      }
+    },
+    {
+      value: "Worst",
+      label: "Worst Risk",
+      symbol: {
+        type: "simple-fill",
+        color: "#e91b25", // Rep Red for Worst Risk (repeat for emphasis)
+        outline: {
+          width: 0.5,
+          color: "#000"
+        }
+      }
+    },
+    {
+      value: "Do Not Travel",
+      label: "Do Not Travel",
+      symbol: {
+        type: "simple-fill",
+        color: "#555555", // Gray for Do Not Travel (neutral but strong)
+        outline: {
+          width: 0.5,
+          color: "#000"
+        }
+      }
+    }
+  ]
+};
+
 // Add the renderer to the Travel Risk Map layer
 const travelRiskLayer = new FeatureLayer({
-    url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/2",
-    title: "Travel Risk Map based on Anti or Pro-Trans Legislation",
-    visible: true, // Set to true if you want it visible by default
-    renderer: riskRenderer, // Apply the custom renderer
-    popupTemplate: {
-      title: "{Name}", // Replace with the relevant field in your dataset
-      content: `
-        <b>Risk Level:</b> {Adult}<br>
-        <b>Details:</b> Additional information can go here.
-      `
-    },
-    labelingInfo: [
-      {
-        labelExpressionInfo: {
-          expression: "$feature.Adult" // Display the "Adult" field value as the label
-        },
-        symbol: {
-          type: "text",
-          color: "#000000", // Black text color
-          font: {
-            size: 12,
-            family: "Arial",
-            weight: "bold"
-          }
-        },
-        labelPlacement: "always-horizontal", // Ensures labels are horizontal
-        minScale: 0, // Display labels at all scales
-        maxScale: 0
-      }
-    ]
-  });
-      
-      
-      // Add the Travel Risk Map layer to the map
-      map.add(travelRiskLayer);
-      
+  url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/2",
+  title: "Travel Risk Map based on Anti or Pro-Trans Legislation",
+  visible: true, // Set to true if you want it visible by default
+  renderer: riskRenderer, // Apply the custom renderer
+  popupTemplate: {
+    title: "{Name}", // Replace with the relevant field in your dataset
+    content: `
+      <b>Risk Level:</b> {Adult}<br>
+      <b>Details:</b> Additional information can go here.
+    `
+  },
+  labelingInfo: [
+    {
+      labelExpressionInfo: {
+        expression: "$feature.Adult" // Display the "Adult" field value as the label
+      },
+      symbol: {
+        type: "text",
+        color: "#000000", // Black text color for contrast
+        font: {
+          size: 12,
+          family: "Arial",
+          weight: "bold"
+        }
+      },
+      labelPlacement: "always-horizontal", // Ensures labels are horizontal
+      minScale: 0, // Display labels at all scales
+      maxScale: 0
+    }
+  ]
+});
 
+// Add the Travel Risk Map layer to the map
+map.add(travelRiskLayer);
 
+      
 
 
 
