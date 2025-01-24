@@ -70,7 +70,6 @@ button:hover {
   align-items: center;
   z-index: 1000; /* Ensure it's above all other elements */
   opacity: 1; /* Fully visible */
-  transition: opacity 0.5s ease; /* Smooth fade-out transition */
 }
 
 #splashScreen.hidden {
