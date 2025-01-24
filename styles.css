@@ -1,7 +1,4 @@
 
-
-
-
 /* General Styles */
 html, body {
   margin: 0;
@@ -45,6 +42,110 @@ header h1 {
   }
 }
 
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
+
+
+#splashScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Dark background with slight transparency */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above all other elements */
+  opacity: 1; /* Fully visible */
+  transition: opacity 0.5s ease; /* Smooth fade-out transition */
+}
+
+#splashScreen.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#splashContent {
+  text-align: center;
+  max-width: 600px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent overlay */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Splash Screen Header with Rainbow Gradient */
+#splashContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
+  -webkit-background-clip: text; /* Clip gradient to text */
+  color: transparent; /* Ensure gradient applies to text */
+  font-weight: bold; /* Bold for emphasis */
+}
+
+
+#splashContent h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #f0e68c; /* Golden yellow for emphasis */
+}
+
+#splashContent p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #e0e0e0; /* Light gray text for readability */
+}
+
+#splashContent ul {
+  text-align: left;
+  margin: 0 auto 1.5rem auto;
+  padding: 0;
+  list-style-type: disc;
+  max-width: 500px;
+  color: #ffffff;
+}
+
+#splashContent ul li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+#startButton {
+  padding: 12px 25px;
+  background-color: #925bc4; /* Purple button */
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#startButton:hover {
+  background-color: #8253b0; /* Darker purple */
+  transform: scale(1.05); /* Subtle zoom effect */
+}
+
+
+
 /* Accordion Container in Header */
 .accordion-container {
   display: flex;
@@ -74,12 +175,131 @@ header h1 {
   cursor: pointer;
   outline: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 10px; /* Add vertical spacing between buttons */
 }
+
+.accordion-button:last-child {
+  margin-bottom: 0; /* Remove margin for the last button */
+}
+
 
 .accordion-button:hover {
   background-color: #8253b0; /* Darker purple */
   transform: scale(1.02); /* Subtle zoom effect */
 }
+
+
+
+
+
+
+
+#viewDiv {
+  position: relative; /* Ensures absolute elements inside are positioned relative to this */
+  height: 100%; /* Ensures it has height to contain the map */
+}
+
+
+
+
+
+
+/* Form Modal Styling */
+#formModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #925bc4; /* Purple background to match the theme */
+  color: white; /* White text for contrast */
+  padding: 1.5rem;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  z-index: 1000;
+  width: 80%; /* Responsive width */
+  max-width: 500px;
+  font-family: 'Roboto', sans-serif; /* Match font style */
+}
+
+/* Form Heading */
+#formModal h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #f0e68c; /* Golden yellow for emphasis */
+  text-align: center;
+}
+
+/* Form Input Fields */
+#formModal input[type="text"],
+#formModal input[type="date"],
+#formModal textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #121212; /* Dark text for input values */
+  background-color: #f8f8f8; /* Light background for inputs */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Input Fields Focus State */
+#formModal input:focus,
+#formModal textarea:focus {
+  outline: none;
+  border: 2px solid #f0e68c; /* Golden yellow border on focus */
+  box-shadow: 0 0 8px rgba(240, 230, 140, 0.7); /* Subtle glow on focus */
+}
+
+/* Buttons in the Form */
+#formModal button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 5px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#formModal button[type="button"] {
+  background-color: #6c4aad; /* Slightly darker purple for buttons */
+  color: white;
+}
+
+#formModal button[type="button"]:hover {
+  background-color: #5b3a99; /* Darker purple on hover */
+}
+
+#formModal button[type="submit"] {
+  background-color: #f0e68c; /* Golden yellow for submit button */
+  color: #121212; /* Dark text for contrast */
+}
+
+#formModal button[type="submit"]:hover {
+  background-color: #d4c058; /* Darker yellow on hover */
+  transform: scale(1.05); /* Subtle zoom effect */
+}
+
+/* Overlay Styling */
+#overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent overlay */
+  z-index: 999;
+}
+
+
+
+
+
 
 
 
@@ -117,7 +337,7 @@ header h1 {
 
 /* Map Container */
 #viewDiv {
-  height: 90vh; /* Adjust for header/footer, keeping it dynamic */
+  height: 85vh; /* Adjust for header/footer, keeping it dynamic */
   width: 100%; /* Use full width */
   overflow: hidden; /* Prevent overflow */
   position: relative; /* For positioning child elements */
@@ -151,6 +371,13 @@ header h1 {
 
 
 
+
+
+.esri-ui-bottom-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add spacing between widgets */
+}
 
 
 
@@ -207,12 +434,13 @@ header h1 {
 
 
 .esri-search {
-  bottom: 20px !important; /* Ensure it stays within the viewport */
+  bottom: 30px !important; /* Ensure it stays within the viewport */
   right: 20px !important; /* Add padding from the edges */
   z-index: 10; /* Ensure it appears above other elements */
 }
 
 .esri-fullscreen {
+  position: absolute;
   top: 20px !important;
   left: 20px !important;
   z-index: 10;
@@ -232,6 +460,7 @@ header h1 {
   border: 1px solid #333;
   margin-bottom: 5px;
   border-radius: 4px;
+
   padding: 5px;
 }
 
@@ -305,3 +534,43 @@ header h1 {
   color: transparent; /* Ensures gradient applies to text */
   font-weight: bold; /* Optional: Make text bold for emphasis */
 }
+
+
+@media (max-width: 480px) {
+  #splashContent {
+    max-width: 90%;
+    padding: 15px;
+  }
+  #splashContent h1 {
+    font-size: 1.8rem;
+  }
+  #splashContent h2 {
+    font-size: 1.2rem;
+  }
+}
+
+
+
+/* Default style for the search bar (desktop) */
+.esri-search {
+  width: 300px; /* Default width */
+  max-width: 100%; /* Prevent overflow */
+  font-size: 1rem;
+}
+
+/* Adjust the search bar for smaller screens */
+@media (max-width: 768px) {
+  .esri-search {
+    width: 200px; /* Make it smaller on tablets */
+    font-size: 0.9rem; /* Reduce font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .esri-search {
+    width: 150px; /* Even smaller for phones */
+    font-size: 0.8rem; /* Further reduce font size */
+  }
+}
+
+

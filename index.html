@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rainbow Roadmap</title>
   <!-- Import Roboto Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <!-- ArcGIS Stylesheet -->
-  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/dark/main.css">
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
   <!-- ArcGIS JavaScript -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <script src="https://js.arcgis.com/4.27/"></script>
-</head>
-<body>
+  <script src="main.js"></script>
+  <script src="accordion.js"></script>
+
+
+  </head>
+  <body>
+
+<div id="splashScreen">
+  <div id="splashContent">
+    <h1>Rainbow Roadmap</h1>
+    <h2>An Interactive Map of LGBTQ, Climate, Environmental, Health, and Economic Data</h2>
+    <p>
+      This tool can be used to help make informed decisions when traveling and relocating 
+      in times of political hostility and climate change in the US.
+      <h3>Try:</h3>
+    </p>
+    <ul>
+      <li><strong>Toggling layers</strong> on and off, <strong>zooming</strong> to different scales, and <strong>clicking</strong> on geographic features to see the underlying attribute information.</li>
+      <li>Click the legend icon next to the layer name to see legend details, and click the 3 dots to see more options (like finding dataset information).</li>
+      <li>Zoom to a location on the map to see how the data layers are visualized, and click on a feature to see the additional data associated with that feature.</li>
+      <li>Submitting a new safe location to the database.</li>
+    </ul>
+    <button id="startButton">Enter the Roadmap</button>
+  </div>
+</div>
+
+
 <header>
   <h1>Rainbow Roadmap: An Interactive Map of LGBTQ, Climate, Environment, Health, and Economic Data</h1>
   <!-- Main Accordion -->
@@ -25,13 +52,13 @@
         <div class="accordion">
           <button class="accordion-button">LGBTQ Bills</button>
           <div class="accordion-content">
-            <a href="https://www.erininthemorning.com/p/final-pre-election-2024-anti-trans" target="_blank" class="accordion-link">Erin Reed</a>
+            <a href="https://www.erininthemorning.com/p/final-pre-election-2024-anti-trans" target="_blank" class="accordion-link">View Erin Reed's Substack</a>
           </div>
         </div>
         <div class="accordion">
           <button class="accordion-button">LGBTQ+ Resources</button>
           <div class="accordion-content">
-            <a href="https://www.everywhereisqueer.com/map" target="_blank" class="accordion-link">Everywhere is Queer</a>
+            <a href="https://www.everywhereisqueer.com/map" target="_blank" class="accordion-link">Everywhere is Queer Map</a>
             <a href="https://www.outcarehealth.org/about/" target="_blank" class="accordion-link">OutCare Health</a>
             <a href="https://www.thegalap.org/about" target="_blank" class="accordion-link">The GALAP</a>
             <a href="https://victoryfund.org/about/" target="_blank" class="accordion-link">Victory Fund</a>
@@ -43,18 +70,32 @@
           <div class="accordion-content">
             <a href="https://www.climatechangemakers.org/" target="_blank" class="accordion-link">Climate Change Makers</a>
             <a href="https://www.ipcc.ch/reports/" target="_blank" class="accordion-link">IPCC Climate Change Reports</a>
+            <a href="https://www.climatetownproductions.com/" target="_blank" class="accordion-link">Climate Town</a>
+            <a href="https://www.climatetownproductions.com/other-projects" target="_blank" class="accordion-link">Climate Town: Other Projects</a>
+            <a href="https://www.climatetown.news/" target="_blank" class="accordion-link">Climate Town News</a>
+            <a href="https://www.youtube.com/@SimonClark" target="_blank" class="accordion-link">Simon Clark (YouTube)</a>
+            <a href="https://crt-climate-explorer.nemac.org/" target="_blank" class="accordion-link">The Climate Explorer Tool</a>          
           </div>
         </div>
+        <!-- New Empower Yourself Online Section -->
         <div class="accordion">
-          <button class="accordion-button">Contact</button>
+          <button class="accordion-button">Empower Yourself Online</button>
           <div class="accordion-content">
-            <p>Email: contact@example.com</p>
-          </div>
-        </div>
+            <a href="https://archive.org/about" target="_blank" class="accordion-link">Internet Archive</a>
+            <a href="https://signal.org/" target="_blank" class="accordion-link">Signal Private Messenger</a>
+            <a href="https://www.pcmag.com/picks/the-best-vpn-services" target="_blank" class="accordion-link">Best VPN Services - PCMag</a>
+            <a href="https://www.reddit.com/r/software/comments/vc1wf5/a_list_of_free_opensource_apps_i_use_on_windows/" target="_blank" class="accordion-link">Free and Open-Source Apps on Windows</a>
+          </div>        
         <div class="accordion">
           <button class="accordion-button">Support This Project</button>
           <div class="accordion-content">
-            <a href="https://www.patreon.com" target="_blank" class="accordion-link">Support on Patreon</a>
+            <a href="https://www.patreon.com/c/rainbow_roadmap" target="_blank" class="accordion-link">Support on Patreon</a>
+          </div>
+          <div class="accordion">
+            <button class="accordion-button">Contact</button>
+            <div class="accordion-content">
+              <p>Email: contact.rainbowroadmap@gmail.com</p>
+            </div>
           </div>
         </div>
       </div>
@@ -62,16 +103,35 @@
   </div>
 </header>
 
+
+
+<!-- Modal for the form -->
+<div id="overlay" style="display: none;" onclick="toggleForm()"></div>
+<div id="formModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); z-index: 1000; width: 80%; max-width: 500px;">
+  <form action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="post">
+    <h3>Add a Safe Place to the Map</h3>
+    <input name="Date" type="date" placeholder="Date" required>
+    <input name="Name" type="text" placeholder="Place Name" required>
+    <input name="Description" type="text" placeholder="Comments" required>
+    <input type="text" id="Latitude" name="Latitude" placeholder="Latitude" readonly>
+    <input type="text" id="Longitude" name="Longitude" placeholder="Longitude" readonly>
+    <button type="button" onclick="getLocation()">Get My Location</button>
+    <button type="submit">Submit</button>
+    <button type="button" id="closeButton">Close</button> <!-- The Close Button -->
+  </form>
+</div>
+
+
 <main>
   <!-- Map and Layer List Container -->
   <div id="viewDiv">
     <!-- Map Container -->
     <div id="mapContainer">
-
+  </div>
 </main>
 
-<!-- JavaScript -->
-<script src="main.js"></script>
-<script src="accordion.js"></script>
+
+
 </body>
 </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Test Form Button</title>
+    <style>
+      /* General button styles */
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: darkblue;
+      }
+
+      /* Modal container styles */
+      #formModal {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        width: 80%;
+        max-width: 500px;
+      }
+
+      /* Overlay styles */
+      #overlay {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Transparent dark background */
+        z-index: 999; /* Behind the modal */
+      }
+    </style>
+    <script>
+      function toggleForm() {
+        const modal = document.getElementById("formModal");
+        const overlay = document.getElementById("overlay");
+        const isHidden = modal.style.display === "none" || modal.style.display === "";
+
+        if (isHidden) {
+          // Show modal and overlay
+          modal.style.display = "block";
+          overlay.style.display = "block";
+        } else {
+          // Hide modal and overlay
+          modal.style.display = "none";
+          overlay.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Overlay for the modal -->
+    <div id="overlay" onclick="toggleForm()"></div>
+
+    <!-- Button to open the form -->
+    <button onclick="toggleForm()">Open Form</button>
+
+    <!-- Modal containing the form -->
+    <div id="formModal">
+      <form>
+        <h3>Submit Location Data</h3>
+        <input name="Date" type="date" placeholder="Date" required>
+        <input name="Name" type="text" placeholder="Place Name" required>
+        <input name="Description" type="text" placeholder="Description" required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -7,9 +7,20 @@ require([
   "esri/widgets/Fullscreen"
 ], function (Map, MapView, FeatureLayer, LayerList, Search, Fullscreen) {
   
+
+
+require([
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/layers/FeatureLayer",
+  "esri/widgets/LayerList",
+  "esri/widgets/Search",
+  "esri/widgets/Fullscreen"
+], function (Map, MapView, FeatureLayer, LayerList, Search, Fullscreen) {
+  
   // Initialize the map
   const map = new Map({
-    basemap: "dark-gray" // Other options: "streets-night-vector", "dark-gray-vector"
+    basemap: "gray-vector" // Other options: "streets-night-vector", "dark-gray-vector"
   });
   
 
@@ -20,6 +31,116 @@ require([
     center: [-98.57, 39.82], // Center map on United States
     zoom: 4
   });
+
+// Splash Screen Logic
+const splashScreen = document.getElementById("splashScreen");
+const startButton = document.getElementById("startButton");
+startButton.addEventListener("click", () => {
+  splashScreen.classList.add("hidden");
+  setTimeout(() => (splashScreen.style.display = "none"), 500); // Hides splash screen after animation
+});
+
+
+
+// Function to create and add the "Add Safe Place to Map" button
+function createAddLocationButton(view) {
+  const addButton = document.createElement("button");
+  addButton.id = "addLocationButton";
+  addButton.innerHTML = "Add Safe Place to Map";
+  addButton.style.padding = "10px";
+  addButton.style.backgroundColor = "#6c4aad";
+  addButton.style.color = "white";
+  addButton.style.border = "none";
+  addButton.style.cursor = "pointer";
+  addButton.style.borderRadius = "4px";
+  addButton.style.margin = "5px";
+  addButton.style.position = "absolute";
+  addButton.style.left = "20px";
+  addButton.style.zIndex = "10";
+
+  // Dynamically adjust the bottom position based on screen size
+  function adjustButtonPosition() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 480) {
+      addButton.style.bottom = "40px"; // For very small screens (phones)
+    } else if (screenWidth <= 768) {
+      addButton.style.bottom = "40px"; // For medium screens (tablets)
+    } else {
+      addButton.style.bottom = "30px"; // Default position for larger screens
+    }
+  }
+
+  // Call the function once to set the initial position
+  adjustButtonPosition();
+
+  // Listen for window resize events to adjust the position dynamically
+  window.addEventListener("resize", adjustButtonPosition);
+
+  // Add click functionality
+  addButton.addEventListener("click", () => {
+    toggleForm(); // Call toggleForm to handle showing the form modal
+  });
+
+  // Append the button to the map container
+  const viewDiv = document.getElementById("viewDiv");
+  viewDiv.appendChild(addButton);
+}
+
+// Call this function after the map view is initialized
+createAddLocationButton(view);
+
+
+
+
+
+
+
+
+
+// Function to toggle the form modal and overlay
+function toggleForm() {
+  const modal = document.getElementById("formModal");
+  const overlay = document.getElementById("overlay");
+  const isHidden = modal.style.display === "none" || modal.style.display === "";
+
+  if (isHidden) {
+    // Show modal and overlay
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    modal.style.display = "block";
+    overlay.style.display = "block";
+  } else {
+    // Hide modal and overlay
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+    setTimeout(() => {
+      modal.style.display = "none";
+      overlay.style.display = "none";
+    }, 500); // Match the fade-out animation duration
+  }
+}
+
+// Add functionality to close the form via the close button
+document.getElementById("closeButton").addEventListener("click", () => {
+  toggleForm(); // Close the form modal
+});
+
+// Add functionality to close the form via the overlay
+document.getElementById("overlay").addEventListener("click", () => {
+  toggleForm(); // Close the form modal
+});
+
+
+
+
+
+  
+
+  
+
+
+
 
 
 
@@ -39,6 +160,9 @@ require([
   });
   view.ui.add(fullscreenWidget, "bottom-left");
 
+
+
+
   // =======================
   // Accordion Functionality
   // =======================
@@ -51,47 +175,89 @@ require([
     });
   });
 
-  // =======================
-  // Layer List Widget Setup
-  // =======================
-  const layerList = new LayerList({
-    view: view,
-    container: document.createElement("div") // Create dynamic container
+
+// Create the LayerList widget
+const layerListDiv = document.createElement("div"); // Create a dynamic container
+layerListDiv.style.display = "none"; // Initially hide the LayerList
+
+const layerList = new LayerList({
+  view: view,
+  container: layerListDiv,
+  listItemCreatedFunction: function (event) {
+    const item = event.item;
+
+    // Enable the display of legend within the LayerList
+    item.panel = {
+      content: "legend", // This displays the legend for the layer
+      open: false // Set to false so the legend is initially collapsed
+    };
+
+    // Optional: Add a custom title or other settings for the layer items
+    if (item.layer.title === "Travel Risk Map based on Anti or Pro-Trans Legislation") {
+      item.title = "Travel Risk Map";
+    }
+  }
+});
+
+// Add the LayerList widget to the UI
+view.ui.add(layerListDiv, {
+  position: "top-right" // Place the container in the top-right corner
+});
+
+// =======================
+// Helper Function to Create Toggle Buttons
+// =======================
+function createToggleButton(buttonText, targetDiv) {
+  const button = document.createElement("button");
+  button.innerHTML = buttonText;
+  button.style.padding = "10px";
+  button.style.backgroundColor = "#6c4aad";
+  button.style.color = "white";
+  button.style.border = "none";
+  button.style.cursor = "pointer";
+  button.style.borderRadius = "4px";
+  button.style.margin = "5px";
+
+  // Toggle visibility of the target div
+  button.addEventListener("click", function () {
+    if (targetDiv.style.display === "none") {
+      targetDiv.style.display = "block"; // Show the widget
+      button.textContent = "Hide Layer List"; // Update button text
+    } else {
+      targetDiv.style.display = "none"; // Hide the widget
+      button.textContent = "Show Layer List and Legend"; // Update button text
+    }
   });
 
-  const layerListDiv = layerList.container;
-  layerListDiv.style.display = "none"; // Initially hidden
-  view.ui.add(layerListDiv, "top-right");
+  return button;
+}
 
-  // Create a toggle button for the Layer List
-  const layerListToggleButton = createToggleButton("📋 Layers", layerListDiv);
-  view.ui.add(layerListToggleButton, "top-right");
+// Create the toggle button for the LayerList
+const layerListToggleButton = createToggleButton("Show Layer List and Legend", layerListDiv);
+view.ui.add(layerListToggleButton, "top-right"); // Add the toggle button to the UI
 
-  
 
-  // =======================
-  // Helper Function to Create Toggle Buttons
-  // =======================
-  function createToggleButton(buttonText, targetDiv) {
-    const button = document.createElement("button");
-    button.innerHTML = buttonText;
-    button.style.padding = "10px";
-    button.style.backgroundColor = "#0079c1";
-    button.style.color = "white";
-    button.style.border = "none";
-    button.style.cursor = "pointer";
-
-    // Toggle visibility of the target div
-    button.addEventListener("click", function () {
-      if (targetDiv.style.display === "none") {
-        targetDiv.style.display = "block"; // Show the widget
-      } else {
-        targetDiv.style.display = "none"; // Hide the widget
-      }
+// Geolocation function
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      document.getElementById("Latitude").value = position.coords.latitude;
+      document.getElementById("Longitude").value = position.coords.longitude;
+    }, function (error) {
+      alert("Error fetching location: " + error.message);
     });
-
-    return button;
+  } else {
+    alert("Geolocation is not supported by your browser.");
   }
+}
+
+// Map click event for getting coordinates
+view.on("click", function (event) {
+  const latitude = event.mapPoint.latitude.toFixed(6);
+  const longitude = event.mapPoint.longitude.toFixed(6);
+  document.getElementById("Latitude").value = latitude;
+  document.getElementById("Longitude").value = longitude;
+});
 
 
 
@@ -112,6 +278,11 @@ const layers = [
     {
       title: "Sea Level Rise Inundation 2030",
       url: "https://tiledimageservices3.arcgis.com/0Fs3HcaFfvzXvm7w/arcgis/rest/services/CMRA_SLR_Inundation_RCP45_Early_2030/ImageServer",
+      visible: false
+    },
+    {
+      title: "Safe Spaces - User Uploads",
+      url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/Safe_Spaces_Layer/FeatureServer/0",
       visible: false
     },
     {
@@ -385,49 +556,37 @@ const riskRenderer = {
   ]
 };
 
-// Add the renderer to the Travel Risk Map layer
-const travelRiskLayer = new FeatureLayer({
-  url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/2",
-  title: "Travel Risk Map based on Anti or Pro-Trans Legislation",
-  visible: true, // Set to true if you want it visible by default
-  renderer: riskRenderer, // Apply the custom renderer
-  popupTemplate: {
-    title: "{Name}", // Replace with the relevant field in your dataset
-    content: `
-      <b>Risk Level:</b> {Adult}<br>
-      <b>Details:</b> Additional information can go here.
-    `
-  },
-  labelingInfo: [
+
+
+
+
+
+
+
+
+
+
+// Define a default popup template to display all fields dynamically
+const defaultPopupTemplate = {
+  title: "{Name}", // Replace "Name" with the field you want to use as the title
+  content: [
     {
-      labelExpressionInfo: {
-        expression: "$feature.Adult" // Display the "Adult" field value as the label
-      },
-      symbol: {
-        type: "text",
-        color: "#000000", // Black text color for contrast
-        font: {
-          size: 12,
-          family: "Arial",
-          weight: "bold"
-        }
-      },
-      labelPlacement: "always-horizontal", // Ensures labels are horizontal
-      minScale: 0, // Display labels at all scales
-      maxScale: 0
+      type: "fields", // Automatically display all fields
+      fieldInfos: [] // Leave this empty to include all available fields
     }
   ]
+};
+
+// Add the layers with the dynamic popup template
+layers.forEach(layer => {
+  const featureLayer = new FeatureLayer({
+    url: layer.url,
+    title: layer.title,
+    visible: layer.visible,
+    popupTemplate: defaultPopupTemplate // Apply the dynamic popup template
+  });
+  map.add(featureLayer);
 });
 
-// Add the Travel Risk Map layer to the map
-map.add(travelRiskLayer);
 
-      
-
-
-
-
-
-
-  
-});
+});});
