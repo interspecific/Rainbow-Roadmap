@@ -82,7 +82,7 @@ button:hover {
   text-align: center;
   max-width: 600px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent overlay */
+  background: #333333; /* Solid dark gray */
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
@@ -601,5 +601,27 @@ button:hover {
 @media (max-width: 480px) {
   #addLocationButton {
     bottom: calc(90px + env(safe-area-inset-bottom)); /* Adjust further for smaller screens */
+  }
+}
+
+
+/* Adjustments for mobile screens */
+@media (max-width: 768px) {
+  .esri-search {
+    bottom: 80px !important; /* Move search bar higher */
+  }
+
+  #addLocationButton {
+    bottom: 120px; /* Move the button higher */
+  }
+}
+
+@media (max-width: 480px) {
+  .esri-search {
+    bottom: 100px !important; /* Move search bar higher for smaller screens */
+  }
+
+  #addLocationButton {
+    bottom: 140px; /* Further adjustment for smaller screens */
   }
 }
