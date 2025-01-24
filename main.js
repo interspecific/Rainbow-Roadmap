@@ -29,7 +29,7 @@ require([
     container: "viewDiv", // Ensure this matches the HTML ID
     map: map,
     center: [-98.57, 39.82], // Center map on United States
-    zoom: 4
+    zoom: 3
   });
 
 // Splash Screen Logic
@@ -93,6 +93,19 @@ createAddLocationButton(view);
 
 
 
+function adjustButtonForSafeArea() {
+  const addButton = document.getElementById("addLocationButton");
+  const safeAreaInsetBottom = window.innerHeight - document.documentElement.clientHeight;
+
+  if (safeAreaInsetBottom > 0) {
+    // Add extra spacing dynamically
+    addButton.style.bottom = `${40 + safeAreaInsetBottom}px`;
+  }
+}
+
+// Run the function on page load and resize
+window.addEventListener("load", adjustButtonForSafeArea);
+window.addEventListener("resize", adjustButtonForSafeArea);
 
 
 
@@ -154,11 +167,11 @@ document.getElementById("overlay").addEventListener("click", () => {
   });
   view.ui.add(searchWidget, "bottom-right");
 
-  // Add Fullscreen widget
-  const fullscreenWidget = new Fullscreen({
-    view: view
-  });
-  view.ui.add(fullscreenWidget, "bottom-left");
+  // // Add Fullscreen widget
+  // const fullscreenWidget = new Fullscreen({
+  //   view: view
+  // });
+  // view.ui.add(fullscreenWidget, "top-left");
 
 
 

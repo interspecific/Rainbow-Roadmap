@@ -510,7 +510,7 @@ button:hover {
 /* General widget adjustments for smaller screens */
 @media (max-width: 768px) {
   .esri-ui-bottom-right, .esri-ui-bottom-left {
-    bottom: 20px !important; /* Raise the widgets */
+    bottom: 30px !important; /* Raise the widgets */
   }
 
   .esri-ui {
@@ -573,3 +573,33 @@ button:hover {
 }
 
 
+#addLocationButton {
+  position: absolute;
+  bottom: calc(30px + env(safe-area-inset-bottom)); /* Add safe area insets to the bottom spacing */
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #6c4aad;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 10;
+}
+
+#addLocationButton:hover {
+  background-color: #5b399d;
+}
+
+/* Additional adjustment for smaller screens */
+@media (max-width: 768px) {
+  #addLocationButton {
+    bottom: calc(80px + env(safe-area-inset-bottom)); /* Adjust for tablets and ensure safe area */
+  }
+}
+
+@media (max-width: 480px) {
+  #addLocationButton {
+    bottom: calc(90px + env(safe-area-inset-bottom)); /* Adjust further for smaller screens */
+  }
+}
