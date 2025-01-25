@@ -194,10 +194,12 @@ button:hover {
   border-left: 4px solid #6c4aad; /* Dark purple border for nested content */
   margin-top: 5px;
   border-radius: 4px; /* Rounded corners */
+  max-height: 300px; /* Set max height for scrolling */
   overflow-y: auto; /* Enable scrolling if content exceeds height */
   word-wrap: break-word; /* Prevent content from overflowing */
   width: 100%; /* Ensure content matches the accordion width */
   box-sizing: border-box; /* Include padding and borders in width calculations */
+  max-height: 500px;
 }
 
 .accordion-content a {
@@ -212,6 +214,7 @@ button:hover {
   overflow-wrap: break-word; /* Break long links onto multiple lines */
   word-break: break-word; /* Additional support for breaking long links */
   transition: background-color 0.3s ease, transform 0.2s ease;
+  max-height: 400px;
 }
 
 .accordion-content a:hover {
@@ -234,6 +237,7 @@ button:hover {
   .accordion-content {
     padding: 8px; /* Reduce padding for smaller screens */
     width: 100%; /* Ensure content matches the container width */
+    max-height: 200px; /* Adjust max height for tablets */
   }
 }
 
@@ -245,6 +249,7 @@ button:hover {
 
   .accordion-content {
     padding: 6px; /* Adjust padding for compact content layout */
+    max-height: 150px; /* Further adjust max height for phones */
   }
 }
 
