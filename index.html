@@ -32,9 +32,9 @@
     </p>
     <ul>
       <li><strong>Toggling</strong> layers on and off, <strong>zooming</strong> to different scales, and <strong>clicking</strong> on geographic features to see the underlying attribute information.</li>
-      <li>Click the layers list and legend button on the top right. Toggle layers on and off using the icon on the left. If a layer does not show up or is greyed out, try zooming in our out. Toggle legend details on the right next to layer names.</li>
-      <li>Zoom to a location on the map to see how the data layers are visualized, and click on a feature to see the additional data associated with that feature.</li>
-      <li>Submitting a new safe location to the database using the button on the bottom left.</li>
+      <li>Clicking the "Show Layer List and Legend" button on the top right. Expand the layer groups to see data layers for that group. Use the "eye" icon to toggle visibility of layers. If a layer is greyed out and not showing up on the map, zoom in or out to make it visible.</li>
+      <li>Clicking on a feature to see the information associated with that particular feature. This will show you a table of data that has been aggregated about this location or feature.</li>
+      <li>Submitting a new safe location to the database using the button on the bottom left. These locations will NOT be public until they are reviewed by me. Please report any issues using the contact info in the header.</li>
     </ul>
     <button id="startButton">Enter the Roadmap</button>
   </div>
@@ -109,7 +109,7 @@
 <div id="overlay" style="display: none;" onclick="toggleForm()"></div>
 <div id="formModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
     background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); z-index: 1000; width: 80%; max-width: 500px;">
-  <form action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="post">
+  <form action="https://script.google.com/macros/s/AKfycbxnZ0gY1AExV5L-mVQDDtlnrdopLRRMkOyuojXzqG_m6pUP-JS1uaecxzkZ5v38Y0L9sw/exec" method="post">
     <h3>Add a Safe Place to the Map</h3>
     <input name="Date" type="date" placeholder="Date" required>
     <input name="Name" type="text" placeholder="Place Name" required>
