@@ -30,6 +30,15 @@ startButton.addEventListener("click", () => {
   setTimeout(() => (splashScreen.style.display = "none"), 500); // Hides splash screen after animation
 });
 
+// Function to show the splash screen
+function showSplashScreen() {
+  const splashScreen = document.getElementById("splashScreen");
+  splashScreen.classList.remove("hidden");
+  splashScreen.style.display = "flex"; // Make sure it's visible
+}
+
+// Attach the event listener to the button
+document.getElementById("showSplashButton").addEventListener("click", showSplashScreen);
 
 
 // Function to create and add the "Add Safe Place to Map" button
@@ -269,9 +278,7 @@ view.on("click", function (event) {
 
 
 
-
-  
-// Grouped layers categorized into specific themes using GroupLayer
+ 
 const groupedLayers = [
   new GroupLayer({
     title: "Environmental Layers",
@@ -279,37 +286,65 @@ const groupedLayers = [
       new FeatureLayer({
         title: "USA Forest Service Lands - USA Federal Lands",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Forest_Service_Lands/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{Name}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "USA Detailed Parks - USA Parks",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Detailed_Parks/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{Name}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "U.S. Army Corps of Engineers Reservoirs",
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USACE_Reservoirs/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{Reservoir_Name}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "River Flowlines",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/NHDPlusV21/FeatureServer/2",
-        visible: false
+        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/NHDPlusV21/FeatureServer/2",
+        visible: false,
+        popupTemplate: {
+          title: "{Flowline_Name}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "USA Detailed Water Bodies",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Detailed_Water_Bodies/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{WaterBody_Name}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Current US Drought",
         url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/US_Drought_Intensity_v1/FeatureServer/3",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{Drought_Level}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "US Drought Intensity",
         url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/US_Drought_Intensity_v1/FeatureServer/2",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{Intensity_Level}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       })
     ]
   }),
@@ -318,43 +353,75 @@ const groupedLayers = [
     layers: [
       new FeatureLayer({
         title: "USDA Census of Agriculture 2022",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USDA_Census_of_Agriculture_2022_All/FeatureServer/0",
-        visible: false
+        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USDA_Census_of_Agriculture_2022_All/FeatureServer/0",
+        visible: false,
+        popupTemplate: {
+          title: "{FieldName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Census 2020 DHC Household Data National",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{FieldName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Census 2020 DHC Household Data by State",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/1",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{StateName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Census 2020 DHC Household Data by County",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/2",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{CountyName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Census 2020 DHC Household Data by Census Tract",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/3",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{TractName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "North American Population Density 2020",
         url: "https://tiles.arcgis.com/tiles/oF9CDB4lUYF7Um9q/arcgis/rest/services/NA_Population_Density_2020/MapServer",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{PopulationDensity}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "U.S. Congressional Districts",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_119th_Congressional_Districts/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{DistrictName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "American Indian Alaska Native Native Hawaiian Areas",
         url: "https://services3.arcgis.com/0Fs3HcaFfvzXvm7w/arcgis/rest/services/Climate_Mapping_Resilience_and_Adaptation_(CMRA)_Climate_and_Coastal_Inundation_Projections/FeatureServer/2",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "{AreaName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       })
     ]
   }),
@@ -364,17 +431,29 @@ const groupedLayers = [
       new FeatureLayer({
         title: "U.S. Census Tracts with Climate Data",
         url: "https://services3.arcgis.com/0Fs3HcaFfvzXvm7w/arcgis/rest/services/Climate_Mapping_Resilience_and_Adaptation_(CMRA)_Climate_and_Coastal_Inundation_Projections/FeatureServer/1",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Census Tract: {TractName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Climate Change Disadvantaged Tracts",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/usa_november_2022/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Disadvantaged Tract: {TractName}",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Economic Damage Climate Change Projections",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Climate_Impact_Lab_view/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Economic Damage Data",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       })
     ]
   }),
@@ -384,32 +463,56 @@ const groupedLayers = [
       new FeatureLayer({
         title: "National Mental Health Access",
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/County_Health_Rankings_2024_Test_2/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Mental Health Access",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "National Health Ranking 2020",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/CountyHealthRankings2020_WFL1/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Health Ranking 2020",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "State Health Rankings 2020",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/CountyHealthRankings2020_WFL1/FeatureServer/1",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "State Health Rankings",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "State Mental Health Access",
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/County_Health_Rankings_2024_Test_2/FeatureServer/1",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Mental Health Access by State",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "County Health Rankings 2020",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/CountyHealthRankings2020_WFL1/FeatureServer/2",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "County Health Rankings",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "County Mental Health Access",
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/County_Health_Rankings_2024_Test_2/FeatureServer/2",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "County Mental Health Access",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       })
     ]
   }),
@@ -419,31 +522,187 @@ const groupedLayers = [
       new FeatureLayer({
         title: "Rollover Anti-LGBTQ+ Bills 2024",
         url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/1",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Anti-LGBTQ+ Bill Details",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Rollover Pro-LGBTQ+ Bills 2024",
         url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/0",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Pro-LGBTQ+ Bill Details",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "Travel Risk Map based on Anti or Pro-Trans Legislation",
         url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/2",
-        visible: false
+        visible: true,
+        renderer: {
+          type: "unique-value", // Renderer type for unique values
+          field: "Youth", // Field to base the symbology on
+          legendOptions: {
+            title: "Travel Risk Levels (Youth)"
+          },
+          uniqueValueInfos: [
+            {
+              value: "Safest",
+              label: "Safest",
+              symbol: {
+                type: "simple-fill",
+                color: "#ffafc9",
+                outline: {
+                  width: 0.5,
+                  color: "#000"
+                }
+              }
+            },
+            {
+              value: "Low",
+              label: "Low Risk",
+              symbol: {
+                type: "simple-fill",
+                color: "#55cdfc",
+                outline: {
+                  width: 0.5,
+                  color: "#000"
+                }
+              }
+            },
+            {
+              value: "Moderate",
+              label: "Moderate Risk",
+              symbol: {
+                type: "simple-fill",
+                color: "#ffffff",
+                outline: {
+                  width: 0.5,
+                  color: "#000"
+                }
+              }
+            },
+            {
+              value: "High",
+              label: "High Risk",
+              symbol: {
+                type: "simple-fill",
+                color: "#ff6347",
+                outline: {
+                  width: 0.5,
+                  color: "#000"
+                }
+              }
+            },
+            {
+              value: "Worst",
+              label: "Worst Risk",
+              symbol: {
+                type: "simple-fill",
+                color: "#e91b25",
+                outline: {
+                  width: 0.5,
+                  color: "#000"
+                }
+              }
+            },
+            {
+              value: "Do Not Travel",
+              label: "Do Not Travel",
+              symbol: {
+                type: "simple-fill",
+                color: "#555555",
+                outline: {
+                  width: 0.5,
+                  color: "#000"
+                }
+              }
+            }
+          ]
+        },
+        labelingInfo: [
+          {
+            symbol: {
+              type: "text", // Label type
+              color: "#000000", // Black text color
+              haloSize: 1.5,
+              haloColor: "#ffffff", // White halo for better visibility
+              font: {
+                size: 12, // Font size
+                family: "Arial",
+                weight: "bold"
+              }
+            },
+            labelPlacement: "always-horizontal", // Labels stay horizontal
+            labelExpressionInfo: {
+              expression: "$feature.Youth" // Label field
+            }
+          }
+        ],
+        popupTemplate: {
+          title: "Travel Risk for {State}", // Use the "State" field in the title
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                { fieldName: "State", label: "State Name" },
+                { fieldName: "Adult", label: "Adult Risk" },
+                { fieldName: "Youth", label: "Youth Risk" }
+              ]
+            }
+          ]
+        }
       }),
+      
       new FeatureLayer({
         title: "Top 15 Metros - LGBTQIA+ Adult Populations Plus Gender Identity and Sexual Orientation Data",
         url: "https://services1.arcgis.com/4yjifSiIG17X0gW4/ArcGIS/rest/services/Gender_Identity_and_Sexual_Orientation/FeatureServer/2",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "Top LGBTQIA+ Metros",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       }),
       new FeatureLayer({
         title: "LGBTQIA+ Adult Populations Plus Gender Identity and Sexual Orientation Data",
         url: "https://services1.arcgis.com/4yjifSiIG17X0gW4/arcgis/rest/services/Gender_Identity_and_Sexual_Orientation/FeatureServer/1",
-        visible: false
+        visible: false,
+        popupTemplate: {
+          title: "LGBTQIA+ Population Data",
+          content: [{ type: "fields", fieldInfos: [] }]
+        }
       })
     ]
   })
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Add the grouped layers to the map
 map.addMany(groupedLayers);
@@ -466,6 +725,68 @@ Object.keys(groupedLayers).forEach(group => {
    
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////SYMBOLIZING////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

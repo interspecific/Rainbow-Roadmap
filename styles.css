@@ -17,6 +17,45 @@ header {
   height: auto;
 }
 
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-button i {
+  pointer-events: none; /* Make the icon itself non-clickable */
+}
+
+
+/* Adjust position for mobile screens */
+@media (max-width: 768px) {
+  .icon-button {
+    top: auto; /* Remove top positioning */
+    right: 10px; /* Keep it aligned to the right */
+    bottom: 10px; /* Position it just below the title */
+    font-size: 1.2rem; /* Slightly smaller icon for mobile */
+  }
+
+  header {
+    position: relative; /* Ensure the header adjusts dynamically */
+    padding-bottom: 40px; /* Add extra space for the button */
+  }
+}
+
+
 /* Apply rainbow gradient to header text */
 header h1 {
   background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
@@ -199,7 +238,7 @@ button:hover {
   word-wrap: break-word; /* Prevent content from overflowing */
   width: 100%; /* Ensure content matches the accordion width */
   box-sizing: border-box; /* Include padding and borders in width calculations */
-  max-height: 500px;
+  max-height: 700px;
 }
 
 .accordion-content a {
@@ -214,7 +253,7 @@ button:hover {
   overflow-wrap: break-word; /* Break long links onto multiple lines */
   word-break: break-word; /* Additional support for breaking long links */
   transition: background-color 0.3s ease, transform 0.2s ease;
-  max-height: 400px;
+  max-height: 500px;
 }
 
 .accordion-content a:hover {
