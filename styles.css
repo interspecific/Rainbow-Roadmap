@@ -423,6 +423,21 @@ button:hover {
   position: relative;
 }
 
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+  #viewDiv {
+    height: 80vh; /* Adjust the height to make it shorter on mobile */
+    width: 100%; /* Ensure it still takes the full width */
+    margin: 0 auto; /* Center it if needed */
+  }
+}
+
+
+
+
+
+
+
 #layerListDiv {
   opacity: 0; /* Fully hidden */
   visibility: hidden; /* Inaccessible */
@@ -559,7 +574,7 @@ button:hover {
 @media (max-width: 768px) {
   .esri-ui-bottom-right,
   .esri-ui-bottom-left {
-    bottom: 30px !important; /* Raise the widgets */
+    bottom: 10px !important; /* Raise the widgets */
   }
 
   .esri-ui {
@@ -571,7 +586,7 @@ button:hover {
 @media (max-width: 480px) {
   .esri-ui-bottom-right,
   .esri-ui-bottom-left {
-    bottom: 30px !important; /* Adjust further for very small screens */
+    bottom: 10px !important; /* Adjust further for very small screens */
   }
 }
 
@@ -604,7 +619,7 @@ button:hover {
 @media (max-width: 768px) {
   /* Search bar adjustment */
   .esri-ui .esri-search {
-    bottom: 120px !important; /* Raise above bottom */
+    bottom: 10px !important; /* Raise above bottom */
     width: 200px; /* Reduce width for tablets */
   }
 
@@ -615,20 +630,22 @@ button:hover {
   }
 }
 
+
+
+
 @media (max-width: 480px) {
   /* Search bar adjustment for very small screens */
   .esri-ui .esri-search {
-    bottom: 140px !important; /* Raise even higher */
+    bottom: 10px !important; /* Raise even higher */
     width: 150px; /* Smaller width for phones */
   }
 
   /* Toggle button adjustment for very small screens */
   .esri-ui .widget-bottom,
   .esri-ui #addLocationButton {
-    bottom: 160px !important; /* Raise toggle button higher */
+    bottom: 10px !important; /* Raise toggle button higher */
   }
 }
-
 
 
 
