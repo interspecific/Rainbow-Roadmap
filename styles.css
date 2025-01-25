@@ -461,7 +461,7 @@ button:hover {
 
 
 .esri-search {
-  bottom: 30px !important; /* Ensure it stays within the viewport */
+  bottom: 20px !important; /* Ensure it stays within the viewport */
   right: 20px !important; /* Add padding from the edges */
   z-index: 10; /* Ensure it appears above other elements */
 }
@@ -553,29 +553,46 @@ button:hover {
   }
 }
 
-/* Default style for the search bar (desktop) */
-.esri-search {
-  width: 300px; /* Default width */
-  max-width: 100%; /* Prevent overflow */
-  font-size: 1rem;
-}
 
-/* Adjust the search bar for smaller screens */
+
+
+/* Force adjustments for smaller screens */
 @media (max-width: 768px) {
-  .esri-search {
-    width: 200px; /* Make it smaller on tablets */
-    font-size: 0.9rem; /* Reduce font size */
-    bottom: 100px !important; /* Raise search bar above other elements */
+  /* Search bar adjustment */
+  .esri-ui .esri-search {
+    bottom: 120px !important; /* Raise above bottom */
+    width: 200px; /* Reduce width for tablets */
+  }
+
+  /* Toggle button adjustment */
+  .esri-ui .widget-bottom,
+  .esri-ui #addLocationButton {
+    bottom: 160px !important; /* Adjust toggle button position */
   }
 }
 
 @media (max-width: 480px) {
-  .esri-search {
-    width: 150px; /* Even smaller for phones */
-    font-size: 0.8rem; /* Further reduce font size */
-    bottom: 100px !important; /* Raise search bar for smaller screens */
+  /* Search bar adjustment for very small screens */
+  .esri-ui .esri-search {
+    bottom: 140px !important; /* Raise even higher */
+    width: 150px; /* Smaller width for phones */
+  }
+
+  /* Toggle button adjustment for very small screens */
+  .esri-ui .widget-bottom,
+  .esri-ui #addLocationButton {
+    bottom: 160px !important; /* Raise toggle button higher */
   }
 }
+
+
+
+
+
+
+
+
+
 
 /* Default for desktop */
 #addLocationButton {
