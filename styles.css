@@ -190,6 +190,41 @@ button:hover {
 
 
 
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .accordion {
+    width: 90%; /* Make all accordions fill 90% of the screen width */
+    margin: 0 auto; /* Center the accordion on the screen */
+    max-width: none; /* Remove max-width to avoid limiting size */
+  }
+
+  .accordion-button {
+    width: 100%; /* Ensure buttons fill the accordion width */
+    font-size: 1rem; /* Adjust font size for better readability */
+  }
+
+  .accordion-content {
+    width: 90%; /* Ensure the content matches the accordion width */
+    margin: 0 auto; /* Center the content */
+  }
+}
+
+/* For very small screens (phones) */
+@media (max-width: 480px) {
+  .accordion {
+    width: 100%; /* Use full width for very small screens */
+  }
+
+  .accordion-button {
+    font-size: 0.9rem; /* Slightly smaller font for compact spaces */
+  }
+
+  .accordion-content {
+    width: 100%; /* Match the full width */
+  }
+}
+
+
 
 
 
@@ -482,28 +517,6 @@ button:hover {
 
 
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .accordion-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .accordion {
-    max-width: none; /* Remove max width for mobile */
-    width: 90%; /* Full width with padding */
-  }
-
-  #mapContainer {
-    height: calc(100vh - 300px); /* Adjust map height dynamically */
-  }
-
-  #layerListDiv {
-    height: auto;
-    width: 100%;
-  }
-}
 
 /* General widget adjustments for smaller screens */
 @media (max-width: 768px) {
