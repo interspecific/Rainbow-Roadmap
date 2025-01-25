@@ -495,8 +495,6 @@ button:hover {
     width: 90%; /* Full width with padding */
   }
 
-
-
   #mapContainer {
     height: calc(100vh - 300px); /* Adjust map height dynamically */
   }
@@ -509,22 +507,23 @@ button:hover {
 
 /* General widget adjustments for smaller screens */
 @media (max-width: 768px) {
-  .esri-ui-bottom-right, .esri-ui-bottom-left {
+  .esri-ui-bottom-right,
+  .esri-ui-bottom-left {
     bottom: 30px !important; /* Raise the widgets */
   }
 
   .esri-ui {
-    padding-bottom: 20px; /* Ensure enough spacing from bottom */
+    padding-bottom: 10px; /* Ensure enough spacing from the bottom */
   }
 }
 
 /* Further adjustments for very small screens (phones) */
 @media (max-width: 480px) {
-  .esri-ui-bottom-right, .esri-ui-bottom-left {
-    bottom: 15px !important; /* Adjust further for very small screens */
+  .esri-ui-bottom-right,
+  .esri-ui-bottom-left {
+    bottom: 30px !important; /* Adjust further for very small screens */
   }
 }
-
 
 /* Apply rainbow colors to search input text */
 .esri-search__input {
@@ -534,7 +533,7 @@ button:hover {
   font-weight: bold; /* Optional: Make text bold for emphasis */
 }
 
-
+/* Responsive splash content */
 @media (max-width: 480px) {
   #splashContent {
     max-width: 90%;
@@ -548,8 +547,6 @@ button:hover {
   }
 }
 
-
-
 /* Default style for the search bar (desktop) */
 .esri-search {
   width: 300px; /* Default width */
@@ -562,6 +559,7 @@ button:hover {
   .esri-search {
     width: 200px; /* Make it smaller on tablets */
     font-size: 0.9rem; /* Reduce font size */
+    bottom: 100px !important; /* Raise search bar above other elements */
   }
 }
 
@@ -569,13 +567,14 @@ button:hover {
   .esri-search {
     width: 150px; /* Even smaller for phones */
     font-size: 0.8rem; /* Further reduce font size */
+    bottom: 100px !important; /* Raise search bar for smaller screens */
   }
 }
 
-
+/* Default for desktop */
 #addLocationButton {
   position: absolute;
-  bottom: calc(30px + env(safe-area-inset-bottom)); /* Add safe area insets to the bottom spacing */
+  bottom: 30px; /* Base position */
   left: 20px;
   padding: 10px 15px;
   background-color: #6c4aad;
@@ -591,37 +590,18 @@ button:hover {
   background-color: #5b399d;
 }
 
-/* Additional adjustment for smaller screens */
+/* Adjustments for tablets (768px and below) */
 @media (max-width: 768px) {
   #addLocationButton {
-    bottom: calc(80px + env(safe-area-inset-bottom)); /* Adjust for tablets and ensure safe area */
+    bottom: 90px; /* Slight adjustment for tablets */
   }
 }
 
+/* Adjustments for mobile phones (480px and below) */
 @media (max-width: 480px) {
   #addLocationButton {
-    bottom: calc(90px + env(safe-area-inset-bottom)); /* Adjust further for smaller screens */
+    bottom: 70px; /* Lower adjustment for small phones */
   }
 }
 
 
-/* Adjustments for mobile screens */
-@media (max-width: 768px) {
-  .esri-search {
-    bottom: 80px !important; /* Move search bar higher */
-  }
-
-  #addLocationButton {
-    bottom: 120px; /* Move the button higher */
-  }
-}
-
-@media (max-width: 480px) {
-  .esri-search {
-    bottom: 100px !important; /* Move search bar higher for smaller screens */
-  }
-
-  #addLocationButton {
-    bottom: 140px; /* Further adjustment for smaller screens */
-  }
-}
