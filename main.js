@@ -178,7 +178,8 @@ document.getElementById("overlay").addEventListener("click", () => {
 // =======================
 // Accordion Functionality
 // =======================
-document.querySelectorAll('.accordion-button').forEach(button => {
+
+document.querySelectorAll('.accordion-button').forEach((button, index) => {
   button.addEventListener('click', () => {
     const content = button.nextElementSibling;
     const caret = button.querySelector('.caret');
@@ -189,8 +190,10 @@ document.querySelectorAll('.accordion-button').forEach(button => {
       // Toggle the display property of the content
       content.style.display = isVisible ? 'none' : 'block';
 
-      // Update the button text
-      button.firstChild.textContent = isVisible ? 'More ' : 'Less ';
+      // For the top accordion button (index 0), toggle between "More" and "Less"
+      if (index === 0) {
+        button.firstChild.textContent = isVisible ? 'More ' : 'Less ';
+      }
 
       // Rotate the caret
       if (caret) {
@@ -200,14 +203,15 @@ document.querySelectorAll('.accordion-button').forEach(button => {
   });
 });
 
-  // Show and hide disclaimer popup
-  document.getElementById("disclaimerButton").addEventListener("click", () => {
-    document.getElementById("disclaimerModal").style.display = "block";
-  });
-  
-  document.getElementById("closeDisclaimer").addEventListener("click", () => {
-    document.getElementById("disclaimerModal").style.display = "none";
-  });
+// Show and hide disclaimer popup
+document.getElementById("disclaimerButton").addEventListener("click", () => {
+  document.getElementById("disclaimerModal").style.display = "block";
+});
+
+document.getElementById("closeDisclaimer").addEventListener("click", () => {
+  document.getElementById("disclaimerModal").style.display = "none";
+});
+
   
 
 

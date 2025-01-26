@@ -568,9 +568,20 @@ button:hover {
     height: 80vh; /* Adjust the height to make it shorter on mobile */
     width: 100%; /* Ensure it still takes the full width */
     margin: 0 auto; /* Center it if needed */
-    flex:auto;
+    flex:auto !important;
   }
 }
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 480px) {
+  #viewDiv {
+    height: 80vh; /* Adjust the height to make it shorter on mobile */
+    width: 100%; /* Ensure it still takes the full width */
+    margin: 0 auto; /* Center it if needed */
+    flex:auto !important;
+  }
+}
+
 
 
 
@@ -796,7 +807,9 @@ button:hover {
 /* Adjustments for mobile phones (480px and below) */
 @media (max-width: 480px) {
   #addLocationButton {
-    bottom: 20px; /* Lower adjustment for small phones */
+    bottom: 20px !important; /* Raise above bottom */
+    width: 170px; /* Reduce width for tablets */
+    position: fixed;
   }
 }
 
