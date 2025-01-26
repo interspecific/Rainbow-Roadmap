@@ -56,6 +56,8 @@ function createAddLocationButton(view) {
   addButton.style.position = "absolute";
   addButton.style.left = "20px";
   addButton.style.zIndex = "10";
+  addButton.style.fontSize = "0.7rem"; // Or use "12px" for a specific pixel size
+
 
   // Dynamically adjust the bottom position based on screen size
   function adjustButtonPosition() {
@@ -144,6 +146,26 @@ document.getElementById("overlay").addEventListener("click", () => {
 });
 
 
+view.popup.dockEnabled = true; // Enable docking
+view.popup.dockOptions = {
+  position: "top", // Dock the popup at the bottom
+  breakpoint: {
+    width: 600, // Dock popup for screens smaller than 600px
+    height: 400
+  }
+};
+
+
+view.when(() => {
+  view.popup.viewModel.watch("screenSize", (screenSize) => {
+    if (screenSize.width < 600) {
+      view.popup.dockEnabled = true;
+      view.popup.dockOptions.position = "top";
+    } else {
+      view.popup.dockEnabled = false;
+    }
+  });
+});
 
 
 

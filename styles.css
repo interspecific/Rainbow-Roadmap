@@ -109,6 +109,7 @@ button:hover {
   align-items: center;
   z-index: 1000; /* Ensure it's above all other elements */
   opacity: 1; /* Fully visible */
+  overflow:auto;
 }
 
 #splashScreen.hidden {
@@ -565,10 +566,11 @@ button:hover {
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) {
   #viewDiv {
-    height: 80vh; /* Adjust the height to make it shorter on mobile */
+    height: 60vh; /* Adjust the height to make it shorter on mobile */
     width: 100%; /* Ensure it still takes the full width */
     margin: 0 auto; /* Center it if needed */
     flex:auto !important;
+    position:fixed;
   }
 }
 
@@ -740,7 +742,7 @@ button:hover {
   /* Toggle button adjustment for very small screens */
   .esri-ui .widget-bottom,
   .esri-ui #addLocationButton {
-    bottom: 10px !important; /* Raise toggle button higher */
+    bottom: 20px !important; /* Raise toggle button higher */
     position: fixed;
   }
 }
@@ -755,8 +757,8 @@ button:hover {
 
 /* Default for desktop */
 #addLocationButton {
-  position: absolute;
-  bottom: 30px; /* Base position */
+  position: fixed;
+  bottom: 50px; /* Base position */
   left: 20px;
   padding: 10px 15px;
   background-color: #6c4aad;
@@ -766,7 +768,6 @@ button:hover {
   cursor: pointer;
   font-size: 1rem;
   z-index: 10;
-  display:flex;
 }
 
 #addLocationButton:hover {
@@ -788,7 +789,7 @@ button:hover {
   /* Toggle button adjustment */
   .esri-ui .widget-bottom,
   .esri-ui #addLocationButton {
-    position: fixed;
+    position: relative;
     bottom: 20px;
   }
 }
@@ -798,19 +799,45 @@ button:hover {
 /* Adjustments for tablets (768px and below) */
 @media (max-width: 768px) {
   #addLocationButton {
-    bottom: 20px !important; /* Raise above bottom */
-    width: 180px; /* Reduce width for tablets */
-    position: fixed;
+    bottom: 10px !important; /* Raise above bottom */
+    width: 14
+    0px; /* Reduce width for tablets */
+    position: relative;
   }
 }
 
 /* Adjustments for mobile phones (480px and below) */
 @media (max-width: 480px) {
   #addLocationButton {
-    bottom: 20px !important; /* Raise above bottom */
-    width: 170px; /* Reduce width for tablets */
-    position: fixed;
+    bottom: 40px !important; /* Raise above bottom */
+    width: 140px; /* Reduce width for tablets */
+    position: relative;
   }
 }
 
 
+/* Popup content */
+.esri-popup__content {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #333;
+  padding: 10px;
+}
+
+/* Popup header */
+.esri-popup__header-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4b0082; /* Purple */
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+  .esri-popup__content {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+  .esri-popup__header-title {
+    font-size: 1rem;
+  }
+}
