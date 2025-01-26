@@ -822,6 +822,7 @@ button:hover {
   line-height: 1.4;
   color: #333;
   padding: 10px;
+  z-index: 15;
 }
 
 /* Popup header */
@@ -836,6 +837,7 @@ button:hover {
   .esri-popup__content {
     font-size: 0.8rem;
     padding: 8px;
+    z-index: 15;
   }
   .esri-popup__header-title {
     font-size: 1rem;
