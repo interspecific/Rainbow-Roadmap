@@ -200,6 +200,15 @@ document.querySelectorAll('.accordion-button').forEach(button => {
   });
 });
 
+  // Show and hide disclaimer popup
+  document.getElementById("disclaimerButton").addEventListener("click", () => {
+    document.getElementById("disclaimerModal").style.display = "block";
+  });
+  
+  document.getElementById("closeDisclaimer").addEventListener("click", () => {
+    document.getElementById("disclaimerModal").style.display = "none";
+  });
+  
 
 
 // Create the LayerList widget

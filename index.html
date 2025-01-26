@@ -21,22 +21,62 @@
   </head>
   <body>
 
-<div id="splashScreen">
-  <div id="splashContent">
-    <h1>Rainbow Roadmap</h1>
-    <h2>An Interactive Map and Resource Hub of LGBTQ, Climate, Environmental, Health, and Economic Data</h2>
+    <div id="splashScreen">
+      <div id="splashContent">
+        <h1>Rainbow Roadmap</h1>
+        <h2>An Interactive Map and Resource Hub of LGBTQ, Climate, Environmental, Health, and Economic Data</h2>
+        <p>
+          This tool empowers you to make informed decisions about travel and relocation in the face of political hostility and climate change in the United States.
+        </p>
+        <h3>How to Use This Tool</h3>
+        <ul>
+          <li>
+            <strong>Explore the Map:</strong> Toggle layers on and off, zoom to different scales, and click on geographic features to view the underlying attribute information.
+          </li>
+          <li>
+            Click the <strong>"Show Layer List and Legend"</strong> button in the top-right corner. Expand layer groups to see individual data layers, and use the "eye" icon to toggle visibility. If a layer is greyed out, zoom in or out to make it visible.
+          </li>
+          <li>
+            <strong>Interact with Features:</strong> Click on a feature to see detailed information in a pop-up table.
+          </li>
+          <li>
+            <strong>Contribute to the Map:</strong> Use the <strong>"Submit Safe Location"</strong> button in the bottom-left corner to add a new safe space to the database. 
+            <em>Note:</em> Submissions will be reviewed before becoming public.
+          </li>
+          <li>
+            <strong>Report Issues:</strong> Use the contact information in the header to report errors or suggest improvements.
+          </li>
+        </ul>
+        <button id="startButton">Enter the Roadmap</button>
+        <button id="disclaimerButton">Disclaimer</button>
+      </div>
+    </div>
+    
+    
+<!-- Disclaimer Popup -->
+<div id="disclaimerModal">
+  <div id="disclaimerContent">
+    <h3>Disclaimer</h3>
     <p>
-      This tool can be used to help make informed decisions when traveling and relocating 
-      in times of political hostility and climate change in the US.
-      <h3>Try:</h3>
+      The information provided in this app is for informational and educational purposes only. While efforts 
+      have been made to ensure the accuracy and reliability of the data and resources presented, the creators 
+      of this app do not guarantee the completeness, timeliness, or correctness of the information.
     </p>
-    <ul>
-      <li><strong>Toggling</strong> layers on and off, <strong>zooming</strong> to different scales, and <strong>clicking</strong> on geographic features to see the underlying attribute information.</li>
-      <li>Clicking the "Show Layer List and Legend" button on the top right. Expand the layer groups to see data layers for that group. Use the "eye" icon to toggle visibility of layers. If a layer is greyed out and not showing up on the map, zoom in or out to make it visible.</li>
-      <li>Clicking on a feature to see the information associated with that particular feature. This will show you a table of data that has been aggregated about this location or feature.</li>
-      <li>Submitting a new safe location to the database using the button on the bottom left. These locations will NOT be public until they are reviewed by me. Please report any issues using the contact info in the header.</li>
-    </ul>
-    <button id="startButton">Enter the Roadmap</button>
+    <p>
+      This app should not be used as a sole resource for making decisions regarding health, legal, financial, 
+      or other critical matters. Users are encouraged to consult relevant professionals or official sources 
+      for advice specific to their needs. Links to external websites are provided for convenience and do not 
+      imply endorsement of the content or views expressed on those sites.
+    </p>
+    <p>
+      By using this app, you acknowledge and agree that the creators are not liable for any errors, omissions, 
+      or outcomes resulting from the use or misuse of the information provided.
+    </p>
+    <p>
+      If you have any questions or concerns about the content presented, please contact us at 
+      <a href="mailto:contact.rainbowroadmap@gmail.com">contact.rainbowroadmap@gmail.com</a>.
+    </p>
+    <button id="closeDisclaimer">Close</button>
   </div>
 </div>
 
