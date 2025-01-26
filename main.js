@@ -314,37 +314,125 @@ view.on("click", function (event) {
 
   
  
-const groupedLayers = [
-  new GroupLayer({
-    title: "Environmental Layers",
-    layers: [
-      new FeatureLayer({
-        title: "USA Forest Service Lands - USA Federal Lands",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Forest_Service_Lands/FeatureServer/0",
-        visible: false,
-        popupTemplate: {
-          title: "{Name}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
-        title: "USA Detailed Parks - USA Parks",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Detailed_Parks/FeatureServer/0",
-        visible: false,
-        popupTemplate: {
-          title: "{Name}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
-        title: "U.S. Army Corps of Engineers Reservoirs",
-        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USACE_Reservoirs/FeatureServer/0",
-        visible: false,
-        popupTemplate: {
-          title: "{Reservoir_Name}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
+  const groupedLayers = [
+    new GroupLayer({
+      title: "Environmental Layers",
+      layers: [
+        new FeatureLayer({
+          title: "USA Forest Service Lands - USA Federal Lands",
+          url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Forest_Service_Lands/FeatureServer/0",
+          visible: false,
+          popupTemplate: {
+            title: "{Name}",
+            content: [
+              {
+                type: "fields",
+                fieldInfos: [
+                  {
+                    fieldName: "Agency",
+                    label: "Agency"
+                  },
+                  {
+                    fieldName: "unit_name",
+                    label: "Name"
+                  }
+                ]
+              }
+            ]
+          }
+        }),
+        new FeatureLayer({
+          title: "USA Detailed Parks - USA Parks",
+          url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Detailed_Parks/FeatureServer/0",
+          visible: false,
+          popupTemplate: {
+            title: "{Name}",
+            content: [
+              {
+                type: "fields",
+                fieldInfos: [
+                  {
+                    fieldName: "NAME",
+                    label: "Name"
+                  },
+                  {
+                    fieldName: "FEATTYPE",
+                    label: "Feature Type"
+                  },
+                  {
+                    fieldName: "MNFC",
+                    label: "MNFC",
+                    format: {
+                      digitSeparator: true,
+                      places: 2
+                    }
+                  },
+                  {
+                    fieldName: "SQMI",
+                    label: "Area in square miles",
+                    format: {
+                      digitSeparator: true,
+                      places: 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }),
+  
+        new FeatureLayer({
+          title: "U.S. Army Corps of Engineers Reservoirs",
+          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USACE_Reservoirs/FeatureServer/0",
+          visible: false,
+          popupTemplate: {
+            title: "{Reservoir_Name}",
+            content: [
+              {
+                type: "fields",
+                fieldInfos: [
+                  {
+                    fieldName: "OMBIL_SITE",
+                    label: "OMBIL_SITE"
+                  },
+                  {
+                    fieldName: "NAME",
+                    label: "Reservoir Name"
+                  },
+                  {
+                    fieldName: "DISTRICT",
+                    label: "District Name"
+                  },
+                  {
+                    fieldName: "DIST_SYM",
+                    label: "District Abbreviation"
+                  },
+                  {
+                    fieldName: "DIVISION",
+                    label: "Division Name"
+                  },
+                  {
+                    fieldName: "DIV_SYM",
+                    label: "Division Abbreviation"
+                  },
+                  {
+                    fieldName: "DRY",
+                    label: "Dry Land"
+                  },
+                  {
+                    fieldName: "DAM_NAME",
+                    label: "Dam Name"
+                  },
+                  {
+                    fieldName: "NIDID",
+                    label: "NIDID"
+                  }
+                ]
+              }
+            ]
+          }
+        }),
+  
       new FeatureLayer({
         title: "River Flowlines",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/NHDPlusV21/FeatureServer/2",
@@ -359,10 +447,53 @@ const groupedLayers = [
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Detailed_Water_Bodies/FeatureServer/0",
         visible: false,
         popupTemplate: {
-          title: "{WaterBody_Name}",
-          content: [{ type: "fields", fieldInfos: [] }]
+          title: "{NAME}",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                {
+                  fieldName: "NAME",
+                  label: "NAME"
+                },
+                {
+                  fieldName: "FTYPE",
+                  label: "FTYPE"
+                },
+                {
+                  fieldName: "FCODE",
+                  label: "FCODE",
+                  format: {
+                    digitSeparator: true,
+                    places: 2
+                  }
+                },
+                {
+                  fieldName: "FCODE_DESC",
+                  label: "FCODE_DESC"
+                },
+                {
+                  fieldName: "SQKM",
+                  label: "SQKM",
+                  format: {
+                    digitSeparator: true,
+                    places: 2
+                  }
+                },
+                {
+                  fieldName: "SQMI",
+                  label: "SQMI",
+                  format: {
+                    digitSeparator: true,
+                    places: 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       }),
+
       new FeatureLayer({
         title: "Current US Drought",
         url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/US_Drought_Intensity_v1/FeatureServer/3",
@@ -391,44 +522,1030 @@ const groupedLayers = [
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USDA_Census_of_Agriculture_2022_All/FeatureServer/0",
         visible: false,
         popupTemplate: {
-          title: "{FieldName}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
-        title: "Census 2020 DHC Household Data National",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/0",
-        visible: false,
-        popupTemplate: {
-          title: "{FieldName}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
-        title: "Census 2020 DHC Household Data by State",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/1",
-        visible: false,
-        popupTemplate: {
-          title: "{StateName}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
-        title: "Census 2020 DHC Household Data by County",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/2",
-        visible: false,
-        popupTemplate: {
-          title: "{CountyName}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
-        title: "Census 2020 DHC Household Data by Census Tract",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Census_2020_DHC_Households/FeatureServer/3",
-        visible: false,
-        popupTemplate: {
-          title: "{TractName}",
-          content: [{ type: "fields", fieldInfos: [] }]
+          title: "Agriculture Data for {FieldName}",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                {
+                  "fieldName": "PRODS_RES_ON_OPR_NUM_OF_PRODS",
+                  "label": "Producers - Residence - On Operation - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_WHT_AC_OPD_TOT",
+                  "label": "Producers - White - Acres Operated",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_WHT_NUM_OF_OPS_TOT",
+                  "label": "Producers - White - Number Of Operations",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_WHT_NUM_OF_PRODS_TOT",
+                  "label": "Producers - White - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_OPR_6_10_NUM_PRO",
+                  "label": "Producers - Years On Any Operation - 6 To 10 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_OPR_GE_11_NUM_PRO",
+                  "label": "Producers - Years On Any Operation - Greater Than or Equal To 11 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_OPR_LT_11_AC_OPD",
+                  "label": "Producers - Years On Any Operation - Less Than 11 Years - Acres Operated",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_OPR_LT_11_NUM_OPS",
+                  "label": "Producers - Years On Any Operation - Less Than 11 Years - Number Of Operations",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_OPR_LT_11_NUM_PRO",
+                  "label": "Producers - Years On Any Operation - Less Than 11 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_OPR_LT_6_NUM_PRO",
+                  "label": "Producers - Years On Any Operation - Less Than 6 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_PST_OPR_3_4_N_PRO",
+                  "label": "Producers - Years On Present Operation - 3 To 4 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_PST_OPR_5_9_N_PRO",
+                  "label": "Producers - Years On Present Operation - 5 To 9 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_PST_OPR_GE10_N_PRO",
+                  "label": "Producers - Years On Present Operation - Greater Than or Equal To 10 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "PRODS_YRS_ON_PST_OPR_LT3_N_PRO",
+                  "label": "Producers - Years On Present Operation - Less Than 3 Years - Number Of Producers",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_ACRES_HVSD_TOT",
+                  "label": "Rice - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_1000_PLS",
+                  "label": "Rice - Operations With Area Harvested - Area Harvested: (1,000 Or More Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_1_24_9",
+                  "label": "Rice - Operations With Area Harvested - Area Harvested: (1.0 To 24.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_100_249",
+                  "label": "Rice - Operations With Area Harvested - Area Harvested: (100 To 249 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_25_99_9",
+                  "label": "Rice - Operations With Area Harvested - Area Harvested: (25.0 To 99.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_250_499",
+                  "label": "Rice - Operations With Area Harvested - Area Harvested: (250 To 499 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_500_999",
+                  "label": "Rice - Operations With Area Harvested - Area Harvested: (500 To 999 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_AREA_HVSD_TOT",
+                  "label": "Rice - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_OPS_W_SALES_TOT",
+                  "label": "Rice - Operations With Sales",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_PROD_CWT_TOT",
+                  "label": "Rice - Production, Measured In Hundredweight",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_SALES_DOL_TOT",
+                  "label": "Rice - Sales, Measured In US Dollars ($)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_IRRD_ACRES_HVSD_TOT",
+                  "label": "Rice, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "RICE_IRRD_OPS_W_AREA_HVSD_TOT",
+                  "label": "Rice, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_OPS_W_SALES_TOT",
+                  "label": "Sorghum - Operations With Sales",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SALES_DOL_TOT",
+                  "label": "Sorghum - Sales, Measured In US Dollars ($)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_ACRES_HVSD_TOT",
+                  "label": "Sorghum, Grain - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_A_HVSD_1000_PLS",
+                  "label": "Sorghum, Grain - Operations With Area Harvested - Area Harvested: (1,000 Or More Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_A_HVSD_1_24_9",
+                  "label": "Sorghum, Grain - Operations With Area Harvested - Area Harvested: (1.0 To 24.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_A_HVSD_100_249",
+                  "label": "Sorghum, Grain - Operations With Area Harvested - Area Harvested: (100 To 249 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_A_HVSD_25_99_9",
+                  "label": "Sorghum, Grain - Operations With Area Harvested - Area Harvested: (25.0 To 99.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_A_HVSD_250_499",
+                  "label": "Sorghum, Grain - Operations With Area Harvested - Area Harvested: (250 To 499 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_A_HVSD_500_999",
+                  "label": "Sorghum, Grain - Operations With Area Harvested - Area Harvested: (500 To 999 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_OPS_W_A_HVSD_TOT",
+                  "label": "Sorghum, Grain - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_PROD_BU_TOT",
+                  "label": "Sorghum, Grain - Production, Measured In Bushels",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_IRRD_ACRES_HVSD_TOT",
+                  "label": "Sorghum, Grain, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_GRN_IRRD_OPS_A_HVSD_TOT",
+                  "label": "Sorghum, Grain, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_IRR_SYP_ACRES_HVSD_TOT",
+                  "label": "Sorghum, Irrigated, Syrup - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_IRR_SYP_OPS_A_HVSD_TOT",
+                  "label": "Sorghum, Irrigated, Syrup - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SILAGE_ACRES_HVSD_TOT",
+                  "label": "Sorghum, Silage - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SILAGE_OPS_W_A_HVSD_TOT",
+                  "label": "Sorghum, Silage - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SILAGE_PROD_TONS_TOT",
+                  "label": "Sorghum, Silage - Production, Measured In Tons",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SILAGE_IRR_ACR_HVSD_TOT",
+                  "label": "Sorghum, Silage, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SILAGE_IRR_OPS_HVSD_TOT",
+                  "label": "Sorghum, Silage, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SYRUP_ACRES_HVSD_TOT",
+                  "label": "Sorghum, Syrup - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SYRUP_OPS_W_A_HVSD_TOT",
+                  "label": "Sorghum, Syrup - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SORGHUM_SYRUP_PROD_GAL_TOT",
+                  "label": "Sorghum, Syrup - Production, Measured In Gallons",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_ACRES_HVSD_TOT",
+                  "label": "Soybeans - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_1000_PLS",
+                  "label": "Soybeans - Operations With Area Harvested - Area Harvested: (1,000 Or More Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_1_24_9",
+                  "label": "Soybeans - Operations With Area Harvested - Area Harvested: (1.0 To 24.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_100_249",
+                  "label": "Soybeans - Operations With Area Harvested - Area Harvested: (100 To 249 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_25_99",
+                  "label": "Soybeans - Operations With Area Harvested - Area Harvested: (25.0 To 99.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_250_499",
+                  "label": "Soybeans - Operations With Area Harvested - Area Harvested: (250 To 499 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_500_999",
+                  "label": "Soybeans - Operations With Area Harvested - Area Harvested: (500 To 999 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_W_A_HVSD_TOT",
+                  "label": "Soybeans - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_OPS_WITH_SALES_TOT",
+                  "label": "Soybeans - Operations With Sales",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_PROD_BU_TOT",
+                  "label": "Soybeans - Production, Measured In Bushels",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_SALES_DOL_TOT",
+                  "label": "Soybeans - Sales, Measured In US Dollars",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_IRRD_ACRES_HVSD_TOT",
+                  "label": "Soybeans, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "SOYBEANS_IRRD_OPS_W_A_HVSD_TOT",
+                  "label": "Soybeans, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_INV",
+                  "label": "Tractors - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_OPS_WITH_INV",
+                  "label": "Tractors - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_40_99HP_INV",
+                  "label": "Tractors, 40-99 PTO-HP - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_40_99HP_OPS_W_INV",
+                  "label": "Tractors, 40-99 PTO-HP - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_40_99HP_GE5Y_INV",
+                  "label": "Tractors, 40-99 PTO-HP, >= 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_40_99HP_GE5Y_OPS_W_INV",
+                  "label": "Tractors, 40-99 PTO-HP, >= 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_40_99HP_LT5Y_INV",
+                  "label": "Tractors, 40-99 PTO-HP, < 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_40_99HP_LT5Y_OPS_W_INV",
+                  "label": "Tractors, 40-99 PTO-HP, < 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE100HP_INV",
+                  "label": "Tractors, >= 100 PTO-HP - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE100HP_OPS_W_INV",
+                  "label": "Tractors, >= 100 PTO-HP - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE100HP_GE5Y_INV",
+                  "label": "Tractors, >= 100 PTO-HP, >= 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE100HP_GE5Y_OPS_W_INV",
+                  "label": "Tractors, >= 100 PTO-HP, >= 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE100HP_LT5Y_INV",
+                  "label": "Tractors, >= 100 PTO-HP, < 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE100HP_LT5Y_OPS_W_INV",
+                  "label": "Tractors, >= 100 PTO-HP, < 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE5Y_INV_TOT",
+                  "label": "Tractors, >= 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_GE5Y_OPS_W_INV",
+                  "label": "Tractors, >= 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT40HP_INV",
+                  "label": "Tractors, < 40 PTO-HP - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT40HP_OPS_W_INV",
+                  "label": "Tractors, < 40 PTO-HP - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT40HP_GE5Y_INV",
+                  "label": "TRACTORS_LT40HP_GE5Y_INV",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT40HP_GE5Y_OPS_W_INV",
+                  "label": "TRACTORS_LT40HP_GE5Y_OPS_W_INV",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT40HP_LT5Y_INV",
+                  "label": "Tractors, < 40 PTO-HP, < 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT40HP_LT5Y_OPS_W_INV",
+                  "label": "Tractors, < 40 PTO-HP, < 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT5Y_INV",
+                  "label": "Tractors, < 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRACTORS_LT5Y_OPS_W_INV",
+                  "label": "Tractors, < 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRUCKS_INCL_P_UPS_INV_TOT",
+                  "label": "Trucks, Incl Pickups - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRUCKS_INCL_P_UPS_OPS_W_INV",
+                  "label": "Trucks, Incl Pickups - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRUCKS_INCL_P_UPS_GE5Y_INV",
+                  "label": "Trucks, Incl Pickups, >= 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRUCKS_INCL_P_UPS_GE5Y_OPS_INV",
+                  "label": "Trucks, Incl Pickups, >= 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRUCKS_INCL_P_UPS_LT5Y_INV",
+                  "label": "Trucks, Incl Pickups, < 5 Years Old - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TRUCKS_INCL_P_UPS_LT5Y_OPS_INV",
+                  "label": "Trucks, Incl Pickups, < 5 Years Old - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TURKEYS_INV_TOT",
+                  "label": "Turkeys - Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TURKEYS_OPS_WITH_INV_TOT",
+                  "label": "Turkeys - Operations With Inventory",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TURKEYS_OPS_WITH_SALES_TOT",
+                  "label": "Turkeys - Operations With Sales",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TURKEYS_SALES_IN_H_TOT",
+                  "label": "Turkeys - Sales, Measured In Head",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TURKEYS_PRODCON_OPS_W_PROD",
+                  "label": "Turkeys, Production Contract - Operations With Production",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "TURKEYS_PRODCON_PROD_IN_H",
+                  "label": "Turkeys, Production Contract - Production, Measured In Head",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_ACRES_HVSD_TOT",
+                  "label": "Wheat - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_1000_PLS",
+                  "label": "Wheat - Operations With Area Harvested - Area Harvested: (1,000 Or More Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_1_24_9",
+                  "label": "Wheat - Operations With Area Harvested - Area Harvested: (1.0 To 24.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_100_249",
+                  "label": "Wheat - Operations With Area Harvested - Area Harvested: (100 To 249 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_25_99_9",
+                  "label": "Wheat - Operations With Area Harvested - Area Harvested: (25.0 To 99.9 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_250_499",
+                  "label": "Wheat - Operations With Area Harvested - Area Harvested: (250 To 499 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_500_999",
+                  "label": "Wheat - Operations With Area Harvested - Area Harvested: (500 To 999 Acres)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_A_HVSD_TOT",
+                  "label": "Wheat - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_OPS_W_SALES_TOT",
+                  "label": "Wheat - Operations With Sales",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_PROD_BU_TOT",
+                  "label": "Wheat - Production, Measured In Bushels (BU)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SALES_DOL_TOT",
+                  "label": "Wheat - Sales, Measured In US Dollars ($)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_IRRD_ACRES_HVSD_TOT",
+                  "label": "Wheat, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_IRRD_OPS_W_A_HVSD_TOT",
+                  "label": "Wheat, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_EX_DUR_ACRES_HVSD_TOT",
+                  "label": "Wheat, Spring, (Excl Durum) - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_EX_DUR_OPS_W_A_HVSD",
+                  "label": "Wheat, Spring, (Excl Durum) - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_EX_DUR_PROD_BU_TOT",
+                  "label": "Wheat, Spring, (Excl Durum) - Production, Measured In Bu",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_EX_DUR_IR_AC_HVSD_TOT",
+                  "label": "Wheat, Spring, (Excl Durum), Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_EX_DUR_IR_OPS_A_HVSD",
+                  "label": "Wheat, Spring, (Excl Durum), Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_DUR_AC_HVSD_TOT",
+                  "label": "Wheat, Spring, Durum - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_DUR_OPS_W_A_HVSD_TOT",
+                  "label": "Wheat, Spring, Durum - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_DUR_PROD_BU_TOT",
+                  "label": "Wheat, Spring, Durum - Production, Measured In Bu",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_DUR_IRRD_AC_HVSD_TOT",
+                  "label": "Wheat, Spring, Durum, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_SPR_DUR_IRRD_OPS_W_A_HVSD",
+                  "label": "Wheat, Spring, Durum, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_WINTER_ACRES_HVSD_TOT",
+                  "label": "Wheat, Winter - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_WINTER_OPS_W_A_HVSD_TOT",
+                  "label": "Wheat, Winter - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_WINTER_PROD_BU_TOT",
+                  "label": "Wheat, Winter - Production, Measured In Bushels (BU)",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_WINTER_IRR_ACRES_HVSD_TOT",
+                  "label": "Wheat, Winter, Irrigated - Acres Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                },
+                {
+                  "fieldName": "WHEAT_WINT_IRR_OPS_W_A_HVSD_TOT",
+                  "label": "Wheat, Winter, Irrigated - Operations With Area Harvested",
+                  "format": {
+                    "digitSeparator": true,
+                    "places": 2
+                  }
+                }   
+              ]
+            }
+          ]
         }
       }),
       new FeatureLayer({
@@ -436,49 +1553,683 @@ const groupedLayers = [
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_119th_Congressional_Districts/FeatureServer/0",
         visible: false,
         popupTemplate: {
-          title: "{DistrictName}",
-          content: [{ type: "fields", fieldInfos: [] }]
+          title: "Congressional District Details",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                { fieldName: "STATE_ABBR", label: "State Abbreviation" },
+                { fieldName: "NAME", label: "Representative Name" },
+                { fieldName: "LAST_NAME", label: "Last Name" },
+                { fieldName: "PARTY", label: "Political Party" },
+                { fieldName: "SQMI", label: "Area (sq. miles)", format: { digitSeparator: true, places: 2 } },
+                { fieldName: "STATE_NAME", label: "State Name" }
+              ]
+            }
+          ]
         }
       }),
+      
+      new FeatureLayer({
+        title: "U.S. Population Projections for 2020 through 2100 (SEDAC)",
+        url: "https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/US_County_Level_Population_Projections_for_2020_%e2%80%93_2100/FeatureServer/layers",
+        visible: false,
+        popupTemplate: {
+          title: "County Level Population Data:",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                { fieldName: "ssp12020", label: "Total county projected population under SSP1 in 2020" },
+                { fieldName: "ssp22020", label: "Total county projected population under SSP2 in 2020" },
+                { fieldName: "ssp32020", label: "Total county projected population under SSP3 in 2020" },
+                { fieldName: "ssp42020", label: "Total county projected population under SSP4 in 2020" },
+                { fieldName: "ssp52020", label: "Total county projected population under SSP5 in 2020" },
+                { fieldName: "ssp12025", label: "Total county projected population under SSP1 in 2025" },
+                { fieldName: "ssp22025", label: "Total county projected population under SSP2 in 2025" },
+                { fieldName: "ssp32025", label: "Total county projected population under SSP3 in 2025" },
+                { fieldName: "ssp42025", label: "Total county projected population under SSP4 in 2025" },
+                { fieldName: "ssp52025", label: "Total county projected population under SSP5 in 2025" },
+                { fieldName: "ssp12030", label: "Total county projected population under SSP1 in 2030" },
+                { fieldName: "ssp22030", label: "Total county projected population under SSP2 in 2030" },
+                { fieldName: "ssp32030", label: "Total county projected population under SSP3 in 2030" },
+                { fieldName: "ssp42030", label: "Total county projected population under SSP4 in 2030" },
+                { fieldName: "ssp52030", label: "Total county projected population under SSP5 in 2030" },
+                { fieldName: "ssp12035", label: "Total county projected population under SSP1 in 2035" },
+                { fieldName: "ssp22035", label: "Total county projected population under SSP2 in 2035" },
+                { fieldName: "ssp32035", label: "Total county projected population under SSP3 in 2035" },
+                { fieldName: "ssp42035", label: "Total county projected population under SSP4 in 2035" },
+                { fieldName: "ssp52035", label: "Total county projected population under SSP5 in 2035" },
+                { fieldName: "ssp12040", label: "Total county projected population under SSP1 in 2040" },
+                { fieldName: "ssp22040", label: "Total county projected population under SSP2 in 2040" },
+                { fieldName: "ssp32040", label: "Total county projected population under SSP3 in 2040" },
+                { fieldName: "ssp42040", label: "Total county projected population under SSP4 in 2040" },
+                { fieldName: "ssp52040", label: "Total county projected population under SSP5 in 2040" },
+                { fieldName: "ssp12045", label: "Total county projected population under SSP1 in 2045" },
+                { fieldName: "ssp22045", label: "Total county projected population under SSP2 in 2045" },
+                { fieldName: "ssp32045", label: "Total county projected population under SSP3 in 2045" },
+                { fieldName: "ssp42045", label: "Total county projected population under SSP4 in 2045" },
+                { fieldName: "ssp52045", label: "Total county projected population under SSP5 in 2045" },
+                { fieldName: "ssp12050", label: "Total county projected population under SSP1 in 2050" },
+                { fieldName: "ssp22050", label: "Total county projected population under SSP2 in 2050" },
+                { fieldName: "ssp32050", label: "Total county projected population under SSP3 in 2050" },
+                { fieldName: "ssp42050", label: "Total county projected population under SSP4 in 2050" },
+                { fieldName: "ssp52050", label: "Total county projected population under SSP5 in 2050" },
+                { fieldName: "ssp12055", label: "Total county projected population under SSP1 in 2055" },
+                { fieldName: "ssp22055", label: "Total county projected population under SSP2 in 2055" },
+                { fieldName: "ssp32055", label: "Total county projected population under SSP3 in 2055" },
+                { fieldName: "ssp42055", label: "Total county projected population under SSP4 in 2055" },
+                { fieldName: "ssp52055", label: "Total county projected population under SSP5 in 2055" },
+                { fieldName: "ssp12060", label: "Total county projected population under SSP1 in 2060" },
+                { fieldName: "ssp22060", label: "Total county projected population under SSP2 in 2060" },
+                { fieldName: "ssp32060", label: "Total county projected population under SSP3 in 2060" },
+                { fieldName: "ssp42060", label: "Total county projected population under SSP4 in 2060" },
+                { fieldName: "ssp52060", label: "Total county projected population under SSP5 in 2060" },
+                { fieldName: "ssp12065", label: "Total county projected population under SSP1 in 2065" },
+                { fieldName: "ssp22065", label: "Total county projected population under SSP2 in 2065" },
+                { fieldName: "ssp32065", label: "Total county projected population under SSP3 in 2065" },
+                { fieldName: "ssp42065", label: "Total county projected population under SSP4 in 2065" },
+                { fieldName: "ssp52065", label: "Total county projected population under SSP5 in 2065" },
+                { fieldName: "ssp12070", label: "Total county projected population under SSP1 in 2070" },
+                { fieldName: "ssp22070", label: "Total county projected population under SSP2 in 2070" },
+                { fieldName: "ssp32070", label: "Total county projected population under SSP3 in 2070" },
+                { fieldName: "ssp42070", label: "Total county projected population under SSP4 in 2070" },
+                { fieldName: "ssp52070", label: "Total county projected population under SSP5 in 2070" },
+                { fieldName: "ssp12075", label: "Total county projected population under SSP1 in 2075" },
+                { fieldName: "ssp22075", label: "Total county projected population under SSP2 in 2075" },
+                { fieldName: "ssp32075", label: "Total county projected population under SSP3 in 2075" },
+                { fieldName: "ssp42075", label: "Total county projected population under SSP4 in 2075" },
+                { fieldName: "ssp52075", label: "Total county projected population under SSP5 in 2075" },
+                { fieldName: "ssp12080", label: "Total county projected population under SSP1 in 2080" },
+                { fieldName: "ssp22080", label: "Total county projected population under SSP2 in 2080" },
+                { fieldName: "ssp32080", label: "Total county projected population under SSP3 in 2080" },
+                { fieldName: "ssp42080", label: "Total county projected population under SSP4 in 2080" },
+                { fieldName: "ssp52080", label: "Total county projected population under SSP5 in 2080" },
+                { fieldName: "ssp12085", label: "Total county projected population under SSP1 in 2085" },
+                { fieldName: "ssp22085", label: "Total county projected population under SSP2 in 2085" },
+                { fieldName: "ssp32085", label: "Total county projected population under SSP3 in 2085" },
+                { fieldName: "ssp42085", label: "Total county projected population under SSP4 in 2085" },
+                { fieldName: "ssp52085", label: "Total county projected population under SSP5 in 2085" },
+                { fieldName: "ssp12090", label: "Total county projected population under SSP1 in 2090" },
+                { fieldName: "ssp22090", label: "Total county projected population under SSP2 in 2090" },
+                { fieldName: "ssp32090", label: "Total county projected population under SSP3 in 2090" },
+                { fieldName: "ssp42090", label: "Total county projected population under SSP4 in 2090" },
+                { fieldName: "ssp52090", label: "Total county projected population under SSP5 in 2090" },
+                { fieldName: "ssp12095", label: "Total county projected population under SSP1 in 2095" },
+                { fieldName: "ssp22095", label: "Total county projected population under SSP2 in 2095" },
+                { fieldName: "ssp32095", label: "Total county projected population under SSP3 in 2095" },
+                { fieldName: "ssp42095", label: "Total county projected population under SSP4 in 2095" },
+                { fieldName: "ssp52095", label: "Total county projected population under SSP5 in 2095" },
+                { fieldName: "ssp12100", label: "Total county projected population under SSP1 in 2100" },
+                { fieldName: "ssp22100", label: "Total county projected population under SSP2 in 2100" },
+                { fieldName: "ssp32100", label: "Total county projected population under SSP3 in 2100" },
+                { fieldName: "ssp42100", label: "Total county projected population under SSP4 in 2100" },
+                { fieldName: "ssp52100", label: "Total county projected population under SSP5 in 2100" },
+                { fieldName: "NAMELSAD10", label: "2010 Census Legal and Statistical Area Description" },
+                { fieldName: "LSAD10", label: "2010 Census Legal and Statistical Area Description Code" },
+                { fieldName: "CLASSFP10", label: "2010 Census Class Code" },
+                { fieldName: "MTFCC10", label: "2010 Census MAF/TIGER Feature Class Code" },
+                { fieldName: "CSAFP10", label: "2010 Census Combined Statistical Area Code" },
+                { fieldName: "CBSAFP10", label: "2010 Census CBSA Code" },
+                { fieldName: "METDIVFP10", label: "2010 Census Metropolitan Division Code" },
+                { fieldName: "FUNCSTAT10", label: "2010 Census functional status" },
+                { fieldName: "ALAND10", label: "2010 Census land area" },
+                { fieldName: "AWATER10", label: "2010 Census water area" },
+                { fieldName: "INTPTLAT10", label: "2010 Census latitude of internal point" },
+                { fieldName: "INTPTLON10", label: "2010 Census longitude of internal point" },
+                { fieldName: "geoid", label: "County identifier" },
+                { fieldName: "ssp12020", label: "Male county projected population under SSP1 in 2020" },
+                { fieldName: "ssp22020", label: "Male county projected population under SSP2 in 2020" },
+                { fieldName: "ssp32020", label: "Male county projected population under SSP3 in 2020" },
+                { fieldName: "ssp42020", label: "Male county projected population under SSP4 in 2020" },
+                { fieldName: "ssp52020", label: "Male county projected population under SSP5 in 2020" },
+                { fieldName: "ssp12025", label: "Male county projected population under SSP1 in 2025" },
+                { fieldName: "ssp22025", label: "Male county projected population under SSP2 in 2025" },
+                { fieldName: "ssp32025", label: "Male county projected population under SSP3 in 2025" },
+                { fieldName: "ssp42025", label: "Male county projected population under SSP4 in 2025" },
+                { fieldName: "ssp52025", label: "Male county projected population under SSP5 in 2025" },
+                { fieldName: "ssp12030", label: "Male county projected population under SSP1 in 2030" },
+                { fieldName: "ssp22030", label: "Male county projected population under SSP2 in 2030" },
+                { fieldName: "ssp32030", label: "Male county projected population under SSP3 in 2030" },
+                { fieldName: "ssp42030", label: "Male county projected population under SSP4 in 2030" },
+                { fieldName: "ssp52030", label: "Male county projected population under SSP5 in 2030" },
+                { fieldName: "ssp12035", label: "Male county projected population under SSP1 in 2035" },
+                { fieldName: "ssp22035", label: "Male county projected population under SSP2 in 2035" },
+                { fieldName: "ssp32035", label: "Male county projected population under SSP3 in 2035" },
+                { fieldName: "ssp42035", label: "Male county projected population under SSP4 in 2035" },
+                { fieldName: "ssp52035", label: "Male county projected population under SSP5 in 2035" },
+                { fieldName: "ssp12040", label: "Male county projected population under SSP1 in 2040" },
+                { fieldName: "ssp22040", label: "Male county projected population under SSP2 in 2040" },
+                { fieldName: "ssp32040", label: "Male county projected population under SSP3 in 2040" },
+                { fieldName: "ssp42040", label: "Male county projected population under SSP4 in 2040" },
+                { fieldName: "ssp52040", label: "Male county projected population under SSP5 in 2040" },
+                { fieldName: "ssp12045", label: "Male county projected population under SSP1 in 2045" },
+                { fieldName: "ssp22045", label: "Male county projected population under SSP2 in 2045" },
+                { fieldName: "ssp32045", label: "Male county projected population under SSP3 in 2045" },
+                { fieldName: "ssp42045", label: "Male county projected population under SSP4 in 2045" },
+                { fieldName: "ssp52045", label: "Male county projected population under SSP5 in 2045" },
+                { fieldName: "ssp12050", label: "Male county projected population under SSP1 in 2050" },
+                { fieldName: "ssp22050", label: "Male county projected population under SSP2 in 2050" },
+                { fieldName: "ssp32050", label: "Male county projected population under SSP3 in 2050" },
+                { fieldName: "ssp42050", label: "Male county projected population under SSP4 in 2050" },
+                { fieldName: "ssp52050", label: "Male county projected population under SSP5 in 2050" },
+                { fieldName: "ssp12055", label: "Male county projected population under SSP1 in 2055" },
+                { fieldName: "ssp22055", label: "Male county projected population under SSP2 in 2055" },
+                { fieldName: "ssp32055", label: "Male county projected population under SSP3 in 2055" },
+                { fieldName: "ssp42055", label: "Male county projected population under SSP4 in 2055" },
+                { fieldName: "ssp52055", label: "Male county projected population under SSP5 in 2055" },
+                { fieldName: "ssp12060", label: "Male county projected population under SSP1 in 2060" },
+                { fieldName: "ssp22060", label: "Male county projected population under SSP2 in 2060" },
+                { fieldName: "ssp32060", label: "Male county projected population under SSP3 in 2060" },
+                { fieldName: "ssp42060", label: "Male county projected population under SSP4 in 2060" },
+                { fieldName: "ssp52060", label: "Male county projected population under SSP5 in 2060" },
+                { fieldName: "ssp12065", label: "Male county projected population under SSP1 in 2065" },
+                { fieldName: "ssp22065", label: "Male county projected population under SSP2 in 2065" },
+                { fieldName: "ssp32065", label: "Male county projected population under SSP3 in 2065" },
+                { fieldName: "ssp42065", label: "Male county projected population under SSP4 in 2065" },
+                { fieldName: "ssp52065", label: "Male county projected population under SSP5 in 2065" },
+                { fieldName: "ssp12070", label: "Male county projected population under SSP1 in 2070" },
+                { fieldName: "ssp22070", label: "Male county projected population under SSP2 in 2070" },
+                { fieldName: "ssp32070", label: "Male county projected population under SSP3 in 2070" },
+                { fieldName: "ssp42070", label: "Male county projected population under SSP4 in 2070" },
+                { fieldName: "ssp52070", label: "Male county projected population under SSP5 in 2070" },
+                { fieldName: "ssp12075", label: "Male county projected population under SSP1 in 2075" },
+                { fieldName: "ssp22075", label: "Male county projected population under SSP2 in 2075" },
+                { fieldName: "ssp32075", label: "Male county projected population under SSP3 in 2075" },
+                { fieldName: "ssp42075", label: "Male county projected population under SSP4 in 2075" },
+                { fieldName: "ssp52075", label: "Male county projected population under SSP5 in 2075" },
+                { fieldName: "ssp12080", label: "Male county projected population under SSP1 in 2080" },
+                { fieldName: "ssp22080", label: "Male county projected population under SSP2 in 2080" },
+                { fieldName: "ssp32080", label: "Male county projected population under SSP3 in 2080" },
+                { fieldName: "ssp42080", label: "Male county projected population under SSP4 in 2080" },
+                { fieldName: "ssp52080", label: "Male county projected population under SSP5 in 2080" },
+                { fieldName: "ssp12085", label: "Male county projected population under SSP1 in 2085" },
+                { fieldName: "ssp22085", label: "Male county projected population under SSP2 in 2085" },
+                { fieldName: "ssp32085", label: "Male county projected population under SSP3 in 2085" },
+                { fieldName: "ssp42085", label: "Male county projected population under SSP4 in 2085" },
+                { fieldName: "ssp52085", label: "Male county projected population under SSP5 in 2085" },
+                { fieldName: "ssp12090", label: "Male county projected population under SSP1 in 2090" },
+                { fieldName: "ssp22090", label: "Male county projected population under SSP2 in 2090" },
+                { fieldName: "ssp32090", label: "Male county projected population under SSP3 in 2090" },
+                { fieldName: "ssp42090", label: "Male county projected population under SSP4 in 2090" },
+                { fieldName: "ssp52090", label: "Male county projected population under SSP5 in 2090" },
+                { fieldName: "ssp12095", label: "Male county projected population under SSP1 in 2095" },
+                { fieldName: "ssp22095", label: "Male county projected population under SSP2 in 2095" },
+                { fieldName: "ssp32095", label: "Male county projected population under SSP3 in 2095" },
+                { fieldName: "ssp42095", label: "Male county projected population under SSP4 in 2095" },
+                { fieldName: "ssp52095", label: "Male county projected population under SSP5 in 2095" },
+                { fieldName: "ssp12100", label: "Male county projected population under SSP1 in 2100" },
+                { fieldName: "ssp22100", label: "Male county projected population under SSP2 in 2100" },
+                { fieldName: "ssp32100", label: "Male county projected population under SSP3 in 2100" },
+                { fieldName: "ssp42100", label: "Male county projected population under SSP4 in 2100" },
+                { fieldName: "ssp52100", label: "Male county projected population under SSP5 in 2100" },
+                { fieldName: "ssp12020", label: "Female county projected population under SSP1 in 2020" },
+                { fieldName: "ssp22020", label: "Female county projected population under SSP2 in 2020" },
+                { fieldName: "ssp32020", label: "Female county projected population under SSP3 in 2020" },
+                { fieldName: "ssp42020", label: "Female county projected population under SSP4 in 2020" },
+                { fieldName: "ssp52020", label: "Female county projected population under SSP5 in 2020" },
+                { fieldName: "ssp12025", label: "Female county projected population under SSP1 in 2025" },
+                { fieldName: "ssp22025", label: "Female county projected population under SSP2 in 2025" },
+                { fieldName: "ssp32025", label: "Female county projected population under SSP3 in 2025" },
+                { fieldName: "ssp42025", label: "Female county projected population under SSP4 in 2025" },
+                { fieldName: "ssp52025", label: "Female county projected population under SSP5 in 2025" },
+                { fieldName: "ssp12030", label: "Female county projected population under SSP1 in 2030" },
+                { fieldName: "ssp22030", label: "Female county projected population under SSP2 in 2030" },
+                { fieldName: "ssp32030", label: "Female county projected population under SSP3 in 2030" },
+                { fieldName: "ssp42030", label: "Female county projected population under SSP4 in 2030" },
+                { fieldName: "ssp52030", label: "Female county projected population under SSP5 in 2030" },
+                { fieldName: "ssp12035", label: "Female county projected population under SSP1 in 2035" },
+                { fieldName: "ssp22035", label: "Female county projected population under SSP2 in 2035" },
+                { fieldName: "ssp32035", label: "Female county projected population under SSP3 in 2035" },
+                { fieldName: "ssp42035", label: "Female county projected population under SSP4 in 2035" },
+                { fieldName: "ssp52035", label: "Female county projected population under SSP5 in 2035" },
+                { fieldName: "ssp12040", label: "Female county projected population under SSP1 in 2040" },
+                { fieldName: "ssp22040", label: "Female county projected population under SSP2 in 2040" },
+                { fieldName: "ssp32040", label: "Female county projected population under SSP3 in 2040" },
+                { fieldName: "ssp42040", label: "Female county projected population under SSP4 in 2040" },
+                { fieldName: "ssp52040", label: "Female county projected population under SSP5 in 2040" },
+                { fieldName: "ssp12045", label: "Female county projected population under SSP1 in 2045" },
+                { fieldName: "ssp22045", label: "Female county projected population under SSP2 in 2045" },
+                { fieldName: "ssp32045", label: "Female county projected population under SSP3 in 2045" },
+                { fieldName: "ssp42045", label: "Female county projected population under SSP4 in 2045" },
+                { fieldName: "ssp52045", label: "Female county projected population under SSP5 in 2045" },
+                { fieldName: "ssp12050", label: "Female county projected population under SSP1 in 2050" },
+                { fieldName: "ssp22050", label: "Female county projected population under SSP2 in 2050" },
+                { fieldName: "ssp32050", label: "Female county projected population under SSP3 in 2050" },
+                { fieldName: "ssp42050", label: "Female county projected population under SSP4 in 2050" },
+                { fieldName: "ssp52050", label: "Female county projected population under SSP5 in 2050" },
+                { fieldName: "ssp12055", label: "Female county projected population under SSP1 in 2055" },
+                { fieldName: "ssp22055", label: "Female county projected population under SSP2 in 2055" },
+                { fieldName: "ssp32055", label: "Female county projected population under SSP3 in 2055" },
+                { fieldName: "ssp42055", label: "Female county projected population under SSP4 in 2055" },
+                { fieldName: "ssp52055", label: "Female county projected population under SSP5 in 2055" },
+                { fieldName: "ssp12060", label: "Female county projected population under SSP1 in 2060" },
+                { fieldName: "ssp22060", label: "Female county projected population under SSP2 in 2060" },
+                { fieldName: "ssp32060", label: "Female county projected population under SSP3 in 2060" },
+                { fieldName: "ssp42060", label: "Female county projected population under SSP4 in 2060" },
+                { fieldName: "ssp52060", label: "Female county projected population under SSP5 in 2060" },
+                { fieldName: "ssp12065", label: "Female county projected population under SSP1 in 2065" },
+                { fieldName: "ssp22065", label: "Female county projected population under SSP2 in 2065" },
+                { fieldName: "ssp32065", label: "Female county projected population under SSP3 in 2065" },
+                { fieldName: "ssp42065", label: "Female county projected population under SSP4 in 2065" },
+                { fieldName: "ssp52065", label: "Female county projected population under SSP5 in 2065" },
+                { fieldName: "ssp12070", label: "Female county projected population under SSP1 in 2070" },
+                { fieldName: "ssp22070", label: "Female county projected population under SSP2 in 2070" },
+                { fieldName: "ssp32070", label: "Female county projected population under SSP3 in 2070" },
+                { fieldName: "ssp42070", label: "Female county projected population under SSP4 in 2070" },
+                { fieldName: "ssp52070", label: "Female county projected population under SSP5 in 2070" },
+                { fieldName: "ssp12075", label: "Female county projected population under SSP1 in 2075" },
+                { fieldName: "ssp22075", label: "Female county projected population under SSP2 in 2075" },
+                { fieldName: "ssp32075", label: "Female county projected population under SSP3 in 2075" },
+                { fieldName: "ssp42075", label: "Female county projected population under SSP4 in 2075" },
+                { fieldName: "ssp52075", label: "Female county projected population under SSP5 in 2075" },
+                { fieldName: "ssp12080", label: "Female county projected population under SSP1 in 2080" },
+                { fieldName: "ssp22080", label: "Female county projected population under SSP2 in 2080" },
+                { fieldName: "ssp32080", label: "Female county projected population under SSP3 in 2080" },
+                { fieldName: "ssp42080", label: "Female county projected population under SSP4 in 2080" },
+                { fieldName: "ssp52080", label: "Female county projected population under SSP5 in 2080" },
+                { fieldName: "ssp12085", label: "Female county projected population under SSP1 in 2085" },
+                { fieldName: "ssp22085", label: "Female county projected population under SSP2 in 2085" },
+                { fieldName: "ssp32085", label: "Female county projected population under SSP3 in 2085" },
+                { fieldName: "ssp42085", label: "Female county projected population under SSP4 in 2085" },
+                { fieldName: "ssp52085", label: "Female county projected population under SSP5 in 2085" },
+                { fieldName: "ssp12090", label: "Female county projected population under SSP1 in 2090" },
+                { fieldName: "ssp22090", label: "Female county projected population under SSP2 in 2090" },
+                { fieldName: "ssp32090", label: "Female county projected population under SSP3 in 2090" },
+                { fieldName: "ssp42090", label: "Female county projected population under SSP4 in 2090" },
+                { fieldName: "ssp52090", label: "Female county projected population under SSP5 in 2090" },
+                { fieldName: "ssp12095", label: "Female county projected population under SSP1 in 2095" },
+                { fieldName: "ssp22095", label: "Female county projected population under SSP2 in 2095" },
+                { fieldName: "ssp32095", label: "Female county projected population under SSP3 in 2095" },
+                { fieldName: "ssp42095", label: "Female county projected population under SSP4 in 2095" },
+                { fieldName: "ssp52095", label: "Female county projected population under SSP5 in 2095" },
+                { fieldName: "ssp12100", label: "Female county projected population under SSP1 in 2100" },
+                { fieldName: "ssp22100", label: "Female county projected population under SSP2 in 2100" },
+                { fieldName: "ssp32100", label: "Female county projected population under SSP3 in 2100" },
+                { fieldName: "ssp42100", label: "Female county projected population under SSP4 in 2100" },
+                { fieldName: "ssp52100", label: "Female county projected population under SSP5 in 2100" },
+                { fieldName: "ssp12020", label: "White non-Hispanic population SSP1 (2020)" },
+                { fieldName: "ssp22020", label: "White non-Hispanic population SSP2 (2020)" },
+                { fieldName: "ssp32020", label: "White non-Hispanic population SSP3 (2020)" },
+                { fieldName: "ssp42020", label: "White non-Hispanic population SSP4 (2020)" },
+                { fieldName: "ssp52020", label: "White non-Hispanic population SSP5 (2020)" },
+                { fieldName: "ssp12025", label: "White non-Hispanic population SSP1 (2025)" },
+                { fieldName: "ssp22025", label: "White non-Hispanic population SSP2 (2025)" },
+                { fieldName: "ssp32025", label: "White non-Hispanic population SSP3 (2025)" },
+                { fieldName: "ssp42025", label: "White non-Hispanic population SSP4 (2025)" },
+                { fieldName: "ssp52025", label: "White non-Hispanic population SSP5 (2025)" },
+                { fieldName: "ssp12030", label: "White non-Hispanic population SSP1 (2030)" },
+                { fieldName: "ssp22030", label: "White non-Hispanic population SSP2 (2030)" },
+                { fieldName: "ssp32030", label: "White non-Hispanic population SSP3 (2030)" },
+                { fieldName: "ssp42030", label: "White non-Hispanic population SSP4 (2030)" },
+                { fieldName: "ssp52030", label: "White non-Hispanic population SSP5 (2030)" },
+                { fieldName: "ssp12035", label: "White non-Hispanic population SSP1 (2035)" },
+                { fieldName: "ssp22035", label: "White non-Hispanic population SSP2 (2035)" },
+                { fieldName: "ssp32035", label: "White non-Hispanic population SSP3 (2035)" },
+                { fieldName: "ssp42035", label: "White non-Hispanic population SSP4 (2035)" },
+                { fieldName: "ssp52035", label: "White non-Hispanic population SSP5 (2035)" },
+                { fieldName: "ssp12040", label: "White non-Hispanic population SSP1 (2040)" },
+                { fieldName: "ssp22040", label: "White non-Hispanic population SSP2 (2040)" },
+                { fieldName: "ssp32040", label: "White non-Hispanic population SSP3 (2040)" },
+                { fieldName: "ssp42040", label: "White non-Hispanic population SSP4 (2040)" },
+                { fieldName: "ssp52040", label: "White non-Hispanic population SSP5 (2040)" },
+                { fieldName: "ssp12045", label: "White non-Hispanic population SSP1 (2045)" },
+                { fieldName: "ssp22045", label: "White non-Hispanic population SSP2 (2045)" },
+                { fieldName: "ssp32045", label: "White non-Hispanic population SSP3 (2045)" },
+                { fieldName: "ssp42045", label: "White non-Hispanic population SSP4 (2045)" },
+                { fieldName: "ssp52045", label: "White non-Hispanic population SSP5 (2045)" },
+                { fieldName: "ssp12050", label: "White non-Hispanic population SSP1 (2050)" },
+                { fieldName: "ssp22050", label: "White non-Hispanic population SSP2 (2050)" },
+                { fieldName: "ssp32050", label: "White non-Hispanic population SSP3 (2050)" },
+                { fieldName: "ssp42050", label: "White non-Hispanic population SSP4 (2050)" },
+                { fieldName: "ssp52050", label: "White non-Hispanic population SSP5 (2050)" },
+                { fieldName: "ssp12055", label: "White non-Hispanic population SSP1 (2055)" },
+                { fieldName: "ssp22055", label: "White non-Hispanic population SSP2 (2055)" },
+                { fieldName: "ssp32055", label: "White non-Hispanic population SSP3 (2055)" },
+                { fieldName: "ssp42055", label: "White non-Hispanic population SSP4 (2055)" },
+                { fieldName: "ssp52055", label: "White non-Hispanic population SSP5 (2055)" },
+                { fieldName: "ssp12060", label: "White non-Hispanic population SSP1 (2060)" },
+                { fieldName: "ssp22060", label: "White non-Hispanic population SSP2 (2060)" },
+                { fieldName: "ssp32060", label: "White non-Hispanic population SSP3 (2060)" },
+                { fieldName: "ssp42060", label: "White non-Hispanic population SSP4 (2060)" },
+                { fieldName: "ssp52060", label: "White non-Hispanic population SSP5 (2060)" },
+                { fieldName: "ssp12065", label: "White non-Hispanic population SSP1 (2065)" },
+                { fieldName: "ssp22065", label: "White non-Hispanic population SSP2 (2065)" },
+                { fieldName: "ssp32065", label: "White non-Hispanic population SSP3 (2065)" },
+                { fieldName: "ssp42065", label: "White non-Hispanic population SSP4 (2065)" },
+                { fieldName: "ssp52065", label: "White non-Hispanic population SSP5 (2065)" },
+                { fieldName: "ssp12070", label: "White non-Hispanic population SSP1 (2070)" },
+                { fieldName: "ssp22070", label: "White non-Hispanic population SSP2 (2070)" },
+                { fieldName: "ssp32070", label: "White non-Hispanic population SSP3 (2070)" },
+                { fieldName: "ssp42070", label: "White non-Hispanic population SSP4 (2070)" },
+                { fieldName: "ssp52070", label: "White non-Hispanic population SSP5 (2070)" },
+                { fieldName: "ssp12075", label: "White non-Hispanic population SSP1 (2075)" },
+                { fieldName: "ssp22075", label: "White non-Hispanic population SSP2 (2075)" },
+                { fieldName: "ssp32075", label: "White non-Hispanic population SSP3 (2075)" },
+                { fieldName: "ssp42075", label: "White non-Hispanic population SSP4 (2075)" },
+                { fieldName: "ssp52075", label: "White non-Hispanic population SSP5 (2075)" },
+                { fieldName: "ssp12080", label: "White non-Hispanic population SSP1 (2080)" },
+                { fieldName: "ssp22080", label: "White non-Hispanic population SSP2 (2080)" },
+                { fieldName: "ssp32080", label: "White non-Hispanic population SSP3 (2080)" },
+                { fieldName: "ssp42080", label: "White non-Hispanic population SSP4 (2080)" },
+                { fieldName: "ssp52080", label: "White non-Hispanic population SSP5 (2080)" },
+                { fieldName: "ssp12085", label: "White non-Hispanic population SSP1 (2085)" },
+                { fieldName: "ssp22085", label: "White non-Hispanic population SSP2 (2085)" },
+                { fieldName: "ssp32085", label: "White non-Hispanic population SSP3 (2085)" },
+                { fieldName: "ssp42085", label: "White non-Hispanic population SSP4 (2085)" },
+                { fieldName: "ssp52085", label: "White non-Hispanic population SSP5 (2085)" },
+                { fieldName: "ssp12090", label: "White non-Hispanic population SSP1 (2090)" },
+                { fieldName: "ssp22090", label: "White non-Hispanic population SSP2 (2090)" },
+                { fieldName: "ssp32090", label: "White non-Hispanic population SSP3 (2090)" },
+                { fieldName: "ssp42090", label: "White non-Hispanic population SSP4 (2090)" },
+                { fieldName: "ssp52090", label: "White non-Hispanic population SSP5 (2090)" },
+                { fieldName: "ssp12095", label: "White non-Hispanic population SSP1 (2095)" },
+                { fieldName: "ssp22095", label: "White non-Hispanic population SSP2 (2095)" },
+                { fieldName: "ssp32095", label: "White non-Hispanic population SSP3 (2095)" },
+                { fieldName: "ssp42095", label: "White non-Hispanic population SSP4 (2095)" },
+                { fieldName: "ssp52095", label: "White non-Hispanic population SSP5 (2095)" },
+                { fieldName: "ssp12100", label: "White non-Hispanic population SSP1 (2100)" },
+                { fieldName: "ssp22100", label: "White non-Hispanic population SSP2 (2100)" },
+                { fieldName: "ssp32100", label: "White non-Hispanic population SSP3 (2100)" },
+                { fieldName: "ssp42100", label: "White non-Hispanic population SSP4 (2100)" },
+                { fieldName: "ssp52100", label: "White non-Hispanic population SSP5 (2100)" },
+                { fieldName: "ssp12020", label: "Black non-Hispanic county projected population under SSP1 in 2020" },
+                { fieldName: "ssp22020", label: "Black non-Hispanic county projected population under SSP2 in 2020" },
+                { fieldName: "ssp32020", label: "Black non-Hispanic county projected population under SSP3 in 2020" },
+                { fieldName: "ssp42020", label: "Black non-Hispanic county projected population under SSP4 in 2020" },
+                { fieldName: "ssp52020", label: "Black non-Hispanic county projected population under SSP5 in 2020" },
+                { fieldName: "ssp12025", label: "Black non-Hispanic county projected population under SSP1 in 2025" },
+                { fieldName: "ssp22025", label: "Black non-Hispanic county projected population under SSP2 in 2025" },
+                { fieldName: "ssp32025", label: "Black non-Hispanic county projected population under SSP3 in 2025" },
+                { fieldName: "ssp42025", label: "Black non-Hispanic county projected population under SSP4 in 2025" },
+                { fieldName: "ssp52025", label: "Black non-Hispanic county projected population under SSP5 in 2025" },
+                { fieldName: "ssp12030", label: "Black non-Hispanic county projected population under SSP1 in 2030" },
+                { fieldName: "ssp22030", label: "Black non-Hispanic county projected population under SSP2 in 2030" },
+                { fieldName: "ssp32030", label: "Black non-Hispanic county projected population under SSP3 in 2030" },
+                { fieldName: "ssp42030", label: "Black non-Hispanic county projected population under SSP4 in 2030" },
+                { fieldName: "ssp52030", label: "Black non-Hispanic county projected population under SSP5 in 2030" },
+                { fieldName: "ssp12035", label: "Black non-Hispanic county projected population under SSP1 in 2035" },
+                { fieldName: "ssp22035", label: "Black non-Hispanic county projected population under SSP2 in 2035" },
+                { fieldName: "ssp32035", label: "Black non-Hispanic county projected population under SSP3 in 2035" },
+                { fieldName: "ssp42035", label: "Black non-Hispanic county projected population under SSP4 in 2035" },
+                { fieldName: "ssp52035", label: "Black non-Hispanic county projected population under SSP5 in 2035" },
+                { fieldName: "ssp12040", label: "Black non-Hispanic county projected population under SSP1 in 2040" },
+                { fieldName: "ssp22040", label: "Black non-Hispanic county projected population under SSP2 in 2040" },
+                { fieldName: "ssp32040", label: "Black non-Hispanic county projected population under SSP3 in 2040" },
+                { fieldName: "ssp42040", label: "Black non-Hispanic county projected population under SSP4 in 2040" },
+                { fieldName: "ssp52040", label: "Black non-Hispanic county projected population under SSP5 in 2040" },
+                { fieldName: "ssp12045", label: "Black non-Hispanic county projected population under SSP1 in 2045" },
+                { fieldName: "ssp22045", label: "Black non-Hispanic county projected population under SSP2 in 2045" },
+                { fieldName: "ssp32045", label: "Black non-Hispanic county projected population under SSP3 in 2045" },
+                { fieldName: "ssp42045", label: "Black non-Hispanic county projected population under SSP4 in 2045" },
+                { fieldName: "ssp52045", label: "Black non-Hispanic county projected population under SSP5 in 2045" },
+                { fieldName: "ssp12050", label: "Black non-Hispanic county projected population under SSP1 in 2050" },
+                { fieldName: "ssp22050", label: "Black non-Hispanic county projected population under SSP2 in 2050" },
+                { fieldName: "ssp32050", label: "Black non-Hispanic county projected population under SSP3 in 2050" },
+                { fieldName: "ssp42050", label: "Black non-Hispanic county projected population under SSP4 in 2050" },
+                { fieldName: "ssp52050", label: "Black non-Hispanic county projected population under SSP5 in 2050" },
+                { fieldName: "ssp12055", label: "Black non-Hispanic county projected population under SSP1 in 2055" },
+                { fieldName: "ssp22055", label: "Black non-Hispanic county projected population under SSP2 in 2055" },
+                { fieldName: "ssp32055", label: "Black non-Hispanic county projected population under SSP3 in 2055" },
+                { fieldName: "ssp42055", label: "Black non-Hispanic county projected population under SSP4 in 2055" },
+                { fieldName: "ssp52055", label: "Black non-Hispanic county projected population under SSP5 in 2055" },
+                { fieldName: "ssp12060", label: "Black non-Hispanic county projected population under SSP1 in 2060" },
+                { fieldName: "ssp22060", label: "Black non-Hispanic county projected population under SSP2 in 2060" },
+                { fieldName: "ssp32060", label: "Black non-Hispanic county projected population under SSP3 in 2060" },
+                { fieldName: "ssp42060", label: "Black non-Hispanic county projected population under SSP4 in 2060" },
+                { fieldName: "ssp52060", label: "Black non-Hispanic county projected population under SSP5 in 2060" },
+                { fieldName: "ssp12065", label: "Black non-Hispanic county projected population under SSP1 in 2065" },
+                { fieldName: "ssp22065", label: "Black non-Hispanic county projected population under SSP2 in 2065" },
+                { fieldName: "ssp32065", label: "Black non-Hispanic county projected population under SSP3 in 2065" },
+                { fieldName: "ssp42065", label: "Black non-Hispanic county projected population under SSP4 in 2065" },
+                { fieldName: "ssp52065", label: "Black non-Hispanic county projected population under SSP5 in 2065" },
+                { fieldName: "ssp12070", label: "Black non-Hispanic county projected population under SSP1 in 2070" },
+                { fieldName: "ssp22070", label: "Black non-Hispanic county projected population under SSP2 in 2070" },
+                { fieldName: "ssp32070", label: "Black non-Hispanic county projected population under SSP3 in 2070" },
+                { fieldName: "ssp42070", label: "Black non-Hispanic county projected population under SSP4 in 2070" },
+                { fieldName: "ssp52070", label: "Black non-Hispanic county projected population under SSP5 in 2070" },
+                { fieldName: "ssp12075", label: "Black non-Hispanic county projected population under SSP1 in 2075" },
+                { fieldName: "ssp22075", label: "Black non-Hispanic county projected population under SSP2 in 2075" },
+                { fieldName: "ssp32075", label: "Black non-Hispanic county projected population under SSP3 in 2075" },
+                { fieldName: "ssp42075", label: "Black non-Hispanic county projected population under SSP4 in 2075" },
+                { fieldName: "ssp52075", label: "Black non-Hispanic county projected population under SSP5 in 2075" },
+                { fieldName: "ssp12080", label: "Black non-Hispanic county projected population under SSP1 in 2080" },
+                { fieldName: "ssp22080", label: "Black non-Hispanic county projected population under SSP2 in 2080" },
+                { fieldName: "ssp32080", label: "Black non-Hispanic county projected population under SSP3 in 2080" },
+                { fieldName: "ssp42080", label: "Black non-Hispanic county projected population under SSP4 in 2080" },
+                { fieldName: "ssp52080", label: "Black non-Hispanic county projected population under SSP5 in 2080" },
+                { fieldName: "ssp12085", label: "Black non-Hispanic county projected population under SSP1 in 2085" },
+                { fieldName: "ssp22085", label: "Black non-Hispanic county projected population under SSP2 in 2085" },
+                { fieldName: "ssp32085", label: "Black non-Hispanic county projected population under SSP3 in 2085" },
+                { fieldName: "ssp42085", label: "Black non-Hispanic county projected population under SSP4 in 2085" },
+                { fieldName: "ssp52085", label: "Black non-Hispanic county projected population under SSP5 in 2085" },
+                { fieldName: "ssp12090", label: "Black non-Hispanic county projected population under SSP1 in 2090" },
+                { fieldName: "ssp22090", label: "Black non-Hispanic county projected population under SSP2 in 2090" },
+                { fieldName: "ssp32090", label: "Black non-Hispanic county projected population under SSP3 in 2090" },
+                { fieldName: "ssp42090", label: "Black non-Hispanic county projected population under SSP4 in 2090" },
+              ]
+            }
+          ]
+        }
+      }),
+      
       new FeatureLayer({
         title: "American Indian Alaska Native Native Hawaiian Areas",
         url: "https://services3.arcgis.com/0Fs3HcaFfvzXvm7w/arcgis/rest/services/Climate_Mapping_Resilience_and_Adaptation_(CMRA)_Climate_and_Coastal_Inundation_Projections/FeatureServer/2",
         visible: false,
         popupTemplate: {
-          title: "{AreaName}",
-          content: [{ type: "fields", fieldInfos: [] }]
+          title: "{NAME}",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                { fieldName: "FSRFLG", label: "Federal/State Recognition Flag" },
+                { fieldName: "AIANNHNS", label: "National Standard Code" },
+                { fieldName: "AREALAND", label: "Land Area (sq. meters)", format: { digitSeparator: true, places: 0 } },
+                { fieldName: "AREAWATER", label: "Water Area (sq. meters)", format: { digitSeparator: true, places: 0 } },
+                { fieldName: "AIANNHCC", label: "FIPS Class Codes" },
+                { fieldName: "EFFDATE", label: "Effective Date", format: { dateFormat: "shortDate" } },
+                { fieldName: "FUNCSTAT", label: "Functional Status" },
+                { fieldName: "GEOID", label: "Geographic Identifier" },
+                { fieldName: "LSADC", label: "Legal/Statistical Area Code" },
+                { fieldName: "BASENAME", label: "Base Name" },
+                { fieldName: "NAME", label: "Name" },
+                { fieldName: "AIANNHCOMP", label: "Trust Land Component Indicator" },
+                { fieldName: "STATEFP1", label: "State-FIPS Code 1" },
+                { fieldName: "UR", label: "Urban/Rural Flag" },
+                { fieldName: "VINTAGE", label: "Vintage" },
+                { fieldName: "HU100", label: "Decennial Housing Count", format: { digitSeparator: true, places: 0 } },
+                { fieldName: "POP100", label: "Decennial Population Count", format: { digitSeparator: true, places: 0 } }
+              ]
+            }
+          ]
         }
       })
     ]
   }),
+
+
+  
   new GroupLayer({
     title: "Climate Change Layers",
     layers: [
       new FeatureLayer({
-        title: "U.S. Census Tracts with Climate Data",
-        url: "https://services3.arcgis.com/0Fs3HcaFfvzXvm7w/arcgis/rest/services/Climate_Mapping_Resilience_and_Adaptation_(CMRA)_Climate_and_Coastal_Inundation_Projections/FeatureServer/1",
-        visible: false,
-        popupTemplate: {
-          title: "Census Tract: {TractName}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
-      new FeatureLayer({
         title: "Climate Change Disadvantaged Tracts",
-        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/usa_november_2022/FeatureServer/0",
+        url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Climate_Impact_Lab_view/FeatureServer/0",
         visible: false,
         popupTemplate: {
-          title: "Disadvantaged Tract: {TractName}",
-          content: [{ type: "fields", fieldInfos: [] }]
-        }
-      }),
+          title: "Climate Change Data for this Tract:",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                { fieldName: "DF_PFS", label: "Diagnosed diabetes among adults aged greater than or equal to 18 years (percentile)" },
+                { fieldName: "AF_PFS", label: "Current asthma among adults aged greater than or equal to 18 years (percentile)" },
+                { fieldName: "HDF_PFS", label: "Coronary heart disease among adults aged greater than or equal to 18 years (percentile)" },
+                { fieldName: "DSF_PFS", label: "Diesel particulate matter exposure (percentile)" },
+                { fieldName: "EBF_PFS", label: "Energy burden (percentile)" },
+                { fieldName: "EALR_PFS", label: "Expected agricultural loss rate (Natural Hazards Risk Index) (percentile)" },
+                { fieldName: "EBLR_PFS", label: "Expected building loss rate (Natural Hazards Risk Index) (percentile)" },
+                { fieldName: "EPLR_PFS", label: "Expected population loss rate (Natural Hazards Risk Index) (percentile)" },
+                { fieldName: "HBF_PFS", label: "Housing burden (percent) (percentile)" },
+                { fieldName: "LLEF_PFS", label: "Low life expectancy (percentile)" },
+                { fieldName: "LIF_PFS", label: "Linguistic isolation (percent) (percentile)" },
+                { fieldName: "LMI_PFS", label: "Low median household income as a percent of area median income (percentile)" },
+                { fieldName: "PM25F_PFS", label: "PM2.5 in the air (percentile)" },
+                { fieldName: "HSEF", label: "Percent individuals age 25 or over with less than high school degree" },
+                { fieldName: "P100_PFS", label: "Percent of individuals < 100% Federal Poverty Line (percentile)" },
+                { fieldName: "P200_I_PFS", label: "Percent of individuals below 200% Federal Poverty Line (percentile)" },
+                { fieldName: "AJDLI_ET", label: "Meets the less stringent low income criterion for the adjacency index?" },
+                { fieldName: "LPF_PFS", label: "Percent pre-1960s housing (lead paint indicator) (percentile)" },
+                { fieldName: "KP_PFS", label: "Share of homes with no kitchen or indoor plumbing (percent) (percentile)" },
+                { fieldName: "NPL_PFS", label: "Proximity to NPL sites (percentile)" },
+                { fieldName: "RMP_PFS", label: "Proximity to Risk Management Plan (RMP) facilities (percentile)" },
+                { fieldName: "TSDF_PFS", label: "Proximity to hazardous waste sites (percentile)" },
+                { fieldName: "TPF", label: "Total population" },
+                { fieldName: "TF_PFS", label: "Traffic proximity and volume (percentile)" },
+                { fieldName: "UF_PFS", label: "Unemployment (percent) (percentile)" },
+                { fieldName: "WF_PFS", label: "Wastewater discharge (percentile)" },
+                { fieldName: "UST_PFS", label: "Leaky underground storage tanks (percentile)" },
+                { fieldName: "N_WTR", label: "Water and Wastewater Disadvantaged" },
+                { fieldName: "N_WKFC", label: "Workforce Development Disadvantaged" },
+                { fieldName: "N_CLT", label: "Climate Change Disadvantaged" },
+                { fieldName: "N_ENY", label: "Energy Disadvantaged" },
+                { fieldName: "N_TRN", label: "Transportation Disadvantaged" },
+                { fieldName: "N_HSG", label: "Housing Disadvantaged" },
+                { fieldName: "N_PLN", label: "Legacy Pollution Disadvantaged" },
+                { fieldName: "N_HLTH", label: "Health Disadvantaged" },
+                { fieldName: "SN_C", label: "Identified as disadvantaged" },
+                { fieldName: "SN_T", label: "Identified as disadvantaged due to tribal overlap" },
+                { fieldName: "DLI", label: "Greater than or equal to the 90th percentile for diabetes, is low income, and has a low percent of higher ed students?" },
+                { fieldName: "ALI", label: "Greater than or equal to the 90th percentile for asthma, is low income, and has a low percent of higher ed students?" },
+                { fieldName: "PLHSE", label: "Greater than or equal to the 90th percentile for households at or below 100% federal poverty level, has low HS attainment, and has a low percent of higher ed students?" } 
+               
+              ]
+              }
+             ]
+            }
+          }),
       new FeatureLayer({
         title: "Economic Damage Climate Change Projections",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Climate_Impact_Lab_view/FeatureServer/0",
         visible: false,
         popupTemplate: {
-          title: "Economic Damage Data",
-          content: [{ type: "fields", fieldInfos: [] }]
+          title: "Economic Damage Data for {County_Name}, {State_Name}",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                { fieldName: "County_FIPS", label: "County FIPS Code" },
+                { fieldName: "County_Name", label: "County Name" },
+                { fieldName: "State_Name", label: "State Name" },
+                { fieldName: "energy_RCP45_2030", label: "Change in Energy Expenditures RCP45 2020-2039" },
+                { fieldName: "energy_RCP45_2050", label: "Change in Energy Expenditures RCP45 2040-2059" },
+                { fieldName: "energy_RCP45_2090", label: "Change in Energy Expenditures RCP45 2080-2099" },
+                { fieldName: "energy_RCP85_2030", label: "Change in Energy Expenditures RCP85 2020-2039" },
+                { fieldName: "energy_RCP85_2050", label: "Change in Energy Expenditures RCP85 2040-2059" },
+                { fieldName: "energy_RCP85_2090", label: "Change in Energy Expenditures RCP85 2080-2099" },
+                { fieldName: "laborhigh_RCP45_2030", label: "Change in Labor Productivity (High Risk Sectors) RCP45 2020-2039" },
+                { fieldName: "laborhigh_RCP45_2050", label: "Change in Labor Productivity (High Risk Sectors) RCP45 2040-2059" },
+                { fieldName: "laborhigh_RCP45_2090", label: "Change in Labor Productivity (High Risk Sectors) RCP45 2080-2099" },
+                { fieldName: "laborhigh_RCP85_2030", label: "Change in Labor Productivity (High Risk Sectors) RCP85 2020-2039" },
+                { fieldName: "laborhigh_RCP85_2050", label: "Change in Labor Productivity (High Risk Sectors) RCP85 2040-2059" },
+                { fieldName: "laborhigh_RCP85_2090", label: "Change in Labor Productivity (High Risk Sectors) RCP85 2080-2099" },
+                { fieldName: "labortotal_RCP45_2030", label: "Change in Labor Productivity RCP45 2020-2039" },
+                { fieldName: "labortotal_RCP45_2050", label: "Change in Labor Productivity RCP45 2040-2059" },
+                { fieldName: "labortotal_RCP45_2090", label: "Change in Labor Productivity RCP45 2080-2099" },
+                { fieldName: "labortotal_RCP85_2030", label: "Change in Labor Productivity RCP85 2020-2039" },
+                { fieldName: "labortotal_RCP85_2050", label: "Change in Labor Productivity RCP85 2040-2059" },
+                { fieldName: "labortotal_RCP85_2090", label: "Change in Labor Productivity RCP85 2080-2099" },
+                { fieldName: "mortality_RCP45_2030", label: "Change in Mortality Rate RCP45 2020-2039" },
+                { fieldName: "mortality_RCP45_2050", label: "Change in Mortality Rate RCP45 2040-2059" },
+                { fieldName: "mortality_RCP45_2090", label: "Change in Mortality Rate RCP45 2080-2099" },
+                { fieldName: "mortality_RCP85_2030", label: "Change in Mortality Rate RCP85 2020-2039" },
+                { fieldName: "mortality_RCP85_2050", label: "Change in Mortality Rate RCP85 2040-2059" },
+                { fieldName: "mortality_RCP85_2090", label: "Change in Mortality Rate RCP85 2080-2099" },
+                { fieldName: "LMILHSE", label: "Greater than or equal to the 90th percentile for low median household income as a percent of area median income, has low HS attainment, and has a low percent of higher ed students?" },
+                { fieldName: "ULHSE", label: "Greater than or equal to the 90th percentile for unemployment, has low HS attainment, and has a low percent of higher ed students?" },
+                { fieldName: "EPL_ET", label: "Greater than or equal to the 90th percentile for expected population loss" },
+                { fieldName: "EAL_ET", label: "Greater than or equal to the 90th percentile for expected agricultural loss" },
+                { fieldName: "EBL_ET", label: "Greater than or equal to the 90th percentile for expected building loss" },
+                { fieldName: "EB_ET", label: "Greater than or equal to the 90th percentile for energy burden" },
+                { fieldName: "PM25_ET", label: "Greater than or equal to the 90th percentile for PM 2.5 exposure" },
+                { fieldName: "DS_ET", label: "Greater than or equal to the 90th percentile for diesel particulate matter" },
+                { fieldName: "TP_ET", label: "Greater than or equal to the 90th percentile for traffic proximity" },
+                { fieldName: "LPP_ET", label: "Greater than or equal to the 90th percentile for lead paint and the median house value is less than 90th percentile" },
+                { fieldName: "HRS_ET", label: "Tract-level redlining score meets or exceeds 3.25" },
+                { fieldName: "KP_ET", label: "Greater than or equal to the 90th percentile for share of homes without indoor plumbing or a kitchen" },
+                { fieldName: "HB_ET", label: "Greater than or equal to the 90th percentile for housing burden" },
+                { fieldName: "RMP_ET", label: "Greater than or equal to the 90th percentile for Risk Management Plan (RMP) proximity" },
+                { fieldName: "NPL_ET", label: "Greater than or equal to the 90th percentile for NPL (superfund sites) proximity" },
+                { fieldName: "TSDF_ET", label: "Greater than or equal to the 90th percentile for proximity to hazardous waste sites" },
+                { fieldName: "WD_ET", label: "Greater than or equal to the 90th percentile for wastewater discharge" },
+                { fieldName: "UST_ET", label: "Greater than or equal to the 90th percentile for leaky underwater storage tanks" },
+                { fieldName: "DB_ET", label: "Greater than or equal to the 90th percentile for diabetes" },
+                { fieldName: "A_ET", label: "Greater than or equal to the 90th percentile for asthma" },
+                { fieldName: "HD_ET", label: "Greater than or equal to the 90th percentile for heart disease" },
+                { fieldName: "LLE_ET", label: "Greater than or equal to the 90th percentile for low life expectancy" },
+                { fieldName: "UN_ET", label: "Greater than or equal to the 90th percentile for unemployment" },
+                { fieldName: "LISO_ET", label: "Greater than or equal to the 90th percentile for households in linguistic isolation" },
+                { fieldName: "POV_ET", label: "Greater than or equal to the 90th percentile for households at or below 100% federal poverty level" },
+                { fieldName: "LMI_ET", label: "Greater than or equal to the 90th percentile for low median household income as a percent of area median income" },
+                { fieldName: "IA_LMI_ET", label: "Low median household income as a percent of territory median income in 2009 exceeds 90th percentile" },
+                { fieldName: "IA_UN_ET", label: "Unemployment (percent) in 2009 exceeds 90th percentile" },
+                { fieldName: "IA_POV_ET", label: "Percentage households below 100% of federal poverty line in 2009 exceeds 90th percentile" },
+                { fieldName: "TC", label: "Total threshold criteria exceeded" },
+                { fieldName: "CC", label: "Total categories exceeded" },
+                { fieldName: "IAULHSE", label: "Greater than or equal to the 90th percentile for unemployment and has low HS education in 2009 (island areas)?" },
+                { fieldName: "IAPLHSE", label: "Greater than or equal to the 90th percentile for households at or below 100% federal poverty level and has low HS education in 2009 (island areas)?" },
+                { fieldName: "IALMILHSE", label: "Greater than or equal to the 90th percentile for low median household income as a percent of area median income and has low HS education in 2009 (island areas)?" },
+                { fieldName: "IALMIL_76", label: "Low median household income as a percent of territory median income in 2009 (percentile)" },
+                { fieldName: "IAPLHS_77", label: "Percentage households below 100% of federal poverty line in 2009 for island areas (percentile)" },
+                { fieldName: "IAULHS_78", label: "Unemployment (percent) in 2009 for island areas (percentile)" },
+                { fieldName: "LHE", label: "Low high school education and low percent of higher ed students" },
+                { fieldName: "IALHE", label: "Low high school education in 2009 (island areas)" },
+                { fieldName: "IAHSEF", label: "Percent individuals age 25 or over with less than high school degree in 2009" },
+                { fieldName: "N_CLT_EOMI", label: "At least one climate threshold exceeded" },
+                { fieldName: "N_ENY_EOMI", label: "At least one energy threshold exceeded" },
+                { fieldName: "N_TRN_EOMI", label: "At least one traffic threshold exceeded" },
+                { fieldName: "N_HSG_EOMI", label: "At least one housing threshold exceeded" },
+                { fieldName: "N_PLN_EOMI", label: "At least one pollution threshold exceeded" },
+                { fieldName: "N_WTR_EOMI", label: "At least one water threshold exceeded" },
+                { fieldName: "N_HLTH_88", label: "At least one health threshold exceeded" },
+                { fieldName: "N_WKFC_89", label: "At least one workforce threshold exceeded" },
+                { fieldName: "FPL200S", label: "Exceeds Federal Poverty Level 200 threshold" },
+                { fieldName: "N_WKFC_91", label: "Both workforce socioeconomic indicators exceeded" },
+                { fieldName: "TD_ET", label: "Greater than or equal to the 90th percentile for DOT travel barriers" },
+                { fieldName: "TD_PFS", label: "DOT Travel Barriers Score (percentile)" },
+                { fieldName: "FLD_PFS", label: "Share of properties at risk of flood in 30 years (percentile)" },
+                { fieldName: "WFR_PFS", label: "Share of properties at risk of fire in 30 years (percentile)" },
+                { fieldName: "FLD_ET", label: "Greater than or equal to the 90th percentile for share of properties at risk of flood in 30 years" },
+                { fieldName: "WFR_ET", label: "Greater than or equal to the 90th percentile for share of properties at risk of fire in 30 years" },
+                { fieldName: "ADJ_ET", label: "Is the tract surrounded by disadvantaged communities?" },
+                { fieldName: "IS_PFS", label: "Share of the tract's land area that is covered by impervious surface or cropland as a percent (percentile)" },
+                { fieldName: "IS_ET", label: "Greater than or equal to the 90th percentile for share of the tract's land area that is covered by impervious surface or cropland as a percent and is low income?" },
+                { fieldName: "AML_ET", label: "Is there at least one abandoned mine in this census tract, where missing data is treated as False?" },
+                { fieldName: "FUDS_RAW", label: "Is there at least one Formerly Used Defense Site (FUDS) in the tract?" },
+                { fieldName: "FUDS_ET", label: "Is there at least one Formerly Used Defense Site (FUDS) in the tract, where missing data is treated as False?" },
+                { fieldName: "IMP_FLG", label: "Income data has been estimated (imputed) based on neighbor income" },
+                { fieldName: "DM_B", label: "Percent Black or African American" },
+                { fieldName: "DM_AI", label: "Percent American Indian / Alaska Native" },
+                { fieldName: "DM_A", label: "Percent Asian" },
+                { fieldName: "DM_HI", label: "Percent Native Hawaiian or Pacific" },
+                { fieldName: "DM_T", label: "Percent two or more races" },
+                { fieldName: "DM_W", label: "Percent White" },
+                { fieldName: "DM_H", label: "Percent Hispanic or Latino" },
+                { fieldName: "DM_O", label: "Percent other races" },
+                { fieldName: "AGE_10", label: "Percent age under 10" },
+                { fieldName: "AGE_MIDDLE", label: "Percent age 10 to 64" },
+                { fieldName: "AGE_OLD", label: "Percent age over 64" },
+                { fieldName: "TA_COU_116", label: "Number of Tribal areas within Census tract for Alaska" },
+                { fieldName: "TA_COUNT_C", label: "Number of Tribal areas within Census tract" },
+                { fieldName: "TA_PERC", label: "Percent of the Census tract that is within Tribal areas" },
+                { fieldName: "TA_PERC_FE", label: "Percent of the Census tract that is within Tribal areas, for display" },
+                { fieldName: "UI_EXP", label: "Methodology type used" },
+                { fieldName: "THRHLD", label: "Total thresholds possible" }
+                 
+              ]
+            }
+          ]
         }
       })
     ]
