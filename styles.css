@@ -204,6 +204,15 @@ button:hover {
   margin: 0 auto; /* Center the accordion on the screen */
 }
 
+.caret {
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.caret.rotate {
+  transform: rotate(180deg);
+}
+
 .accordion-button {
   width: 100%; /* Match the width of the accordion */
   text-align: center;

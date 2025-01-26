@@ -175,17 +175,31 @@ document.getElementById("overlay").addEventListener("click", () => {
 
 
 
-  // =======================
-  // Accordion Functionality
-  // =======================
-  document.querySelectorAll('.accordion-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const content = button.nextElementSibling;
-      if (content) {
-        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+// =======================
+// Accordion Functionality
+// =======================
+document.querySelectorAll('.accordion-button').forEach(button => {
+  button.addEventListener('click', () => {
+    const content = button.nextElementSibling;
+    const caret = button.querySelector('.caret');
+
+    if (content) {
+      const isVisible = content.style.display === 'block';
+
+      // Toggle the display property of the content
+      content.style.display = isVisible ? 'none' : 'block';
+
+      // Update the button text
+      button.firstChild.textContent = isVisible ? 'More ' : 'Less ';
+
+      // Rotate the caret
+      if (caret) {
+        caret.classList.toggle('rotate', !isVisible);
       }
-    });
+    }
   });
+});
+
 
 
 // Create the LayerList widget
