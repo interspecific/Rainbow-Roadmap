@@ -436,43 +436,43 @@ button:hover {
 
 
 
-#viewDiv {
-  position: relative; /* Ensures absolute elements inside are positioned relative to this */
-  height: 100%; /* Ensures it has height to contain the map */
-}
 
 
 
 
 
 
-/* Form Modal Styling */
+/* Form Modal */
 #formModal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #925bc4; /* Purple background to match the theme */
-  color: white; /* White text for contrast */
+  background: rgb(255, 255, 255);
   padding: 1.5rem;
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  width: 80%; /* Responsive width */
+  width: 90%;
   max-width: 500px;
-  font-family: 'Roboto', sans-serif; /* Match font style */
 }
 
-/* Form Heading */
-#formModal h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #f0e68c; /* Golden yellow for emphasis */
-  text-align: center;
+
+
+/* Close Button */
+#formModal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
 }
 
-/* Form Input Fields */
+/* Input Fields */
 #formModal input[type="text"],
 #formModal input[type="date"],
 #formModal textarea {
@@ -482,49 +482,58 @@ button:hover {
   border: none;
   border-radius: 8px;
   font-size: 1rem;
-  color: #121212; /* Dark text for input values */
-  background-color: #f8f8f8; /* Light background for inputs */
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Input Fields Focus State */
-#formModal input:focus,
-#formModal textarea:focus {
-  outline: none;
-  border: 2px solid #f0e68c; /* Golden yellow border on focus */
-  box-shadow: 0 0 8px rgba(240, 230, 140, 0.7); /* Subtle glow on focus */
+/* Hidden Latitude/Longitude */
+#formModal input[type="hidden"] {
+  display: none;
 }
 
-/* Buttons in the Form */
+/* Buttons */
 #formModal button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 0 5px;
-  font-size: 1rem;
+  padding: 10px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#formModal button[type="button"] {
-  background-color: #6c4aad; /* Slightly darker purple for buttons */
-  color: white;
-}
-
-#formModal button[type="button"]:hover {
-  background-color: #5b3a99; /* Darker purple on hover */
+  font-size: 1rem;
+  margin-top: 10px;
+  width: 100%; /* Full width */
 }
 
 #formModal button[type="submit"] {
-  background-color: #f0e68c; /* Golden yellow for submit button */
-  color: #121212; /* Dark text for contrast */
+  background-color: #f0e68c;
+  color: #121212;
 }
 
 #formModal button[type="submit"]:hover {
-  background-color: #d4c058; /* Darker yellow on hover */
-  transform: scale(1.05); /* Subtle zoom effect */
+  background-color: #d4c058;
 }
+
+#formModal div {
+  margin-bottom: 1rem;
+}
+
+#formModal div label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+#formModal div input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #121212;
+  background-color: #711f8a;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
 
 /* Overlay Styling */
 #overlay {
@@ -543,8 +552,18 @@ button:hover {
 
 
 
+#viewDiv {
+  position: relative; /* Ensures absolute elements inside are positioned relative to this */
+  height: 80vh; /* Ensures it has height to contain the map */
+}
 
-
+#searchDiv {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  z-index: 10;
+  /* Additional styling as needed */
+}
 
 /* Map Container */
 #viewDiv {
@@ -552,35 +571,35 @@ button:hover {
   width: 100%; /* Use full width */
   overflow: hidden; /* Prevent overflow */
   position: relative; /* For positioning child elements */
-  z-index: 1; /* Base layer */
+  z-index: 10; /* Base layer */
 }
 
 #mapContainer {
-  flex: 1; /* Use remaining space */
+  flex: auto; /* Use remaining space */
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: hidden; /* Prevent scrollbars */
   position: relative;
 }
 
-/* Media query for mobile devices */
-@media only screen and (max-width: 768px) {
-  #viewDiv {
-    height: 60vh; /* Adjust the height to make it shorter on mobile */
-    width: 100%; /* Ensure it still takes the full width */
-    margin: 0 auto; /* Center it if needed */
-    flex:auto !important;
-    position:fixed;
-  }
+/* Parent Container */
+#mapWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* Full viewport height */
+  overflow: hidden;
 }
 
-/* Media query for mobile devices */
+/* Map Container */
+#viewDiv {
+  flex: auto; /* Take up remaining space */
+  width: 100%; /* Full width */
+}
+
+/* Adjustments for Mobile */
 @media only screen and (max-width: 480px) {
   #viewDiv {
-    height: 80vh; /* Adjust the height to make it shorter on mobile */
-    width: 100%; /* Ensure it still takes the full width */
-    margin: 0 auto; /* Center it if needed */
-    flex:auto !important;
+    height: 75vh; /* Map takes up 70% of the screen height */
   }
 }
 
@@ -622,7 +641,7 @@ button:hover {
 
 /* Widget Buttons */
 .map-toggle-button {
-  position: absolute; /* Position button on map */
+  position: fixed; /* Position button on map */
   top: 13px;
   right: 10px;
   z-index: 5; /* Above layer list */
@@ -734,7 +753,7 @@ button:hover {
 @media (max-width: 480px) {
   /* Search bar adjustment for very small screens */
   .esri-ui .esri-search {
-    bottom: 20px !important; /* Raise even higher */
+    bottom: 10px !important; /* Raise even higher */
     width: 150px; /* Smaller width for phones */
     position: fixed;
   }
@@ -742,7 +761,7 @@ button:hover {
   /* Toggle button adjustment for very small screens */
   .esri-ui .widget-bottom,
   .esri-ui #addLocationButton {
-    bottom: 20px !important; /* Raise toggle button higher */
+    bottom: 10px !important; /* Raise toggle button higher */
     position: fixed;
   }
 }
@@ -758,7 +777,7 @@ button:hover {
 /* Default for desktop */
 #addLocationButton {
   position: fixed;
-  bottom: 50px; /* Base position */
+  bottom: 20px; /* Base position */
   left: 20px;
   padding: 10px 15px;
   background-color: #6c4aad;
@@ -781,7 +800,7 @@ button:hover {
 @media (max-width: 768px) {
   /* Search bar adjustment */
   .esri-ui .esri-search {
-    bottom: 20px !important; /* Raise above bottom */
+    bottom: 25px !important; /* Raise above bottom */
     width: 200px; /* Reduce width for tablets */
     position: fixed;
   }
@@ -809,7 +828,7 @@ button:hover {
 /* Adjustments for mobile phones (480px and below) */
 @media (max-width: 480px) {
   #addLocationButton {
-    bottom: 40px !important; /* Raise above bottom */
+    bottom: 25px !important; /* Raise above bottom */
     width: 140px; /* Reduce width for tablets */
     position: relative;
   }

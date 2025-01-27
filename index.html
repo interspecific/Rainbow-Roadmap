@@ -189,13 +189,13 @@
 <div id="formModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
     background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); z-index: 1000; width: 80%; max-width: 500px;">
   <form action="https://script.google.com/macros/s/AKfycbxnZ0gY1AExV5L-mVQDDtlnrdopLRRMkOyuojXzqG_m6pUP-JS1uaecxzkZ5v38Y0L9sw/exec" method="post">
-    <h3>Add a Safe Place to the Map</h3>
+    <h3>Click Map to Copy Coordinates</h3>
     <input name="Date" type="date" placeholder="Date" required>
     <input name="Name" type="text" placeholder="Place Name" required>
     <input name="Description" type="text" placeholder="Comments" required>
     <input type="text" id="Latitude" name="Latitude" placeholder="Latitude" readonly>
     <input type="text" id="Longitude" name="Longitude" placeholder="Longitude" readonly>
-    <button type="button" onclick="getLocation()">Get My Location</button>
+    <button type="button" onclick="getLocation()">Get My Location (if enabled)</button>
     <button type="submit">Submit</button>
     <button type="button" id="closeButton">Close</button> <!-- The Close Button -->
   </form>
@@ -203,10 +203,10 @@
 
 
 <main>
-  <!-- Map and Layer List Container -->
+  <!-- Map Container -->
   <div id="viewDiv">
-    <!-- Map Container -->
-    <div id="mapContainer">
+    <!-- Search Widget Placeholder -->
+    <div id="searchDiv"></div>
   </div>
 </main>
 

@@ -41,55 +41,59 @@ function showSplashScreen() {
 document.getElementById("showSplashButton").addEventListener("click", showSplashScreen);
 
 
-// Function to create and add the "Add Safe Place to Map" button
 function createAddLocationButton(view) {
   const addButton = document.createElement("button");
   addButton.id = "addLocationButton";
   addButton.innerHTML = "Add Safe Place to Map";
-  addButton.style.padding = "10px";
-  addButton.style.backgroundColor = "#6c4aad";
-  addButton.style.color = "white";
-  addButton.style.border = "none";
-  addButton.style.cursor = "pointer";
-  addButton.style.borderRadius = "4px";
-  addButton.style.margin = "5px";
-  addButton.style.position = "absolute";
-  addButton.style.left = "20px";
-  addButton.style.zIndex = "10";
-  addButton.style.fontSize = "0.7rem"; // Or use "12px" for a specific pixel size
-
+  Object.assign(addButton.style, {
+    padding: "10px",
+    backgroundColor: "#6c4aad",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
+    borderRadius: "4px",
+    margin: "5px",
+    position: "absolute",
+    left: "20px",
+    zIndex: "10",
+    fontSize: "0.9rem",
+  });
 
   // Dynamically adjust the bottom position based on screen size
   function adjustButtonPosition() {
     const screenWidth = window.innerWidth;
-
-    if (screenWidth <= 480) {
-      addButton.style.bottom = "40px"; // For very small screens (phones)
-    } else if (screenWidth <= 768) {
-      addButton.style.bottom = "40px"; // For medium screens (tablets)
-    } else {
-      addButton.style.bottom = "30px"; // Default position for larger screens
-    }
+    addButton.style.bottom = screenWidth <= 768 ? "40px" : "30px"; // Adjust position for tablets/phones
   }
 
-  // Call the function once to set the initial position
   adjustButtonPosition();
-
-  // Listen for window resize events to adjust the position dynamically
   window.addEventListener("resize", adjustButtonPosition);
 
   // Add click functionality
   addButton.addEventListener("click", () => {
-    toggleForm(); // Call toggleForm to handle showing the form modal
+    toggleForm();
   });
 
-  // Append the button to the map container
   const viewDiv = document.getElementById("viewDiv");
   viewDiv.appendChild(addButton);
 }
 
-// Call this function after the map view is initialized
 createAddLocationButton(view);
+
+
+
+function toggleForm() {
+  const modal = document.getElementById("formModal");
+  const overlay = document.getElementById("overlay");
+  const isHidden = modal.style.display === "none" || modal.style.display === "";
+
+  if (isHidden) {
+    modal.style.display = "block";
+    overlay.style.display = "block";
+  } else {
+    modal.style.display = "none";
+    overlay.style.display = "none";
+  }
+}
 
 
 
@@ -182,11 +186,12 @@ view.when(() => {
   // Add Widgets to the Map
   // =======================
 
-  // Add a Search widget
-  const searchWidget = new Search({
-    view: view
-  });
-  view.ui.add(searchWidget, "bottom-right");
+// Create the Search widget and assign it to the searchDiv
+const searchWidget = new Search({
+  view: view,
+  container: "searchDiv"
+});
+
 
   // // Add Fullscreen widget
   // const fullscreenWidget = new Fullscreen({
@@ -303,27 +308,39 @@ view.ui.add(layerListToggleButton, "top-right"); // Add the toggle button to the
 
 
 
-// Geolocation function
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      document.getElementById("Latitude").value = position.coords.latitude;
-      document.getElementById("Longitude").value = position.coords.longitude;
-    }, function (error) {
-      alert("Error fetching location: " + error.message);
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude.toFixed(6);
+        const longitude = position.coords.longitude.toFixed(6);
+
+        // Populate the form fields
+        document.getElementById("Latitude").value = latitude;
+        document.getElementById("Longitude").value = longitude;
+      },
+      (error) => {
+        console.error(`Error fetching location: ${error.message}`);
+      }
+    );
   } else {
-    alert("Geolocation is not supported by your browser.");
+    console.error("Geolocation is not supported by your browser.");
   }
 }
 
-// Map click event for getting coordinates
-view.on("click", function (event) {
+
+view.on("click", (event) => {
+  // Get the clicked point's coordinates
   const latitude = event.mapPoint.latitude.toFixed(6);
   const longitude = event.mapPoint.longitude.toFixed(6);
+
+  // Populate the form fields with the coordinates
   document.getElementById("Latitude").value = latitude;
   document.getElementById("Longitude").value = longitude;
+
+
 });
+
 
 
   // Define a helper function to create a FeatureLayer with dynamic field info
