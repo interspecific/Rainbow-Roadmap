@@ -44,9 +44,9 @@ document.getElementById("showSplashButton").addEventListener("click", showSplash
 function createAddLocationButton(view) {
   const addButton = document.createElement("button");
   addButton.id = "addLocationButton";
-  addButton.innerHTML = "Add Safe Place to Map";
+  addButton.innerHTML = "Add to Map";
   Object.assign(addButton.style, {
-    padding: "10px",
+    padding: "5px",
     backgroundColor: "#6c4aad",
     color: "white",
     border: "none",
@@ -54,9 +54,9 @@ function createAddLocationButton(view) {
     borderRadius: "4px",
     margin: "5px",
     position: "absolute",
-    left: "20px",
+    left: "10px",
     zIndex: "10",
-    fontSize: "0.9rem",
+    fontSize: "0.7rem",
   });
 
   // Dynamically adjust the bottom position based on screen size
@@ -294,7 +294,7 @@ function createToggleButton(buttonText, targetDiv) {
       button.textContent = "Hide Layer List"; // Update button text
     } else {
       targetDiv.style.display = "none"; // Hide the widget
-      button.textContent = "Show Layer List and Legend"; // Update button text
+      button.textContent = "Layer List and Legend"; // Update button text
     }
   });
 
@@ -302,7 +302,7 @@ function createToggleButton(buttonText, targetDiv) {
 }
 
 // Create the toggle button for the LayerList
-const layerListToggleButton = createToggleButton("Show Layer List and Legend", layerListDiv);
+const layerListToggleButton = createToggleButton("Layer List and Legend", layerListDiv);
 view.ui.add(layerListToggleButton, "top-right"); // Add the toggle button to the UI
 
 

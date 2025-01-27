@@ -184,6 +184,9 @@ button:hover {
   .esri-ui-bottom-right,
   .esri-ui-bottom-left {
     bottom: 10px !important; /* Adjust further for very small screens */
+    width: 95%;
+    height: 95%;
+    overflow: scroll;
   }
 }
 
@@ -195,19 +198,32 @@ button:hover {
   font-weight: bold; /* Optional: Make text bold for emphasis */
 }
 
-/* Responsive splash content */
+/* Mobile-Specific Adjustments */
 @media (max-width: 480px) {
   #splashContent {
-    max-width: 90%;
-    padding: 15px;
-    flex:auto;
+    max-width: 90%; /* Fill most of the screen */
+    max-height: 85%; /* Constrain height for smaller screens */
+    padding: 15px; /* Adjust padding */
+    overflow-y: auto; /* Allow scrolling for overflow content */
   }
   #splashContent h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Further scale down header */
   }
   #splashContent h2 {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Scale down subheader */
   }
+  #splashContent p {
+    font-size: 0.9rem; /* Adjust paragraph font size */
+  }
+}
+
+/* Scrollbar Styling for Mobile */
+#splashContent::-webkit-scrollbar {
+  width: 6px;
+}
+#splashContent::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
 }
 
 
@@ -599,7 +615,9 @@ button:hover {
 /* Adjustments for Mobile */
 @media only screen and (max-width: 480px) {
   #viewDiv {
-    height: 75vh; /* Map takes up 70% of the screen height */
+    height: 72vh; /* Map takes up 70% of the screen height */
+    width: 100%;
+    display: flex;
   }
 }
 
@@ -689,12 +707,13 @@ button:hover {
 
 
 
-
+/*this is a good one that can change on mobile*/
 
 .esri-search {
-  bottom: 30px !important; /* Ensure it stays within the viewport */
-  right: 20px !important; /* Add padding from the edges */
+  bottom: 50px !important; /* Ensure it stays within the viewport */
+  right: 5px !important; /* Add padding from the edges */
   z-index: 10; /* Ensure it appears above other elements */
+  width: 25%;
 }
 
 .esri-fullscreen {
@@ -754,7 +773,7 @@ button:hover {
   /* Search bar adjustment for very small screens */
   .esri-ui .esri-search {
     bottom: 10px !important; /* Raise even higher */
-    width: 150px; /* Smaller width for phones */
+    width: 50% !important; /* Smaller width for phones */
     position: fixed;
   }
 
@@ -778,7 +797,7 @@ button:hover {
 #addLocationButton {
   position: fixed;
   bottom: 20px; /* Base position */
-  left: 20px;
+  left: 10px;
   padding: 10px 15px;
   background-color: #6c4aad;
   color: white;
@@ -828,9 +847,11 @@ button:hover {
 /* Adjustments for mobile phones (480px and below) */
 @media (max-width: 480px) {
   #addLocationButton {
-    bottom: 25px !important; /* Raise above bottom */
-    width: 140px; /* Reduce width for tablets */
-    position: relative;
+    bottom: 43px !important; /* Raise above bottom */
+    width: 100px; /* Reduce width for tablets */
+    position: fixed;
+    height: 10%;
+    font: 0.4em sans-serif;
   }
 }
 
