@@ -200,7 +200,7 @@ button:hover {
 @media (max-width: 480px) {
   .esri-ui-bottom-right,
   .esri-ui-bottom-left {
-    bottom: 8px !important; /* Adjust further for very small screens */
+    bottom: 10px !important; /* Adjust further for very small screens */
     width: 95%;
     height: 95%;
     overflow: scroll;
@@ -727,7 +727,7 @@ button:hover {
 /* Mobile Styles */
 @media (max-width: 768px) {
   .esri-search {
-    bottom: 100px !important; /* Move it closer to the bottom */
+    bottom: 40px !important; /* Move it closer to the bottom */
     right: 10px !important; /* Adjust padding for smaller screens */
     width: 45%; /* Make it take up more space horizontally */
   }
@@ -851,7 +851,7 @@ button:hover {
 /* Adjustments for tablets (768px and below) */
 @media (max-width: 768px) {
   #addLocationButton {
-    bottom: 100px !important; /* Raise above bottom */
+    bottom: 10px !important; /* Raise above bottom */
     width: 14
     0px; /* Reduce width for tablets */
     position: relative;
