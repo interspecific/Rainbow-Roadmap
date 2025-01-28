@@ -52,6 +52,23 @@ header {
   header {
     position: relative; /* Ensure the header adjusts dynamically */
     padding-bottom: 40px; /* Add extra space for the button */
+    
+  }
+}
+
+/* Adjust position for mobile screens */
+@media (max-width: 480px) {
+  .icon-button {
+    top: auto; /* Remove top positioning */
+    right: 10px; /* Keep it aligned to the right */
+    bottom: 10px; /* Position it just below the title */
+    font-size: 1rem; /* Slightly smaller icon for mobile */
+  }
+
+  header {
+    position: relative; /* Ensure the header adjusts dynamically */
+    padding-bottom: 40px; /* Add extra space for the button */
+    
   }
 }
 
@@ -628,16 +645,7 @@ button:hover {
 
 
 
-#layerListDiv {
-  opacity: 0; /* Fully hidden */
-  visibility: hidden; /* Inaccessible */
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
-}
 
-#layerListDiv.visible {
-  opacity: 1; /* Fully visible */
-  visibility: visible; /* Accessible */
-}
 
 
 /* Ensure .hidden class is consistently applied */
@@ -707,23 +715,35 @@ button:hover {
 
 
 
-/*this is a good one that can change on mobile*/
-
+/* Desktop Styles */
 .esri-search {
-  bottom: 50px !important; /* Ensure it stays within the viewport */
+  bottom: 40px !important; /* Ensure it stays within the viewport */
   right: 5px !important; /* Add padding from the edges */
   z-index: 10; /* Ensure it appears above other elements */
-  width: 25%;
-}
-
-.esri-fullscreen {
-  position: absolute;
-  top: 20px !important;
-  left: 20px !important;
-  z-index: 10;
+  width: 15%; /* Wider search bar on larger screens */
 }
 
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .esri-search {
+    bottom: 40px !important; /* Move it closer to the bottom */
+    right: 10px !important; /* Adjust padding for smaller screens */
+    width: 45%; /* Make it take up more space horizontally */
+  }
+}
+
+
+#layerListDiv {
+  opacity: 0; /* Fully hidden */
+  visibility: hidden; /* Inaccessible */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth transition */
+}
+
+#layerListDiv.visible {
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Accessible */
+}
 
 /* Dark Mode for LayerList Widget */
 .esri-layer-list {
@@ -761,14 +781,6 @@ button:hover {
 
 
 
-
-
-
-
-
-
-
-
 @media (max-width: 480px) {
   /* Search bar adjustment for very small screens */
   .esri-ui .esri-search {
@@ -776,6 +788,8 @@ button:hover {
     width: 50% !important; /* Smaller width for phones */
     position: fixed;
   }
+
+  
 
   /* Toggle button adjustment for very small screens */
   .esri-ui .widget-bottom,
@@ -847,10 +861,10 @@ button:hover {
 /* Adjustments for mobile phones (480px and below) */
 @media (max-width: 480px) {
   #addLocationButton {
-    bottom: 43px !important; /* Raise above bottom */
-    width: 100px; /* Reduce width for tablets */
+    bottom: 30px !important; /* Raise above bottom */
+    width: 80px; /* Reduce width for tablets */
     position: fixed;
-    height: 10%;
+    height: 8%;
     font: 0.4em sans-serif;
   }
 }
