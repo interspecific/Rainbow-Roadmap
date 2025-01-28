@@ -461,7 +461,7 @@ button:hover {
 
   .accordion-content {
     padding: 6px; /* Adjust padding for compact content layout */
-    max-height: 150px; /* Further adjust max height for phones */
+    max-height: 250px; /* Further adjust max height for phones */
   }
 }
 
