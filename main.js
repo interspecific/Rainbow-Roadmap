@@ -41,43 +41,43 @@ function showSplashScreen() {
 document.getElementById("showSplashButton").addEventListener("click", showSplashScreen);
 
 
-function createAddLocationButton(view) {
-  const addButton = document.createElement("button");
-  addButton.id = "addLocationButton";
-  addButton.innerHTML = "Add to Map";
-  Object.assign(addButton.style, {
-    padding: "5px",
-    backgroundColor: "#6c4aad",
-    color: "white",
-    border: "none",
-    cursor: "pointer",
-    borderRadius: "4px",
-    margin: "5px",
-    position: "absolute",
-    left: "10px",
-    zIndex: "10",
-    fontSize: "0.7rem",
-  });
+// function createAddLocationButton(view) {
+//   const addButton = document.createElement("button");
+//   addButton.id = "addLocationButton";
+//   addButton.innerHTML = "Add to Map";
+//   Object.assign(addButton.style, {
+//     padding: "5px",
+//     backgroundColor: "#6c4aad",
+//     color: "white",
+//     border: "none",
+//     cursor: "pointer",
+//     borderRadius: "4px",
+//     margin: "5px",
+//     position: "absolute",
+//     left: "10px",
+//     zIndex: "10",
+//     fontSize: "0.7rem",
+//   });
 
-  // Dynamically adjust the bottom position based on screen size
-  function adjustButtonPosition() {
-    const screenWidth = window.innerWidth;
-    addButton.style.bottom = screenWidth <= 768 ? "40px" : "30px"; // Adjust position for tablets/phones
-  }
+//   // Dynamically adjust the bottom position based on screen size
+//   function adjustButtonPosition() {
+//     const screenWidth = window.innerWidth;
+//     addButton.style.bottom = screenWidth <= 768 ? "40px" : "30px"; // Adjust position for tablets/phones
+//   }
 
-  adjustButtonPosition();
-  window.addEventListener("resize", adjustButtonPosition);
+//   adjustButtonPosition();
+//   window.addEventListener("resize", adjustButtonPosition);
 
-  // Add click functionality
-  addButton.addEventListener("click", () => {
-    toggleForm();
-  });
+//   // Add click functionality
+//   addButton.addEventListener("click", () => {
+//     toggleForm();
+//   });
 
-  const viewDiv = document.getElementById("viewDiv");
-  viewDiv.appendChild(addButton);
-}
+//   const viewDiv = document.getElementById("viewDiv");
+//   viewDiv.appendChild(addButton);
+// }
 
-createAddLocationButton(view);
+// createAddLocationButton(view);
 
 
 
@@ -3908,5 +3908,8 @@ map.addMany(groupedLayers);
 //     }
 //   ]
 // };
+
+
+
 
 });
