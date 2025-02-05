@@ -3510,7 +3510,7 @@ view.on("click", (event) => {
                       label: "Safest",
                       symbol: {
                         type: "simple-fill",
-                        color: "#ffafc9",
+                        color: "#55cdfc",
                         outline: {
                           width: 0.5,
                           color: "#000"
@@ -3522,7 +3522,7 @@ view.on("click", (event) => {
                       label: "Low Risk",
                       symbol: {
                         type: "simple-fill",
-                        color: "#55cdfc",
+                        color: "#ffafc9",
                         outline: {
                           width: 0.5,
                           color: "#000"
@@ -3558,7 +3558,7 @@ view.on("click", (event) => {
                       label: "Worst Risk",
                       symbol: {
                         type: "simple-fill",
-                        color: "#e91b25",
+                        color: "#c2181e",
                         outline: {
                           width: 0.5,
                           color: "#000"
@@ -3570,7 +3570,7 @@ view.on("click", (event) => {
                       label: "Do Not Travel",
                       symbol: {
                         type: "simple-fill",
-                        color: "#555555",
+                        color: "#8f1214",
                         outline: {
                           width: 0.5,
                           color: "#000"
