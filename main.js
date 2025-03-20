@@ -3666,7 +3666,7 @@ view.on("click", (event) => {
   new FeatureLayer({
     title: "LGBTQIA+ Adult Populations Plus Gender Identity and Sexual Orientation Data",
     url: "https://services1.arcgis.com/4yjifSiIG17X0gW4/ArcGIS/rest/services/Gender_Identity_and_Sexual_Orientation/FeatureServer/1",
-    visible: false,
+    visible: true,
     popupTemplate: {
       title: "LGBTQIA+ Population Data",
       content: [

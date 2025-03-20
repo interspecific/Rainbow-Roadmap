@@ -73,6 +73,29 @@ header {
 }
 
 
+
+.copy-email-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #a293d9;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.copy-email-button:hover {
+  background-color: #925bc4;
+  transform: translateY(-2px);
+}
+
+
+
+
 /* Apply rainbow gradient to header text */
 header h1 {
   background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
@@ -344,126 +367,143 @@ button:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* Accordion Container in Header */
 .accordion-container {
   display: flex;
-  justify-content: center; /* Center the accordions */
-  flex-wrap: wrap; /* Wrap accordions to new lines if needed */
-  gap: 10px; /* Add space between accordions */
-  max-width: 50%; /* Limit the width of the accordion container */
-  margin: 0 auto; /* Center container within header */
-  padding: 0; /* Remove unnecessary padding */
+  justify-content: space-between; /* Spread out accordions */
+  flex-wrap: wrap; /* Ensure they can wrap if needed */
+  gap: 20px; /* Increase spacing between accordions */
+  max-width: 90%; /* Allow more width */
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 /* Accordion Styling */
 .accordion {
-  flex: 1 1 calc(20% - 10px); /* Flexible width for buttons */
-  max-width: 200px; /* Optional: Set max width for accordions */
-  min-width: 120px; /* Optional: Set min width for smaller screens */
-  width: 100%; /* Ensure full width of container on mobile */
-  margin: 0 auto; /* Center the accordion on the screen */
+  flex: 1 1 auto; /* Allow flexible width */
+  max-width: 350px; /* Increase max width */
+  min-width: 180px; /* Set a reasonable minimum */
+  width: auto;
+  margin: 0 auto; /* Keep it centered */
 }
 
-.caret {
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
-
-.caret.rotate {
-  transform: rotate(180deg);
-}
-
-
-
-
-
+/* Ensure the buttons take full width */
 .accordion-button {
-  width: 100%; /* Match the width of the accordion */
+  width: 100%;
   text-align: center;
-  background-color: #925bc4; /* Purple */
+  background-color: #925bc4;
   color: white;
-  padding: 8px; /* Adjust padding for a consistent appearance */
-  font-size: 1rem; /* Adjust font size for better readability */
+  padding: 12px;
+  font-size: 1.1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-sizing: border-box; /* Include padding in width calculations */
-  margin-bottom: 10px; /* Add vertical spacing between buttons */
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .accordion-button:hover {
-  background-color: #8253b0; /* Darker purple */
-  transform: scale(1.02); /* Subtle zoom effect */
+  background-color: #8253b0;
+  transform: scale(1.02);
 }
 
-/* Accordion Content Styling */
+/* Accordion Content */
 .accordion-content {
   display: none; /* Hidden by default */
-  background-color: #e0d8f3; /* Lighter purple background */
-  color: #121212; /* Dark text for contrast */
-  padding: 10px;
-  border-left: 4px solid #6c4aad; /* Dark purple border for nested content */
+  background-color: #e0d8f3;
+  color: #121212;
+  padding: 15px;
+  border-left: 4px solid #6c4aad;
   margin-top: 5px;
-  border-radius: 4px; /* Rounded corners */
-  max-height: 300px; /* Set max height for scrolling */
-  overflow-y: auto; /* Enable scrolling if content exceeds height */
-  word-wrap: break-word; /* Prevent content from overflowing */
-  width: 100%; /* Ensure content matches the accordion width */
-  box-sizing: border-box; /* Include padding and borders in width calculations */
-  max-height: 700px;
+  border-radius: 4px;
+  max-height: 500px;
+  overflow-y: auto;
+  width: 100%; /* Ensure content uses full available space */
+  box-sizing: border-box;
 }
 
+/* Adjust links inside accordion content */
 .accordion-content a {
-  display: block;
-  margin: 5px 0;
-  padding: 10px;
+  display: block; /* Ensure links stack vertically */
+  margin: 12px 0; /* Increase spacing between links */
+  padding: 12px 15px; /* Add more padding for a better click target */
   background-color: #a293d9; /* Purple */
   color: white;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 6px; /* Slightly round edges */
   text-align: center;
-  overflow-wrap: break-word; /* Break long links onto multiple lines */
-  word-break: break-word; /* Additional support for breaking long links */
+  overflow-wrap: break-word; /* Prevent text overflow */
+  word-break: break-word;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  max-height: 500px;
 }
 
+/* Increase spacing and provide a hover effect */
 .accordion-content a:hover {
   background-color: #925bc4; /* Darker purple */
   transform: translateY(-2px); /* Lift effect on hover */
 }
 
-/* Mobile-specific Adjustments */
+/* Allow expansion on desktop */
+@media (min-width: 1024px) {
+  .accordion-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .accordion {
+    flex: 1 1 30%; /* Each accordion takes 30% of the container */
+    max-width: 400px;
+  }
+
+  .accordion-content {
+    max-width: 700px; /* Ensure content has room to expand */
+    padding: 20px;
+  }
+}
+
+/* Tablet adjustments */
 @media (max-width: 768px) {
   .accordion {
-    width: 100%; /* Ensure full width for smaller screens */
-    max-width: none; /* Remove width restrictions */
+    width: 100%;
+    max-width: none;
   }
 
   .accordion-button {
-    font-size: 0.9rem; /* Slightly smaller font for mobile */
-    padding: 8px; /* Adjust padding for compact layout */
+    font-size: 1rem;
+    padding: 10px;
   }
 
   .accordion-content {
-    padding: 8px; /* Reduce padding for smaller screens */
-    width: 100%; /* Ensure content matches the container width */
-    max-height: 200px; /* Adjust max height for tablets */
+    padding: 10px;
+    max-height: 300px;
   }
 }
 
+/* Mobile adjustments */
 @media (max-width: 480px) {
   .accordion-button {
-    font-size: 0.8rem; /* Reduce font size further for very small screens */
-    padding: 6px; /* Reduce padding for smaller buttons */
+    font-size: 0.9rem;
+    padding: 8px;
   }
 
   .accordion-content {
-    padding: 6px; /* Adjust padding for compact content layout */
-    max-height: 250px; /* Further adjust max height for phones */
+    padding: 8px;
+    max-height: 250px;
   }
 }
+
 
 
 

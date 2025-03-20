@@ -94,13 +94,13 @@
       <div class="accordion-content">
         <!-- Nested Accordions -->
         <div class="accordion">
-          <button class="accordion-button">LGBTQ Legislation & Travel Risk Map</button>
+          <button class="accordion-button">LGBTQ Legislation Tracking & Travel Risk Map Source</button>
           <div class="accordion-content">
             <a href="https://www.erininthemorning.com/p/final-pre-election-2024-anti-trans" target="_blank" class="accordion-link">View Erin Reed's Substack</a>
           </div>
         </div>
         <div class="accordion">
-          <button class="accordion-button">Data Sources</button>
+          <button class="accordion-button">Map Data Sources</button>
           <div class="accordion-content">
             <a href="https://www.arcgis.com/home/item.html?id=802c2ff7625b4d5ca5273aa406f11824" target="_blank" class="menu-button">Gender Identity and Sexual Orientation</a>
             <a href="https://osugisci.maps.arcgis.com/home/item.html?id=8c2e7aed60b24e439bb277c914759747" target="_blank" class="menu-button">USA 2020 Census Household Characteristics</a>
@@ -132,13 +132,11 @@
         <div class="accordion">
           <button class="accordion-button">Climate Change Resources</button>
           <div class="accordion-content">
-            <a href="https://www.climatechangemakers.org/" target="_blank" class="accordion-link">Climate Change Makers</a>
-            <a href="https://www.ipcc.ch/reports/" target="_blank" class="accordion-link">IPCC Climate Change Reports</a>
-            <a href="https://www.climatetownproductions.com/" target="_blank" class="accordion-link">Climate Town</a>
-            <a href="https://www.climatetownproductions.com/other-projects" target="_blank" class="accordion-link">Climate Town: Other Projects</a>
             <a href="https://www.climatetown.news/" target="_blank" class="accordion-link">Climate Town News</a>
-            <a href="https://www.youtube.com/@SimonClark" target="_blank" class="accordion-link">Simon Clark (YouTube)</a>
-            <a href="https://crt-climate-explorer.nemac.org/" target="_blank" class="accordion-link">The Climate Explorer Tool</a>          
+            <a href="https://www.climatechangemakers.org/" target="_blank" class="accordion-link">Climate Change Makers</a>
+            <a href="https://crt-climate-explorer.nemac.org/" target="_blank" class="accordion-link">The Climate Explorer Tool</a>     
+            <a href="https://www.ipcc.ch/reports/" target="_blank" class="accordion-link">IPCC Climate Change Reports</a>     
+            <a href="https://www.pnas.org/doi/10.1073/pnas.1910114117" target="_blank" class="accordion-link">The Future of the Human Climate Niche (Article)</a>
           </div>
         </div>
                 <!-- New Immigrant Resources Section -->
@@ -155,7 +153,7 @@
                 </div>
         <!-- New Empower Yourself Online Section -->
         <div class="accordion">
-          <button class="accordion-button">Protect Yourself Online</button>
+          <button class="accordion-button">Online Security Resources</button>
           <div class="accordion-content">
             <a href="https://archive.org/about" target="_blank" class="accordion-link">Internet Archive</a>
             <a href="https://signal.org/" target="_blank" class="accordion-link">Signal Private Messenger</a>
@@ -178,21 +176,29 @@
         <div class="accordion">
           <button class="accordion-button">Creators to Check Out</button>
           <div class="accordion-content">
-            <a href="https://darknetdiaries.com/" target="_blank" class="accordion-link">Darknet Diaries</a>
-            <a href="https://www.youtube.com/@BehindTheBastards/featured" target="_blank" class="accordion-link">Behind the Bastards (YouTube)</a>
-            <a href="https://www.youtube.com/c/leejamiller" target="_blank" class="accordion-link">Leeja Miller (YouTube)</a>
+            <a href="https://www.climatetownproductions.com/" target="_blank" class="accordion-link">Climate Town(YouTube)</a>
+            <a href="https://darknetdiaries.com/" target="_blank" class="accordion-link">Darknet Diaries (Podcast)</a>
+            <a href="https://www.youtube.com/@BehindTheBastards/featured" target="_blank" class="accordion-link">Behind the Bastards (Podcast)</a>
+            <a href="https://www.youtube.com/watch?v=puggApj9Z50" target="_blank" class="accordion-link">Joe Scott (YouTube)</a>
+            <a href="https://www.youtube.com/@SimonClark" target="_blank" class="accordion-link">Simon Clark (YouTube)</a>
           </div>
         </div>
         <div class="accordion">
           <button class="accordion-button">Support This Project</button>
           <div class="accordion-content">
-            <a href="https://www.patreon.com/c/rainbow_roadmap" target="_blank" class="accordion-link">Support on Patreon</a>
+            <a href="https://www.patreon.com/c/rainbow_roadmap" target="_blank" class="accordion-link">
+              Support on Patreon
+            </a>
           </div>
-          <div class="accordion">
-            <button class="accordion-button">Contact</button>
-            <div class="accordion-content">
-              <p>Email: contact.rainbowroadmap@gmail.com</p>
-            </div>
+        </div>
+        
+        <div class="accordion">
+          <button class="accordion-button">Contact</button>
+          <div class="accordion-content">
+            <button class="copy-email-button" onclick="copyEmail()">Copy Email: contact.rainbowroadmap@gmail.com</button>
+          </div>
+        </div>
+        
           </div>
         </div>
       </div>
@@ -228,6 +234,16 @@
   </div>
 </main>
 
+<script>
+  function copyEmail() {
+    const email = "contact.rainbowroadmap@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      alert("Email copied to clipboard!");
+    }).catch(err => {
+      console.error("Failed to copy email: ", err);
+    });
+  }
+</script>
 
 
 </body>
