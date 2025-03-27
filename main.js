@@ -10,7 +10,7 @@ require([
   
   // Initialize the map
   const map = new Map({
-    basemap: "gray-vector" // Other options: "streets-night-vector", "dark-gray-vector"
+    basemap: "dark-gray-vector" // Other options: "streets-night-vector", "dark-gray-vector"
   });
   
 
@@ -3500,10 +3500,11 @@ view.on("click", (event) => {
               new FeatureLayer({
                 title: "Travel Risk Map based on Anti or Pro-Trans Legislation",
                 url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/2",
+                opacity: 0.4, // More visible but still allows basemap underneath
                 visible: true,
                 renderer: {
-                  type: "unique-value", // Renderer type for unique values
-                  field: "Youth", // Field to base the symbology on
+                  type: "unique-value",
+                  field: "Youth",
                   legendOptions: {
                     title: "Travel Risk Levels (Youth)"
                   },
@@ -3513,11 +3514,8 @@ view.on("click", (event) => {
                       label: "Safest",
                       symbol: {
                         type: "simple-fill",
-                        color: "#55cdfc",
-                        outline: {
-                          width: 0.5,
-                          color: "#000"
-                        }
+                        color: "#009e73", // Teal green
+                        outline: { width: 0.5, color: "#222" }
                       }
                     },
                     {
@@ -3525,11 +3523,8 @@ view.on("click", (event) => {
                       label: "Low Risk",
                       symbol: {
                         type: "simple-fill",
-                        color: "#ffafc9",
-                        outline: {
-                          width: 0.5,
-                          color: "#000"
-                        }
+                        color: "#56b4e9", // Sky blue
+                        outline: { width: 0.5, color: "#222" }
                       }
                     },
                     {
@@ -3537,11 +3532,8 @@ view.on("click", (event) => {
                       label: "Moderate Risk",
                       symbol: {
                         type: "simple-fill",
-                        color: "#ffffff",
-                        outline: {
-                          width: 0.5,
-                          color: "#000"
-                        }
+                        color: "#f0e442", // Yellow
+                        outline: { width: 0.5, color: "#222" }
                       }
                     },
                     {
@@ -3549,11 +3541,8 @@ view.on("click", (event) => {
                       label: "High Risk",
                       symbol: {
                         type: "simple-fill",
-                        color: "#ff6347",
-                        outline: {
-                          width: 0.5,
-                          color: "#000"
-                        }
+                        color: "#e69f00", // Orange
+                        outline: { width: 0.5, color: "#222" }
                       }
                     },
                     {
@@ -3561,11 +3550,8 @@ view.on("click", (event) => {
                       label: "Worst Risk",
                       symbol: {
                         type: "simple-fill",
-                        color: "#c2181e",
-                        outline: {
-                          width: 0.5,
-                          color: "#000"
-                        }
+                        color: "#d55e00", // Reddish orange
+                        outline: { width: 0.5, color: "#222" }
                       }
                     },
                     {
@@ -3573,11 +3559,8 @@ view.on("click", (event) => {
                       label: "Do Not Travel",
                       symbol: {
                         type: "simple-fill",
-                        color: "#8f1214",
-                        outline: {
-                          width: 0.5,
-                          color: "#000"
-                        }
+                        color: "#a50f15", // Dark red
+                        outline: { width: 0.5, color: "#222" }
                       }
                     }
                   ]
@@ -3585,24 +3568,24 @@ view.on("click", (event) => {
                 labelingInfo: [
                   {
                     symbol: {
-                      type: "text", // Label type
-                      color: "#000000", // Black text color
+                      type: "text",
+                      color: "#000000",
                       haloSize: 1.5,
-                      haloColor: "#ffffff", // White halo for better visibility
+                      haloColor: "#ffffff",
                       font: {
-                        size: 12, // Font size
+                        size: 12,
                         family: "Arial",
                         weight: "bold"
                       }
                     },
-                    labelPlacement: "always-horizontal", // Labels stay horizontal
+                    labelPlacement: "always-horizontal",
                     labelExpressionInfo: {
-                      expression: "$feature.Youth" // Label field
+                      expression: "$feature.Youth"
                     }
                   }
                 ],
                 popupTemplate: {
-                  title: "Travel Risk for {State}", // Use the "State" field in the title
+                  title: "Travel Risk for {State}",
                   content: [
                     {
                       type: "fields",
@@ -3615,6 +3598,7 @@ view.on("click", (event) => {
                   ]
                 }
               }),
+              
       
               new FeatureLayer({
                 title: "Top 15 Metros - LGBTQIA+ Adult Populations Plus Gender Identity and Sexual Orientation Data",
