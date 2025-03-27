@@ -150,26 +150,18 @@ document.getElementById("overlay").addEventListener("click", () => {
 });
 
 
-view.popup.dockEnabled = true; // Enable docking
+view.popup.dockEnabled = true;
 view.popup.dockOptions = {
-  position: "top", // Dock the popup at the bottom
+  buttonEnabled: false,         // optional: hides the dock toggle button
+  position: "top",              // or "bottom" — your preference
   breakpoint: {
-    width: 600, // Dock popup for screens smaller than 600px
+    width: 600,
     height: 400
   }
 };
 
 
-view.when(() => {
-  view.popup.viewModel.watch("screenSize", (screenSize) => {
-    if (screenSize.width < 600) {
-      view.popup.dockEnabled = true;
-      view.popup.dockOptions.position = "top";
-    } else {
-      view.popup.dockEnabled = false;
-    }
-  });
-});
+
 
 
 
@@ -231,6 +223,12 @@ document.querySelectorAll('.accordion-button').forEach((button, index) => {
     }
   });
 });
+
+// // function for playing GIF
+// function toggleHowToGif() {
+//   const gifContainer = document.getElementById("howToGifContainer");
+//   gifContainer.style.display = gifContainer.style.display === "none" ? "block" : "none";
+// }
 
 
 // Show and hide disclaimer popup
@@ -2123,7 +2121,7 @@ view.on("click", (event) => {
     title: "Climate Change Layers",
     layers: [
       new FeatureLayer({
-        title: "Climate Change Disadvantaged Tracts",
+        title: "Change in Energy Expenditures and other Climate Impacts",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Climate_Impact_Lab_view/FeatureServer/0",
         visible: false,
         popupTemplate: {
@@ -2181,7 +2179,7 @@ view.on("click", (event) => {
       new FeatureLayer({
         title: "Economic Damage Climate Change Projections",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Climate_Impact_Lab_view/FeatureServer/0",
-        visible: true,
+        visible: false,
         popupTemplate: {
           title: "Economic Damage Data for {County_Name}, {State_Name}",
           content: [
@@ -3500,7 +3498,7 @@ view.on("click", (event) => {
               new FeatureLayer({
                 title: "Travel Risk Map based on Anti or Pro-Trans Legislation",
                 url: "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/LGBTQ_Bills/FeatureServer/2",
-                opacity: 0.4, // More visible but still allows basemap underneath
+                opacity: 0.3, // More visible but still allows basemap underneath
                 visible: true,
                 renderer: {
                   type: "unique-value",

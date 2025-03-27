@@ -48,10 +48,33 @@
           </li>
         </ul>
     
+        <!-- 🔘 Toggle GIF Button -->
+        <button id="toggleGifButton">🎬 Show Demo GIF</button>
+    
+        <!-- 📽 GIF Container -->
+        <div id="howToGifContainer" style="display: none; margin-top: 20px;">
+          <img src="https://i.imgur.com/ecUKnBw.gif" alt="How to Use Demo" style="max-width: 100%; border-radius: 10px;">
+        </div>
+    
         <button id="startButton">Enter the Roadmap</button>
         <button id="disclaimerButton">Disclaimer</button>
       </div>
     </div>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById("toggleGifButton");
+        const gifContainer = document.getElementById("howToGifContainer");
+    
+        toggleBtn.addEventListener("click", () => {
+          const isVisible = gifContainer.style.display === "block";
+          gifContainer.style.display = isVisible ? "none" : "block";
+          toggleBtn.textContent = isVisible ? "🎬 Show Demo GIF" : "❌ Hide Demo GIF";
+        });
+      });
+    </script>
+    
+    
     
     
     

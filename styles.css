@@ -279,9 +279,23 @@ button:hover {
 }
 
 
+#toggleGifButton {
+  padding: 12px 25px;
+  background-color: #925bc4; /* Purple button */
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 
-
+#toggleGifButton:hover {
+  background-color: #8253b0; /* Darker purple */
+  transform: scale(1.05); /* Subtle zoom effect */
+}
 
 
 
@@ -307,21 +321,20 @@ button:hover {
 
 
 #disclaimerButton {
-  background-color: #4b0082; /* Dark purple */
-  color: #ffffff; /* White text */
-  font-size: 0.8rem; /* Smaller text */
-  padding: 5px 10px;
+  padding: 12px 25px;
+  background-color: #925bc4; /* Purple button */
   border: none;
-  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  position: flex;
-  bottom: 10px;
-  right: 10px; /* Align to the right */
-  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #disclaimerButton:hover {
   background-color: #5a0099; /* Slightly lighter purple on hover */
+  transform: scale(1.05); /* Subtle zoom effect */
 }
 
 #disclaimerModal {
