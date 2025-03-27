@@ -111,11 +111,12 @@ header h1 {
 header h1 {
   background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
   -webkit-background-clip: text;
-  color: transparent; /* Ensures gradient applies to text */
-  font-family: 'Roboto', sans-serif; /* Use the imported Roboto font */
-  font-weight: 500; /* Optional: Adjust font weight for emphasis */
-  text-align: center; /* Center the text (optional) */
-  padding: 10px; /* Add padding for spacing (optional) */
+  color: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px;
+
 }
 
 
@@ -128,7 +129,7 @@ header h1 {
 
 @media (max-width: 480px) {
   header h1 {
-    font-size: 0.8rem; /* Further scale down font size on smaller phones */
+    font-size: 0.0.8rem; /* Further scale down font size on smaller phones */
   }
 }
 
@@ -802,6 +803,7 @@ button:hover {
   right: 5px !important; /* Add padding from the edges */
   z-index: 10; /* Ensure it appears above other elements */
   width: 15%; /* Wider search bar on larger screens */
+  background-color: white;
 }
 
 

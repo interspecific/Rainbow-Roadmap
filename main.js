@@ -294,10 +294,10 @@ function createToggleButton(buttonText, targetDiv) {
   button.addEventListener("click", function () {
     if (targetDiv.style.display === "none") {
       targetDiv.style.display = "block"; // Show the widget
-      button.textContent = "Hide Layer List"; // Update button text
+      button.textContent = "Hide List"; // Update button text
     } else {
       targetDiv.style.display = "none"; // Hide the widget
-      button.textContent = "Layer List and Legend"; // Update button text
+      button.textContent = "Map Layers"; // Update button text
     }
   });
 
@@ -305,7 +305,7 @@ function createToggleButton(buttonText, targetDiv) {
 }
 
 // Create the toggle button for the LayerList
-const layerListToggleButton = createToggleButton("Layer List and Legend", layerListDiv);
+const layerListToggleButton = createToggleButton("Map Layers", layerListDiv);
 view.ui.add(layerListToggleButton, "top-right"); // Add the toggle button to the UI
 
 
@@ -2181,7 +2181,7 @@ view.on("click", (event) => {
       new FeatureLayer({
         title: "Economic Damage Climate Change Projections",
         url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Climate_Impact_Lab_view/FeatureServer/0",
-        visible: false,
+        visible: true,
         popupTemplate: {
           title: "Economic Damage Data for {County_Name}, {State_Name}",
           content: [
