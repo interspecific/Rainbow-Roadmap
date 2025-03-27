@@ -3,10 +3,11 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%; /* Ensure the body fills the viewport */
-  overflow: hidden; /* Prevent scrolling */
-  box-sizing: border-box; /* Include borders and padding in width/height */
+  height: 100%;
+  /* overflow: hidden;  <-- REMOVE THIS */
+  box-sizing: border-box;
 }
+
 
 
 header {
@@ -14,7 +15,7 @@ header {
   color: #FFFFFF; /* White text */
   text-align: center;
   padding: 0.6em 0;
-  height: auto;
+  height: 15%;
 }
 
 .icon-button {
@@ -24,7 +25,7 @@ header {
   font-size: 1.5rem;
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 20px;
   padding: 5px;
   border-radius: 50%;
@@ -398,10 +399,11 @@ button:hover {
   margin: 0 auto; /* Keep it centered */
 }
 
-/* Ensure the buttons take full width */
 .accordion-button {
   width: 100%;
-  text-align: center;
+  display: flex; /* Allow caret + text layout */
+  justify-content: space-between; /* Push caret to the right */
+  align-items: center;
   background-color: #925bc4;
   color: white;
   padding: 12px;
@@ -412,7 +414,23 @@ button:hover {
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-sizing: border-box;
   margin-bottom: 10px;
+  text-align: left; /* Prevent centered text when using flex */
 }
+
+/* Caret styling */
+.accordion-button .caret {
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+  display: inline-flex;
+}
+
+/* Rotate caret when active */
+.accordion-button.active .caret {
+  transform: rotate(180deg);
+}
+
+
+
 
 .accordion-button:hover {
   background-color: #8253b0;
@@ -821,59 +839,11 @@ button:hover {
 
 
 
-@media (max-width: 480px) {
-  /* Search bar adjustment for very small screens */
-  .esri-ui .esri-search {
-    bottom: 10px !important; /* Raise even higher */
-    width: 50% !important; /* Smaller width for phones */
-    position: fixed;
-  }
-
-  
-
-  /* Toggle button adjustment for very small screens */
-  .esri-ui .widget-bottom,
-  .esri-ui #addLocationButton {
-    bottom: 10px !important; /* Raise toggle button higher */
-    position: fixed;
-  }
-}
-
-
-
-
-
-
-
-
-
-/* Default for desktop */
-#addLocationButton {
-  position: fixed;
-  bottom: 20px; /* Base position */
-  left: 10px;
-  padding: 10px 15px;
-  background-color: #6c4aad;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  z-index: 10;
-}
-
-#addLocationButton:hover {
-  background-color: #5b399d;
-}
-
-
-
-
 /* Force adjustments for smaller screens */
 @media (max-width: 768px) {
   /* Search bar adjustment */
   .esri-ui .esri-search {
-    bottom: 25px !important; /* Raise above bottom */
+    bottom: 10px !important; /* Raise above bottom */
     width: 200px; /* Reduce width for tablets */
     position: fixed;
   }
@@ -884,28 +854,25 @@ button:hover {
     position: relative;
     bottom: 20px;
   }
-}
 
-
-
-/* Adjustments for tablets (768px and below) */
-@media (max-width: 768px) {
-  #addLocationButton {
-    bottom: 10px !important; /* Raise above bottom */
-    width: 14
-    0px; /* Reduce width for tablets */
-    position: relative;
+  /* Header font and padding adjustment */
+  header {
+    padding: 0.4em 1em;
   }
-}
 
-/* Adjustments for mobile phones (480px and below) */
-@media (max-width: 480px) {
-  #addLocationButton {
-    bottom: 30px !important; /* Raise above bottom */
-    width: 80px; /* Reduce width for tablets */
-    position: fixed;
-    height: 8%;
-    font: 0.4em sans-serif;
+  header h1 {
+    font-size: 0.8rem; /* Slightly smaller for tablets */
+    line-height: 1.4;
+  }
+
+  .icon-button {
+    position: absolute;
+    top: -120px;
+    right: 10px;
+    font-size: 1.2rem;
+    padding: 6px;
+    background-color: transparent;
+    z-index: 10;
   }
 }
 
@@ -923,7 +890,7 @@ button:hover {
 .esri-popup__header-title {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #4b0082; /* Purple */
+  color: #f1edf4; /* Purple */
 }
 
 /* Mobile-specific adjustments */
