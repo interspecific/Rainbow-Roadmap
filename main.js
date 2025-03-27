@@ -208,25 +208,27 @@ const searchWidget = new Search({
 
 document.querySelectorAll('.accordion-button').forEach((button, index) => {
   button.addEventListener('click', () => {
-    // Traverse DOM to find the matching accordion-content inside the same .accordion
-    const accordion = button.closest('.accordion');
-    const content = accordion.querySelector('.accordion-content');
-    const isVisible = content.style.display === 'block';
+    const content = button.nextElementSibling;
+    const caret = button.querySelector('.caret');
 
-    // Toggle the display of the matched content
-    content.style.display = isVisible ? 'none' : 'block';
+    if (content) {
+      const isVisible = content.style.display === 'block';
 
-    // Toggle active class for caret rotation
-    button.classList.toggle('active', !isVisible);
+      // Toggle the display property of the content
+      content.style.display = isVisible ? 'none' : 'block';
 
-    // Special logic for "More" / "Less" on the first accordion-button
-    if (index === 0) {
-      button.childNodes[0].textContent = isVisible ? 'More ' : 'Less ';
+      // For the top accordion button (index 0), toggle between "More" and "Less"
+      if (index === 0) {
+        button.firstChild.textContent = isVisible ? 'More ' : 'Less ';
+      }
+
+      // Rotate the caret
+      if (caret) {
+        caret.classList.toggle('rotate', !isVisible);
+      }
     }
   });
 });
-
-
 
 // Show and hide disclaimer popup
 document.getElementById("disclaimerButton").addEventListener("click", () => {
