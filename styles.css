@@ -253,19 +253,23 @@ button:hover {
 /* Mobile-Specific Adjustments */
 @media (max-width: 480px) {
   #splashContent {
-    max-width: 90%; /* Fill most of the screen */
-    max-height: 85%; /* Constrain height for smaller screens */
-    padding: 15px; /* Adjust padding */
+    max-width: 80%; /* Fill most of the screen */
+    max-height: 80%; /* Constrain height for smaller screens */
+    padding: 20px; /* Adjust padding */
+    padding-top: 5px;
     overflow-y: auto; /* Allow scrolling for overflow content */
+    font-size: 0.8rem;
   }
+
   #splashContent h1 {
-    font-size: 1.5rem; /* Further scale down header */
+    font-size: 1.2rem; /* Further scale down header */
   }
   #splashContent h2 {
-    font-size: 1rem; /* Scale down subheader */
+    font-size: 0.8rem; /* Scale down subheader */
   }
+
   #splashContent p {
-    font-size: 0.9rem; /* Adjust paragraph font size */
+    font-size: 0.8rem; /* Adjust paragraph font size */
   }
 }
 
@@ -279,16 +283,20 @@ button:hover {
 }
 
 
+
+
+
 #toggleGifButton {
-  padding: 12px 25px;
+  padding: 4px 8px;
   background-color: #925bc4; /* Purple button */
   border: none;
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 0px;
 }
 
 
@@ -301,11 +309,12 @@ button:hover {
 
 
 #startButton {
-  padding: 12px 25px;
+  padding: 4px 8px;
   background-color: #925bc4; /* Purple button */
   border: none;
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -321,11 +330,12 @@ button:hover {
 
 
 #disclaimerButton {
-  padding: 12px 25px;
+  padding: 4px 8px;
   background-color: #925bc4; /* Purple button */
   border: none;
+  margin-top: 2px;
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -376,7 +386,7 @@ button:hover {
 #closeDisclaimer {
   display: block;
   margin: 20px auto 0;
-  padding: 10px 20px;
+  padding: 6px 10px;
   background-color: #4b0082; /* Dark purple button */
   color: #ffffff;
   font-size: 0.9rem;
